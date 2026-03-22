@@ -7,7 +7,7 @@
     <meta
       name="description"
       content="Honest dental care in Reading, PA. No upsells, no pressure. Dr. Shad Lewis, DMD — straightforward dentistry that keeps your teeth healthy for life." />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" />
 
     <style>
       :root {
@@ -105,6 +105,10 @@
         align-items: center;
         gap: 10px;
         text-align: center;
+      }
+
+      #announceText {
+        white-space: pre-line;
       }
 
       .announce.is-empty .wrap {
@@ -875,9 +879,9 @@
         "@context": "https://schema.org",
         "@type": "Dentist",
         "name": "Preventive Dental",
-        "image": "https://yourwebsite.com/images/doctor.jpg",
-        "@id": "",
-        "url": "https://yourwebsite.com",
+        "image": "https://preventive.dental/ogimage.png",
+        "@id": "https://preventive.dental/#dentist",
+        "url": "https://preventive.dental",
         "telephone": "+16106785700",
         "address": {
           "@type": "PostalAddress",
@@ -922,7 +926,7 @@
       <div class="wrap">
         <div class="header-inner">
           <div class="brand">
-            <a class="logo" href="#">
+            <a class="logo" href="/" aria-label="Preventive Dental home">
               <img src="logo.png" alt="Preventive Dental Logo" width="160" height="44" />
             </a>
           </div>
@@ -930,7 +934,7 @@
           <nav class="nav-desktop" aria-label="Primary">
             <a href="#location">Location</a>
             <a href="#services">What's bothering you</a>
-            <a href="#reviews">Reviews</a>
+            <a href="#help">Questions</a>
             <a href="#help">Policies</a>
           </nav>
 
@@ -955,7 +959,7 @@
         <div class="menu-links" id="mobileMenuLinks">
           <a href="#location">Location</a>
           <a href="#services">What's bothering you</a>
-          <a href="#reviews">Testimonials</a>
+          <a href="#help">Questions</a>
           <a href="#help">Insurance + Policies</a>
         </div>
 
@@ -967,7 +971,8 @@
       </div>
     </div>
 
-    <div class="hero">
+    <main id="main-content">
+      <div class="hero">
       <div class="wrap reveal">
         <div class="hero-kicker">
           <span style="white-space: nowrap">DR. SHAD LEWIS, DMD</span> &nbsp;&nbsp;
@@ -1358,6 +1363,7 @@
         </div>
       </div>
     </div>
+    </main>
 
     <footer>
       <div class="wrap">
@@ -1376,9 +1382,9 @@
             <strong>Links</strong><br />
             <a href="#services">What we do</a><br />
             <a href="#help">Questions</a><br />
-            <a href="financing.html">Financing</a><br />
+            <a href="paymentplans.html">Financing</a><br />
             <a href="privacy.html">Privacy</a><br />
-            <a href="terms.html">Terms</a>
+            <a href="tos.html">Terms</a>
           </div>
         </div>
 
@@ -1415,7 +1421,7 @@
           });
         }
 
-        // Announcement loader (supports plain text OR HTML)
+        // Announcement loader (plain text only, avoids HTML injection)
         var bar = document.getElementById("announceBar");
         var text = document.getElementById("announceText");
 
@@ -1429,22 +1435,16 @@
 
               if (!trimmed) {
                 bar.classList.add("is-empty");
-                text.innerHTML = "";
+                text.textContent = "";
                 return;
               }
 
               bar.classList.remove("is-empty");
-
-              // Auto-detect HTML vs plain text
-              if (trimmed.startsWith("<")) {
-                text.innerHTML = trimmed;
-              } else {
-                text.innerHTML = trimmed.replace(/\n/g, "<br>");
-              }
+              text.textContent = trimmed;
             })
             .catch(function () {
               bar.classList.add("is-empty");
-              text.innerHTML = "";
+              text.textContent = "";
             });
         }
 
