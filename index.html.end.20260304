@@ -1,0 +1,409 @@
+<!doctype html>
+<!-- FILENAME: index.html -->
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8ZJ2ZV10S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-G8ZJ2ZV10S");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toothache or Broken Tooth? Get Real Help Fast | Reading PA Dentist</title>
+    <meta
+      name="description"
+      content="Same-day relief forsty toothaches, broken teeth, and overdue dental care in Reading, PA. Honest answers and no-pressure treatment options." />
+
+    <meta
+      name="keywords"
+      content="dentist Reading PA, toothache, broken teeth, dental checkup, tooth extraction, emergency dentist" />
+    <meta name="author" content="Preventive Dental" />
+    <meta name="robots" content="index, follow" />
+    <meta name="google-site-verification" content="Jg-CDAU5x7S6HjGE0d0fx0j8yLb_3WZFtACIobmatJM" />
+
+    <link rel="canonical" href="https://preventive.dental/" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Open Graph Meta Tags -->
+
+    <meta property="og:title" content="Preventive Dental | Broken teeth, Toothaches, and Extractions in Reading, PA" />
+
+    <meta
+      property="og:description"
+      content="We handle what most people actually need: exams, broken teeth, toothaches, and extractions. Honest care, no pressure." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://preventive.dental/" />
+    <meta property="og:image" content="https://preventive.dental/ogimage.png" />
+
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "Preventive Dental – Prevention & Emergency Care",
+        "url": "https://preventive.dental/",
+        "telephone": "(610) 678-5700",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2211 Quarry Dr STE E-67",
+          "addressLocality": "Reading",
+          "addressRegion": "PA",
+          "postalCode": "19609",
+          "addressCountry": "US"
+        },
+        "description": "Clear, honest dental care in Reading, PA. We offer stress-free repairs, checkups, and emergency care."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "When can I get an appointment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We try to get you in fast, often the same day. If it's after hours, we'll follow up first thing in the morning."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if I don't have insurance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Doesn't matter. We offer clear pricing and flexible payment options so you can still get treated."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- MENU OVERLAY (for subtle background fade when menu open) -->
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <!-- HEADER (HOOK) -->
+    <header class="header-section">
+      <div class="logo-wrapper">
+        <a href="https://preventive.dental"
+          ><img src="logo.png" alt="Preventive Dental logo in Reading, PA" class="logo"
+        /></a>
+      </div>
+      <!-- Hamburger Navigation -->
+
+      <nav id="main-nav">
+        <button id="hamburger" aria-label="Toggle Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <div id="nav-container"></div>
+      </nav>
+
+      <h1>
+        Toothaches, Broken Teeth, and Getting Back on Track<br />
+        <span class="subheading">We meet you where you’re at. No shame, no pressure, just real care.</span>
+        <span class="subheading"
+          >Serving Reading, West Lawn, and nearby communities, We offer same-day treatment for broken teeth, toothaches,
+          and extractions.
+        </span>
+      </h1>
+
+      <div class="mobile-only-cta">
+        <p>
+          <strong>Emergency? Toothache? Broken or missing teeth?</strong><br />
+          We fix the problems people actually have. No fluff, no upsell.
+        </p>
+      </div>
+      <div class="cta-wrapper">
+        <!-- Keep custom gtag tracking on the CTA buttons -->
+        <a href="tel:+16106785700" class="cta" onclick="gtag('event', 'click_call_now');"> 📞 Call Now </a>
+        <a href="sms:+16106785700" class="cta" onclick="gtag('event', 'click_text_now');"> 📱 Text Now </a>
+      </div>
+      <p>
+        <strong>Real help, whether you're overdue, in pain, or just want to keep things on track.</strong>
+      </p>
+      <p>
+        Got a toothache that won't quit? Need a <strong>same-day appointment</strong>? Or just looking to keep your
+        teeth healthy long-term?
+      </p>
+      <p>
+        <strong>We've got you covered. Fast, effective care when you need it.</strong>
+      </p>
+
+      <p class="phone-number">+1 (610) 678-5700</p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <!-- WELCOME SECTION -->
+      <section id="welcome">
+        <h2>Welcome to Preventive Dental - Your Team in Reading, PA</h2>
+        <p>
+          Going to the dentist shouldn't be complicated. With us, it won't be. Whether you need reliable care for a
+          painful tooth or long-term maintenance to keep your smile healthy, we'll handle it with care and
+          professionalism.
+        </p>
+        <p>
+          We treat what's necessary and explain everything clearly so you'll always know what's happening and why. We
+          care about your comfort and make sure you feel informed and in control.
+        </p>
+        <p>Whether it's a filling, or a dental emergency, you'll get honest care you can trust.</p>
+        <p>
+          <em
+            >Trusted by patients in <strong>Reading, PA</strong> for over 20 years because good dental care starts with
+            trust.</em
+          >
+        </p>
+      </section>
+      <!-- TOOTHACHE SECTION -->
+      <section id="toothache">
+        <h2>Got a Toothache?</h2>
+        <p>We fix those.</p>
+        <p>
+          Whether it just started or it's been lingering, we're here to help. You've got options. We'll walk you through
+          each one, so you stay in control. We'll explain what's going on, what we can do, and how to make it better.
+          Often the same day.
+        </p>
+        <p>No pressure. No surprises. Just dental care that makes sense.</p>
+
+        <h3>Here's What You Can Expect:</h3>
+        <ul>
+          <li>Straightforward answers. No confusing terms</li>
+          <li>Treatment options laid out clearly. You choose</li>
+          <li>A calm, respectful experience from start to finish</li>
+        </ul>
+
+        <h3>Feel Better, Starting Today</h3>
+        <p>Call or text. We'll get you in, talk it through, and take care of what hurts. Simple as that.</p>
+
+        <div class="cta-wrapper">
+          <a href="tel:+16106785700" class="cta" onclick="gtag('event', 'click_call_now');"> 📞 Call Now </a>
+          <a href="sms:+16106785700" class="cta" onclick="gtag('event', 'click_text_now');"> 📱 Text Now </a>
+        </div>
+        <p class="phone-number">+1 (610) 678-5700</p>
+      </section>
+
+      <!-- OPTIONAL CONTENT SECTION -->
+      <section id="optional-content" style="display: none"></section>
+
+      <!-- WHAT'S BOTHERING YOU SECTION -->
+      <section id="whats-bothering-you">
+        <h2>What's Bothering You?</h2>
+        <p>
+          Not sure if you need a dentist? Just know something feels off? You're not alone. These are the kinds of things
+          we help people with every single day:
+        </p>
+        <ul>
+          <li><strong>Toothache</strong> - sharp, throbbing, or just won't go away</li>
+          <li><strong>Bleeding gums</strong> when you brush or floss</li>
+          <li><strong>Bad breath</strong> that keeps coming back</li>
+          <li><strong>Swollen jaw or face</strong></li>
+          <li><strong>Cracked or chipped tooth</strong> from biting something hard</li>
+          <li><strong>Food always getting stuck</strong> between the same teeth</li>
+          <li><strong>Sensitivity</strong> to hot, cold, or sweet things</li>
+          <li><strong>Loose crown or filling</strong></li>
+          <li><strong>Gum bump or sore</strong> that won't go away</li>
+          <li><strong>Missing teeth</strong> making it hard to chew or smile confidently</li>
+        </ul>
+        <p>
+          Whatever it is, we'll take a look, explain what's going on, and talk through your options. You stay in
+          control. We'll just help make sense of it.
+        </p>
+      </section>
+
+      <!-- OUR APPROACH SECTION -->
+      <section id="our-approach">
+        <h2 class="centered-text">
+          ✨<br />
+          What Makes Us Different
+        </h2>
+        <p>
+          We focus on what's necessary. Nothing more. If you can treat it, we'll tell you how. If we need to, we'll
+          explain why and help you decide the next step.
+        </p>
+        <p>
+          We aim to complete most things in one visit. Simple, straightforward care. We'll give you clear, simple advice
+          to help you care for your teeth and avoid bigger issues down the road.
+        </p>
+      </section>
+
+      <!-- CTA SECTION -->
+      <section id="cta">
+        <h2 class="centered-heading">
+          Need Answers?<br />
+          Need Help?
+        </h2>
+        <div class="cta-wrapper">
+          <a href="tel:+16106785700" class="cta" onclick="gtag('event', 'click_call_now');"> 📞 Call Now </a>
+          <a href="sms:+16106785700" class="cta" onclick="gtag('event', 'click_text_now');"> 📱 Text Now </a>
+        </div>
+        <p class="phone-number">+1 (610) 678-5700</p>
+      </section>
+
+      <!-- TREATMENT APPROACH SECTION -->
+      <section id="treatment-approach">
+        <h2>Treatment Approach</h2>
+        <p>
+          We treat what's necessary. Nothing more. If it's not a problem, we won't touch it. If home care can treat it,
+          we'll give you a plan. And if it's serious, we'll explain why and how we'll treat it.
+        </p>
+        <p>
+          Most treatments are handled in one visit. Fewer trips, more convenience. We'll help you build the right habits
+          so you can take care of your teeth and avoid bigger issues down the road.
+        </p>
+      </section>
+
+      <!-- OUR PROMISE SECTION -->
+      <section id="our-promise">
+        <h2>Our Promise</h2>
+        <p>
+          No judgment, no lectures. All respect. We don't know what's best for you. Only you do. We'll give you the
+          facts and help guide you toward the right decision.
+        </p>
+        <p>
+          If you need treatment, we'll tell you why. If you're not ready, that's fine too. We'll give you a plan and let
+          you decide when it's right for you.
+        </p>
+        <p>We stick to <strong>clear, conservative care.</strong> The kind most people actually need.</p>
+      </section>
+
+      <section id="faq">
+        <h2 class="centered-heading">Frequently Asked Questions</h2>
+
+        <details>
+          <summary class="centered-text"><strong>Click to see 👀</strong></summary>
+          <div class="faq-section">
+            <hr style="margin-top: 10px; margin-bottom: 10px; color: #e5e5e5" />
+            <p>
+              <strong>When can I get an appointment?</strong><br />
+              We try to get you in fast often the same day. If it's after hours, we'll follow up first thing in the
+              morning.
+            </p>
+            <p>
+              If you leave a message, send an email, or text, we'll get back to you as soon as we can. Sometimes we're
+              with patients, but we do check everything regularly.
+            </p>
+            <p>
+              If it's urgent and can't wait, use the emergency option on our phone line. That gets flagged for quicker
+              attention.
+            </p>
+
+            <p>
+              <strong>What if I'm nervous about dental work?</strong><br />
+              Dental work doesn't have to be stressful. We'll walk you through every step and make sure you're good
+              before we do anything.
+            </p>
+
+            <p>
+              <strong>What if I need a root canal or crown?</strong><br />
+              If you need more advanced care, we'll explain why, lay out the options, and let you decide. No stress. No
+              pressure. Just facts.
+            </p>
+
+            <p>
+              <strong>How do I know if my insurance covers this?</strong><br />
+              We'll confirm your coverage before doing anything and handle the paperwork for you. No surprises.
+            </p>
+
+            <p>
+              <strong>What if I don't have insurance?</strong><br />
+              Doesn't matter. We'll go over your cost and any payment options upfront. Nothing starts until you're on
+              board. No commitments without your go-ahead.
+            </p>
+
+            <p>
+              <strong>Will you tell me my cost upfront?</strong><br />
+              Always. No hidden fees. No guesswork. You'll know before we start.
+            </p>
+
+            <div class="cta-wrapper faq-cta-buttons">
+              <a href="tel:+16106785700" class="cta" onclick="gtag('event', 'click_call_now');"> 📞 Call Now </a>
+              <a href="sms:+16106785700" class="cta" onclick="gtag('event', 'click_text_now');"> 📱 Text Now </a>
+            </div>
+
+            <p class="faq-reassurance">No pressure. No confusion. Just straight-up care that makes sense.</p>
+            <p class="faq-cta">Still got questions? Call or text. We'll make it easy.</p>
+          </div>
+        </details>
+      </section>
+
+      <!-- CLOSING SECTION -->
+      <section id="closing">
+        <p><strong>No pressure. No confusion. Just care that makes sense.</strong></p>
+        <p>If you're ready to feel good about your smile, we're ready for you.</p>
+        <p>👉 <strong class="final-cta">Call or text. We'll make it easy.</strong></p>
+        <p class="last-updated">Last updated: <span id="lastModified"></span></p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-columns">
+          <!-- NAP -->
+          <div class="footer-column">
+            <h4>Preventive Dental</h4>
+
+            <p>
+              2211 Quarry Dr STE E-67<br />
+              Reading, PA 19609<br />
+              +1 (610) 678-5700
+            </p>
+            <p>
+              Serving Reading, West Lawn, Sinking Spring, Shillington, Wyomissing, and surrounding areas in Berks
+              County.
+            </p>
+          </div>
+          <!-- Hours -->
+          <div class="footer-column">
+            <h4>Hours of Operation</h4>
+            <p>
+              Mon, Tue, Thu: 10AM – 5PM<br />
+              Fri: 10AM – 2PM<br />
+              and by appointment.
+            </p>
+          </div>
+
+          <!-- Social Proof + Google Maps -->
+          <div class="footer-column">
+            <h4>Local Info</h4>
+            <p>⭐ Trusted by patients in Reading, PA and surrounding areas for over 20 years</p>
+            <p><a href="https://g.co/kgs/gGFu3Ks" target="_blank">📍 Get Directions on Google Maps</a></p>
+          </div>
+        </div>
+        <div class="footer-note">
+          <p>
+            📞 <a href="tel:+16106785700">Call us now</a> • 📱 <a href="sms:+16106785700">Send a text</a> • 💬
+            <a href="https://wa.me/16106785700" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          </p>
+
+          <p>
+            © 2025 Preventive Dental. All Rights Reserved.<br />
+            &nbsp;&nbsp;&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp; &nbsp; &nbsp;
+            <a href="tos.html">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!--
+DROP-IN NOTICE TEMPLATE (copy/paste anywhere)
+<section class="notice-box" id="site-notice">
+  <div class="notice-kicker">NOTICE</div>
+  <h2>Office Update</h2>
+  <p>I’ll be out of the office for a short break. Phone and text messages are still monitored.</p>
+  <p class="notice-dates">Dec 23, 2025 – Jan 6, 2026</p>
+</section>
+-->

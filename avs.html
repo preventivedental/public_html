@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Post-Visit Documentation</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                padding: 1rem;
+                max-width: 800px;
+                margin: auto;
+            }
+            .section {
+                margin-bottom: 1.5rem;
+            }
+            .conditional {
+                display: none;
+                margin-top: 0.5rem;
+            }
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+            }
+            textarea,
+            input[type="text"] {
+                width: 100%;
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+            }
+            button {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            .footer {
+                font-family: monospace;
+                font-size: 8pt;
+                text-align: center;
+                margin-top: 3rem;
+                border-top: 1px solid #979797;
+                padding-top: 0.5rem;
+            }
+
+            /* 0.75-inch page margins */
+            @page {
+                margin: 0.75in;
+            }
+
+            @media screen {
+                .print-area {
+                    display: none;
+                }
+            }
+
+            @media print {
+                /* hide everything except .print-area */
+                body > :not(.print-area) {
+                    display: none;
+                }
+
+                .print-area {
+                    display: block;
+                    font-family: "Times New Roman", serif;
+                    font-size: 10pt;
+                    line-height: 1.15;
+                }
+                .print-area .header {
+                    font-family: monospace;
+                    font-size: 10pt;
+                    line-height: 1;
+                    white-space: pre-line;
+                    margin-bottom: 1rem;
+                }
+                .print-area h2 {
+                    text-align: center;
+                    margin: 2rem 0 1rem;
+                    font-size: 12pt;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+                .print-area h3 {
+                    margin: 2rem 0 0.5rem;
+                    font-size: 10pt;
+                    font-weight: bold;
+                }
+                .print-area p {
+                    font-size: 10pt;
+                    margin: 0.5rem 0;
+                }
+                .print-area hr {
+                    border: none;
+                    border-top: 1px solid #979797;
+                    margin: 1rem 0;
+                }
+
+                .print-area .footer {
+                    font-family: monospace;
+                    font-size: 8pt;
+                    line-height: 1.15;
+                    text-align: center;
+                    margin-top: 2rem;
+                    padding-top: 0.5rem;
+                    border-top: 1px solid #979797;
+                    white-space: pre-line;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Post-Visit Documentation</h1>
+
+        <div class="section">
+            <label for="patientInfo">Patient Info (Name / DOB / Date of Service)</label>
+            <input type="text" id="patientInfo" placeholder="Name DOB and DOS" />
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeCustom" /> Custom Notes</label>
+            <div class="conditional" id="customSection">
+                <textarea id="customText" rows="4" placeholder="Enter custom notes…"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includePostOpFilling" /> PostOP Filling</label>
+            <div class="conditional" id="postopfillingSection"></div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includePostOpExtraction" /> PostOP Extraction</label>
+            <div class="conditional" id="postopextractionSection"></div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeReferral" /> Include Referral Info</label>
+            <div class="conditional" id="referralSection">
+                <textarea id="referralText" rows="3" placeholder="Enter referral details…"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <a href="https://www.openevidence.com" target="_blank" rel="noopener"> Open Evidence </a>
+        </div>
+
+        <div class="section">
+            <a href="https://www.chatgpt.com" target="_blank" rel="noopener"> ChatGPT </a>
+        </div>
+        <div class="section">
+            <label><input type="checkbox" id="includeMeds" /> Include Medications Dispensed</label>
+            <div class="conditional" id="medsSection">
+                <textarea id="medsText" rows="4" placeholder="List meds given (e.g., Ibuprofen 600mg)"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeDiet" /> Dietary Considerations</label>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeOHI" /> OHI</label>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeQandA" /> Questions and Answers</label>
+            <div class="conditional" id="qandaSection">
+                <textarea id="qandaText" rows="4" placeholder="Enter QandA details…"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeNext" /> What You Need To do Next</label>
+            <div class="conditional" id="nextSection">
+                <textarea id="nextText" rows="4" placeholder="Enter next steps…"></textarea>
+            </div>
+        </div>
+
+        <button onclick="generatePrint()">Print</button>
+        <div class="print-area" id="printArea"></div>
+
+        <script>
+            // show/hide logic for conditional sections
+            ["Custom", "PostOpFilling", "PostOpExtraction", "Referral", "Meds", "QandA", "Next"].forEach((name) => {
+                const chk = document.getElementById("include" + name);
+                const sec = document.getElementById(name.toLowerCase() + "Section");
+                chk.addEventListener("change", () => {
+                    sec.style.display = chk.checked ? "block" : "none";
+                });
+            });
+
+            function generatePrint() {
+                const info = document.getElementById("patientInfo").value.trim();
+                const custom = document.getElementById("includeCustom").checked;
+                const postOpFilling = document.getElementById("includePostOpFilling").checked;
+                const postOpExtraction = document.getElementById("includePostOpExtraction").checked;
+                const ref = document.getElementById("includeReferral").checked;
+                const med = document.getElementById("includeMeds").checked;
+                const diet = document.getElementById("includeDiet").checked;
+                const ohi = document.getElementById("includeOHI").checked;
+                const qanda = document.getElementById("includeQandA").checked;
+                const next = document.getElementById("includeNext").checked;
+
+                let html = `
+  <div style="
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  ">
+    <!-- left column -->
+    <div class="header">
+      Preventive Dental
+      2211 Quarry Dr STE E-67
+      Reading, PA 19609
+      (610) 678-5700
+    </div>
+    <div class="header" style="text-align: right;">
+      <strong>Provider: </strong>Shad Lewis, DMD<br/>
+      NPI 1093809147<br/>
+      PA LIC# DS035563
+    </div>
+  </div>
+
+  <h2 style="
+    text-align: center;
+    margin-top: 0;
+    font-size: 12pt;
+    text-transform: uppercase;
+  ">
+    After Visit Summary
+  </h2>
+`;
+
+                if (info) {
+                    html += `<p><strong>Patient Info:</strong> ${info}</p><hr>`;
+                }
+                if (custom) {
+                    const c = document.getElementById("customText").value.trim();
+                    if (c) html += `<p>${c}</p><hr>`;
+                }
+                if (postOpFilling) {
+                    html += `
+                <h3><strong>Postoperative Instructions After a Dental Filling</strong></h3>
+
+                <h4>Numbness:</h4>
+                <p>
+                    The area may remain numb for a few hours after the procedure. Avoid chewing, eating hot foods, or
+                    drinking hot beverages until the numbness wears off to prevent accidental injury to the lips,
+                    cheeks, or tongue.
+                </p>
+
+                <h4>Eating and Drinking:</h4>
+                <p>
+                    Once the numbness is gone, normal eating and drinking can resume. If a silver (amalgam) filling was
+                    placed, avoid chewing on that side for at least 24 hours. For tooth-colored (composite) fillings,
+                    chewing is safe as soon as the numbness is gone.
+                </p>
+
+                <h4>Pain and Sensitivity:</h4>
+                <p>
+                    Mild discomfort or sensitivity to hot, cold, or pressure is common for the first 24–48 hours. This
+                    usually improves over several days. If pain is bothersome, take an NSAID such as ibuprofen (up to
+                    400 mg every 6–8 hours, not exceeding 2400 mg per day) or acetaminophen (up to 1000 mg every 6
+                    hours, not exceeding 4000 mg per day), as directed on the package. Combining ibuprofen and
+                    acetaminophen may provide additional relief. Always follow dosing instructions and do not exceed the
+                    maximum daily dose.
+                </p>
+
+                <h4>Bite Adjustment:</h4>
+                <p>
+                    If the bite feels uneven or if there is persistent discomfort when biting down, contact the dental
+                    office. Sometimes a minor adjustment is needed.
+                </p>
+
+                <h4>Oral Hygiene:</h4>
+                <p>
+                    Continue regular brushing and flossing, being gentle around the treated tooth. Good oral hygiene
+                    helps prevent future problems.
+                </p>
+
+                <h4>When to Call:</h4>
+                <p>
+                    Contact the dental office if pain increases after 48 hours or becomes severe, swelling or fever
+                    develops, the filling feels loose or falls out, or there is persistent numbness beyond a few hours.
+                </p>
+
+                <h4>Follow-Up:</h4>
+                <p>
+                    Most fillings do not require a follow-up visit unless there are problems. Attend regular dental
+                    check-ups as recommended.
+                </p>
+
+                <p>
+                    These instructions are based on current evidence and guidelines from the American Dental Association
+                    and recent clinical studies.
+                </p>
+
+                <hr />
+                `;
+                }
+                if (postOpExtraction) {
+                    html += `
+                <h3>Dental Extraction Care</h3>
+
+                <p><strong>Care Instructions After Dental Extraction</strong></p>
+
+                <p>
+                    Thank you for coming in for your dental extraction. Following these instructions will help you heal
+                    quickly and reduce the risk of complications.
+                </p>
+
+                <p><strong>1. Bleeding and Swelling</strong></p>
+                <p>
+                    Bite gently on the gauze pad placed over the extraction site for 30–60 minutes. If bleeding
+                    continues, replace with a new gauze pad and bite firmly.
+                </p>
+                <p>
+                    Some swelling is normal. Apply an ice pack to your cheek for 15 minutes at a time during the first
+                    24 hours.
+                </p>
+
+                <p><strong>2. Pain Management</strong></p>
+                <p>
+                    The American Dental Association recommends starting with a nonsteroidal anti-inflammatory drug
+                    (NSAID) such as <strong>ibuprofen 400 mg</strong> every 6–8 hours, not exceeding 2,400 mg per day.
+                    You may combine this with <strong>acetaminophen 500 mg</strong> every 6 hours, not exceeding 4,000
+                    mg per day, for better pain control.[1][2][3]
+                </p>
+                <p>If you cannot take NSAIDs, use acetaminophen alone at the full therapeutic dose.[1]</p>
+                <p>
+                    Opioids are rarely needed. If prescribed, use the lowest effective dose for the shortest time
+                    (usually no more than 3 days), and be aware of risks such as drowsiness and dependence.[1]
+                </p>
+
+                <p><strong>3. Oral Hygiene and Rinsing</strong></p>
+                <p>Do not rinse your mouth or spit forcefully for the first 24 hours.</p>
+                <p>
+                    After 24 hours, gently rinse with <strong>warm salt water</strong> (½ teaspoon salt in a cup of warm
+                    water) twice daily to help prevent infection and dry socket.[4]
+                </p>
+                <p>Avoid commercial mouthwashes unless specifically recommended.</p>
+
+                <p><strong>4. Eating and Drinking</strong></p>
+                <p>Eat soft foods and avoid chewing near the extraction site for a few days.</p>
+                <p>Do not use straws, smoke, or drink alcohol for at least 72 hours, as these can delay healing.</p>
+
+                <p><strong>5. Keeping the Socket Clean</strong></p>
+                <p>
+                    Starting one week after extraction, you may use a syringe with tap water to gently irrigate the
+                    socket, especially after eating, to keep the area clean and reduce food impaction and bad breath.[5]
+                </p>
+                <p>
+                    Good oral hygiene is important, but avoid brushing directly over the extraction site for the first
+                    few days.
+                </p>
+
+                <p><strong>6. Infection Prevention</strong></p>
+                <p>
+                    Most patients do not need antibiotics. Antibiotics may be considered for those at higher risk of
+                    infection, such as immunocompromised individuals, after careful evaluation.[6]
+                </p>
+                <p>If you were given a prescription for antibiotics, take the full course as directed.</p>
+
+                <p><strong>7. When to Call the Office</strong></p>
+                <p>
+                    Call if you have severe pain not controlled by medication, persistent bleeding, swelling that
+                    worsens after 2–3 days, fever, or signs of infection (such as pus or foul odor).
+                </p>
+
+                <p><strong>8. Additional Instructions</strong></p>
+                <p>Avoid strenuous activity for 24 hours.</p>
+                <p>Follow any specific instructions given by your dentist.</p>
+
+                <hr />
+                `;
+                }
+                if (ref) {
+                    const r = document.getElementById("referralText").value.trim();
+                    if (r)
+                        html += `
+                <h3>Referral Info</h3>
+                <p>${r}</p>
+                <hr />
+                `;
+                }
+                if (med) {
+                    const m = document.getElementById("medsText").value.trim();
+                    if (m)
+                        html += `
+                <h3>Medications Dispensed</h3>
+                <p>${m}</p>
+                <hr />
+                `;
+                }
+
+                if (diet) {
+                    html += `
+                <h3>Dietary Considerations for Oral Health</h3>
+                <p>
+                    Your diet plays a big role in your oral health. Sugary and starchy foods can increase your risk for
+                    cavities. These foods feed the bacteria in your mouth, which then produce acids that wear away your
+                    enamel and cause decay.
+                </p>
+                <p>
+                    To help protect your teeth: Avoid snacks and drinks high in sugar, especially between meals. Cut
+                    back on soda, juice, candy, cookies, and chips. Try to eat balanced meals with fresh vegetables,
+                    whole grains, lean proteins, and dairy for calcium. Drink plenty of water, especially if you can’t
+                    brush right after eating. Limit how often you eat during the day. Constant snacking gives bacteria
+                    more time to cause harm. If you do have something sweet, try to have it with a meal rather than as a
+                    snack.
+                </p>
+                <p>
+                    These changes will help keep your mouth healthier and reduce your chances of needing more dental
+                    work in the future. Let us know if you have any questions or need help planning tooth-friendly
+                    meals.
+                </p>
+                <hr />
+                `;
+                }
+
+                if (ohi) {
+                    html += `
+                <h3>Oral Hygiene Instructions</h3>
+                <p>
+                    Keeping your mouth clean every day is one of the most important ways to protect your teeth and gums.
+                    Do these steps to improve your brushing and flossing habits and help prevent cavities, gum disease,
+                    and bad breath.
+                </p>
+                <p>
+                    Brush your teeth twice a day for two full minutes – once in the morning and once before bed. Use a
+                    soft-bristled toothbrush and fluoride toothpaste. Make sure to brush along the gumline and on all
+                    sides of each tooth. Don’t forget the back teeth. Replace your toothbrush every 3 months or sooner
+                    if the bristles are frayed. Floss once a day to remove plaque and food between the teeth where your
+                    toothbrush can’t reach. Curve the floss around each tooth and gently slide it under the gumline. If
+                    flossing is difficult, consider using floss picks or a water flosser. Use a fluoride mouth rinse if
+                    recommended, especially if you’re at higher risk for cavities. Avoid eating or drinking anything
+                    except water after your nighttime brushing. Drink water throughout the day. Rinse with water also to
+                    help wash away food and bacteria.
+                </p>
+                <p>
+                    Good oral hygiene helps prevent future problems and supports your overall health. Please contact us
+                    if you have questions about your routine or need help choosing the right products.
+                </p>
+                <hr />
+                `;
+                }
+                if (qanda) {
+                    const q = document.getElementById("qandaText").value.trim();
+                    if (q) html += `<h3>Questions & Answers</h3><p>${q}</p><hr>`;
+                }
+                if (next) {
+                    const n = document.getElementById("nextText").value.trim();
+                    if (n) html += `<h3>What You Need To do Next</h3><p>${n}</p><hr>`;
+                }
+
+                const now = new Date();
+                const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "2-digit" };
+                const timestamp = now.toLocaleString("en-US", options);
+
+                html += `
+<div class="footer">
+  Generated on ${timestamp}<br />
+  Preventive Dental • (610) 678-5700<br />
+  This document summarizes clinical instructions and recommendations discussed today.<br />
+  It is intended to reinforce key points for patient understanding and follow-through.<br />
+  If anything is unclear or symptoms change, contact the office.
+</div>
+`;
+
+                document.getElementById("printArea").innerHTML = html;
+                window.print();
+            }
+        </script>
+    </body>
+</html>

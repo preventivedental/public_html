@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home Care Documentation</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                padding: 1rem;
+                max-width: 800px;
+                margin: auto;
+            }
+            h1 {
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .line-break {
+                flex-basis: 100%;
+                height: 0;
+            }
+            .section {
+                margin-bottom: 1.5rem;
+            }
+            label {
+                font-weight: bold;
+            }
+            textarea,
+            input[type="text"],
+            input[type="date"] {
+                width: 100%;
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+            }
+            .inline-group {
+                margin-top: 0.75rem;
+            }
+            .inline-group > span {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 0.25rem;
+            }
+            .subgroup {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem 0.8rem;
+                margin-left: 1rem;
+            }
+            .subgroup label {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.25rem;
+                white-space: normal;
+                line-height: 1.2;
+            }
+            button {
+                padding: 0.6rem 1.2rem;
+                font-size: 1rem;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 0.5rem;
+            }
+            td {
+                padding: 0.1rem 0;
+                text-align: left;
+                vertical-align: top;
+                font-size: 10.5pt;
+            }
+            td:first-child {
+                width: 35%;
+                font-weight: bold;
+                white-space: nowrap;
+                padding-right: 0.5rem;
+            }
+            tr + tr td {
+                padding-top: 0.25rem;
+            }
+            .footer {
+                font-family: monospace;
+                font-size: 8pt;
+                text-align: center;
+                margin-top: 1.5rem;
+                border-top: 1px solid #000;
+                padding-top: 0.25rem;
+            }
+
+            @page {
+                margin: 0.5in 0.75in;
+            }
+
+            @media screen {
+                .print-area {
+                    display: none;
+                }
+            }
+
+            @media print {
+                body > :not(.print-area) {
+                    display: none;
+                }
+                .print-area {
+                    display: block;
+                    font-family: "Times New Roman", serif;
+                    font-size: 11pt;
+                    line-height: 1.25;
+                }
+                h2,
+                h3 {
+                    margin-bottom: 0.25rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="section">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+        </div>
+
+        <div class="section">
+            <label for="patientInfo">Patient Info (Name / DOB)</label>
+            <input type="text" id="patientInfo" placeholder="Name DOB" />
+        </div>
+
+        <!-- Patient Reports -->
+        <div class="section" id="reports">
+            <label>Patient Reports</label>
+
+            <div class="inline-group">
+                <span>Brushing:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" class="brush-num" value="0" />0</label>
+                    <label><input type="checkbox" class="brush-num" value="1" />1</label>
+                    <label><input type="checkbox" class="brush-num" value="2" />2</label>
+                    <label><input type="checkbox" class="brush-num" value="3" />3</label>
+                    <label><input type="checkbox" class="brush-freq" value="daily" />daily</label>
+                    <label><input type="checkbox" class="brush-freq" value="weekly" />weekly</label>
+                    <label><input type="checkbox" value="Does not brush" />doesn’t</label>
+                </div>
+            </div>
+
+            <div class="inline-group">
+                <span>Flossing:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="Flosses daily" />daily</label>
+                    <label><input type="checkbox" value="Flosses weekly" />weekly</label>
+                    <label><input type="checkbox" value="Does not floss" />doesn’t</label>
+                </div>
+            </div>
+
+            <div class="inline-group">
+                <span>Toothbrush:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="Uses manual toothbrush" />manual</label>
+                    <label><input type="checkbox" value="Uses electric toothbrush" />electric</label>
+                </div>
+            </div>
+
+            <div class="inline-group">
+                <span>Other aids:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="Uses interdental picks" />picks</label>
+                    <label><input type="checkbox" value="Uses Waterpik" />Waterpik</label>
+                </div>
+            </div>
+
+            <textarea id="customReport" rows="2" placeholder="Additional notes…"></textarea>
+        </div>
+
+        <!-- Clinical Observations -->
+        <div class="section" id="observations">
+            <label>Clinical Observations</label>
+
+            <div class="inline-group" data-cat="Plaque">
+                <span>Plaque:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="absent" />absent</label
+                    ><label><input type="checkbox" value="local" />local</label
+                    ><label><input type="checkbox" value="general" />general</label>
+                    <div class="line-break"></div>
+
+                    <label><input type="checkbox" value="slight" />slight</label
+                    ><label><input type="checkbox" value="moderate" />moderate</label
+                    ><label><input type="checkbox" value="heavy" />heavy</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Calculus">
+                <span>Calculus:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="absent" />absent</label
+                    ><label><input type="checkbox" value="local" />local</label
+                    ><label><input type="checkbox" value="general" />general</label>
+                    <div class="line-break"></div>
+                    <label><input type="checkbox" value="slight" />slight</label
+                    ><label><input type="checkbox" value="moderate" />moderate</label
+                    ><label><input type="checkbox" value="heavy" />heavy</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Gingivitis">
+                <span>Gingivitis:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="absent" />absent</label
+                    ><label><input type="checkbox" value="local" />local</label
+                    ><label><input type="checkbox" value="general" />general</label>
+                    <div class="line-break"></div>
+                    <label><input type="checkbox" value="slight" />slight</label
+                    ><label><input type="checkbox" value="moderate" />moderate</label
+                    ><label><input type="checkbox" value="heavy" />heavy</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Bleeding">
+                <span>Bleeding:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="absent" />absent</label
+                    ><label><input type="checkbox" value="local" />local</label
+                    ><label><input type="checkbox" value="general" />general</label>
+                    <div class="line-break"></div>
+                    <label><input type="checkbox" value="slight" />slight</label
+                    ><label><input type="checkbox" value="moderate" />moderate</label
+                    ><label><input type="checkbox" value="heavy" />heavy</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Oral cancer screening">
+                <span>Oral cancer screening:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="negative" />negative</label
+                    ><label><input type="checkbox" value="positive" />positive</label
+                    ><label><input type="checkbox" value="other finding" />other finding</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Soft tissue exam">
+                <span>Soft tissue exam:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="negative" />negative</label
+                    ><label><input type="checkbox" value="positive" />positive</label
+                    ><label><input type="checkbox" value="other finding" />other finding</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Visual caries">
+                <span>Visual caries:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="yes" />yes</label
+                    ><label><input type="checkbox" value="no" />no</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Decalcifications">
+                <span>Decalcifications:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="yes" />yes</label
+                    ><label><input type="checkbox" value="no" />no</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Periodontal pocketing">
+                <span>Periodontal pocketing:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="all 3mm or less" />all 3mm or less</label
+                    ><label><input type="checkbox" value="greater than 4mm local" />greater than 4mm local</label
+                    ><label><input type="checkbox" value="greater than 4mm general" />greater than 4mm general</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Bleeding with pocketing">
+                <span>Bleeding with pocketing:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="local" />local</label
+                    ><label><input type="checkbox" value="general" />general</label
+                    ><label><input type="checkbox" value="no bleeding" />no bleeding</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Subgingival calculus">
+                <span>Subgingival calculus:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="felt local" />local</label
+                    ><label><input type="checkbox" value="felt general" />general</label
+                    ><label><input type="checkbox" value="none felt" />none felt</label>
+                </div>
+            </div>
+
+            <div class="inline-group" data-cat="Contributing factors">
+                <span>Contributing factors:</span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="Diabetes" />Diabetes</label>
+                    <label><input type="checkbox" value="Smoking/Vaping" />Smoking/Vaping</label>
+                    <label><input type="checkbox" value="Dry mouth" />Dry mouth</label>
+                    <label><input type="checkbox" value="Acid reflux" />Acid reflux</label>
+                    <label><input type="checkbox" value="Medications (xerostomia)" />Medications (xerostomia)</label>
+                    <label><input type="checkbox" value="Poor diet" />Poor diet</label>
+                    <label><input type="checkbox" value="Mouth breathing" />Mouth breathing</label>
+                    <label><input type="checkbox" value="Clenching/Grinding" />Clenching/Grinding</label>
+                    <label><input type="checkbox" value="Hormonal changes" />Hormonal changes</label>
+                    <label><input type="checkbox" value="Autoimmune condition" />Autoimmune condition</label>
+                </div>
+            </div>
+
+            <textarea id="customObservation" rows="2" placeholder="Additional findings…"></textarea>
+        </div>
+
+        <div class="section" id="recommendations">
+            <label>Recommendations / Orders</label>
+            <div style="margin-left: 0.5rem; margin-top: 0.5rem">
+                <label
+                    ><input type="checkbox" value="Increase brushing frequency to twice daily" /> Increase brushing
+                    frequency to twice daily</label
+                ><br />
+                <label><input type="checkbox" value="Add daily flossing" /> Add daily flossing</label><br />
+                <label><input type="checkbox" value="Use fluoride toothpaste" /> Use fluoride toothpaste</label><br />
+                <label><input type="checkbox" value="Use electric toothbrush" /> Use electric toothbrush</label><br />
+                <span><strong>Re-evaluate in:</strong></span>
+                <div class="subgroup">
+                    <label><input type="checkbox" value="Re-evaluate in 3 months" />3 months</label>
+                    <label><input type="checkbox" value="Re-evaluate in 4 months" />4 months</label>
+                    <label><input type="checkbox" value="Re-evaluate in 6 months" />6 months</label>
+                    <label><input type="checkbox" value="Re-evaluate in 9 months" />9 months</label>
+                    <label><input type="checkbox" value="Re-evaluate in 12 months" />12 months</label>
+                </div>
+                <textarea id="customRec" rows="2" placeholder="Additional recommendations…"></textarea>
+            </div>
+        </div>
+
+        <button onclick="generatePrint()">Print / Save PDF</button>
+
+        <div class="print-area" id="printArea"></div>
+
+        <script>
+            document.getElementById("date").valueAsDate = new Date();
+
+            function generatePrint() {
+                const date = document.getElementById("date").value;
+                const info = document.getElementById("patientInfo").value.trim();
+
+                const reportCustom = document.getElementById("customReport").value.trim();
+                const obsCustom = document.getElementById("customObservation").value.trim();
+                const recCustom = document.getElementById("customRec").value.trim();
+
+                // Reports
+                const reports = [];
+                document.querySelectorAll("#reports .inline-group").forEach((group) => {
+                    const checked = [...group.querySelectorAll("input:checked")].map((i) => i.value);
+                    if (checked.length)
+                        reports.push(
+                            `<p><strong>${group.querySelector("span").textContent.replace(":", "")}:</strong> ${checked.join("; ")}</p>`
+                        );
+                });
+                if (reportCustom) reports.push(`<p>${reportCustom}</p>`);
+
+                // Observations
+                const obsOrder = [
+                    "Plaque",
+                    "Calculus",
+                    "Gingivitis",
+                    "Bleeding",
+                    "Oral cancer screening",
+                    "Soft tissue exam",
+                    "Visual caries",
+                    "Decalcifications",
+                    "Periodontal pocketing",
+                    "Bleeding with pocketing",
+                    "Subgingival calculus",
+                    "Contributing factors",
+                    "Other"
+                ];
+                const grouped = {};
+
+                document.querySelectorAll("#observations .inline-group").forEach((group) => {
+                    const cat = group.dataset.cat;
+                    const checked = [...group.querySelectorAll("input:checked")].map((i) => i.value);
+                    if (checked.length) grouped[cat] = checked;
+                });
+                if (obsCustom) grouped["Other"] = [obsCustom];
+
+                const obsRows = obsOrder
+                    .filter((c) => grouped[c])
+                    .map((c) => `<tr><td><strong>${c}:</strong></td><td>${grouped[c].join("; ")}</td></tr>`)
+                    .join("");
+
+                // Recommendations
+                const recs = [...document.querySelectorAll("#recommendations input:checked")].map((i) => i.value);
+                if (recCustom) recs.push(recCustom);
+
+                const html = `
+
+          <p><strong>Date:</strong> ${date}</p>
+          <p><strong>Patient:</strong> ${info}</p>
+          <hr>
+          ${reports.length ? `<h3>Patient Reports</h3>${reports.join("")}` : ""}
+          ${obsRows ? `<h3>Clinical Observations</h3><table style="border:none">${obsRows}</table>` : ""}
+          ${recs.length ? `<h3>Recommendations / Orders</h3><p>${recs.join("; ")}</p>` : ""}
+          <div class="footer">Preventive Dental • 2211 Quarry Dr STE E-67 • Reading, PA 19609 • (610) 678-5700</div>
+        `;
+
+                document.getElementById("printArea").innerHTML = html;
+                window.print();
+            }
+        </script>
+    </body>
+</html>

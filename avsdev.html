@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Post-Visit Documentation</title>
+        <style>
+            /* screen layout */
+            body {
+                font-family: sans-serif;
+                padding: 1rem;
+                max-width: 800px;
+                margin: auto;
+            }
+            h1 {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            .section {
+                margin-bottom: 1.5rem;
+            }
+            .conditional {
+                display: none;
+                margin-top: 0.5rem;
+            }
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: bold;
+            }
+            textarea,
+            input[type="text"] {
+                width: 100%;
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+            }
+            button {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            /* footer on screen (hidden until print) */
+            .footer {
+                font-family: monospace;
+                font-size: 8pt;
+                text-align: center;
+                margin-top: 3rem;
+                border-top: 1px solid #979797;
+                padding-top: 0.5rem;
+                white-space: pre-line;
+                display: none;
+            }
+
+            /* 0.75" page margins */
+            @page {
+                margin: 0.75in;
+            }
+
+            @media screen {
+                .print-area {
+                    display: none;
+                }
+            }
+
+            @media print {
+                /* hide everything except .print-area */
+                body > :not(.print-area) {
+                    display: none;
+                }
+
+                /* the main print container */
+                .print-area {
+                    display: block;
+                    font-family: "Times New Roman", serif;
+                    font-size: 10pt;
+                    line-height: 1.15;
+                }
+
+                /* two-column header */
+                .print-area .print-header {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                }
+                .print-area .print-header .header {
+                    font-family: monospace;
+                    font-size: 10pt;
+                    white-space: pre-line;
+                    line-height: 1;
+                    margin: 0;
+                }
+                .print-area .print-header .right {
+                    text-align: right;
+                }
+
+                /* tighten section titles */
+                .print-area h2,
+                .print-area h3 {
+                    line-height: 1.1;
+                }
+
+                /* footer in print */
+                .print-area .footer {
+                    display: block;
+                    font-family: monospace;
+                    font-size: 8pt;
+                    text-align: center;
+                    margin-top: 2rem;
+                    padding-top: 0.5rem;
+                    border-top: 1px solid #979797;
+                    white-space: pre-line;
+                }
+
+                /* hr style */
+                .print-area hr {
+                    border: none;
+                    border-top: 1px solid #979797;
+                    margin: 1rem 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Post-Visit Documentation</h1>
+
+        <div class="section">
+            <label for="patientInfo">Patient Info (Name / DOB / Date of Service)</label>
+            <input type="text" id="patientInfo" placeholder="John Smith, DOB 01/01/1980, DOS 06/29/2025" />
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeCustom" /> Custom Notes</label>
+            <div class="conditional" id="customSection">
+                <textarea id="customText" rows="4" placeholder="Enter custom notes…"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includePostOpFilling" /> PostOP Filling</label>
+            <div class="conditional" id="postopfillingSection"></div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includePostOpExtraction" /> PostOP Extraction</label>
+            <div class="conditional" id="postopextractionSection"></div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeReferral" /> Include Referral Info</label>
+            <div class="conditional" id="referralSection">
+                <textarea id="referralText" rows="3" placeholder="Enter referral details…"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <a href="https://www.openevidence.com" target="_blank" rel="noopener">Open Evidence</a>
+        </div>
+
+        <div class="section">
+            <a href="https://www.chatgpt.com" target="_blank" rel="noopener">ChatGPT</a>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeMeds" /> Include Medications Dispensed</label>
+            <div class="conditional" id="medsSection">
+                <textarea id="medsText" rows="4" placeholder="List meds given (e.g., Ibuprofen 600mg)"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeDiet" /> Dietary Considerations</label>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeOHI" /> OHI</label>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeQandA" /> Questions &amp; Answers</label>
+            <div class="conditional" id="qandaSection">
+                <textarea id="qandaText" rows="4" placeholder="Enter Q&amp;A details…"></textarea>
+            </div>
+        </div>
+
+        <div class="section">
+            <label><input type="checkbox" id="includeNext" /> What You Need To do Next</label>
+            <div class="conditional" id="nextSection">
+                <textarea id="nextText" rows="4" placeholder="Enter next steps…"></textarea>
+            </div>
+        </div>
+
+        <button onclick="generatePrint()">Print</button>
+        <div class="print-area" id="printArea"></div>
+
+        <script>
+            // Toggle visibility of each conditional block
+            ["Custom", "PostOpFilling", "PostOpExtraction", "Referral", "Meds", "QandA", "Next"].forEach((name) => {
+                const chk = document.getElementById("include" + name);
+                const sec = document.getElementById(name.toLowerCase() + "Section");
+                chk.addEventListener("change", () => {
+                    sec.style.display = chk.checked ? "block" : "none";
+                });
+            });
+
+            function generatePrint() {
+                const info = document.getElementById("patientInfo").value.trim();
+                const custom = document.getElementById("includeCustom").checked;
+                const postFill = document.getElementById("includePostOpFilling").checked;
+                const postExt = document.getElementById("includePostOpExtraction").checked;
+                const ref = document.getElementById("includeReferral").checked;
+                const med = document.getElementById("includeMeds").checked;
+                const diet = document.getElementById("includeDiet").checked;
+                const ohi = document.getElementById("includeOHI").checked;
+                const qanda = document.getElementById("includeQandA").checked;
+                const next = document.getElementById("includeNext").checked;
+
+                let html = `
+<div class="print-header">
+    <div class="header left">Preventive Dental 2211 Quarry Dr STE E-67 Reading, PA 19609 (610) 678-5700</div>
+    <div class="header right">
+        <strong>Provider:</strong> Shad Lewis, DMD<br />
+        NPI 1093809147<br />
+        PA LIC# DS035563
+    </div>
+</div>
+
+<h2 style="text-align: center">After Visit Summary</h2>
+`;
+
+                if (info) {
+                    html += `<p><strong>Patient Info:</strong> ${info}</p><hr>`;
+                }
+
+                if (custom) {
+                    const t = document.getElementById("customText").value.trim();
+                    if (t) html += `<p>${t}</p><hr>`;
+                }
+
+                if (postFill) {
+                    html += `
+<h3>Postoperative Instructions After a Dental Filling</h3>
+<h4>Numbness</h4>
+<p>The area may remain numb…</p>
+<!-- etc. -->
+<hr>`;
+                }
+
+                if (postExt) {
+                    html += `
+<h3>Dental Extraction Care</h3>
+<p><strong>Care Instructions…</strong></p>
+<!-- etc. -->
+<hr>`;
+                }
+
+                if (ref) {
+                    const t = document.getElementById("referralText").value.trim();
+                    if (t) html += `<h3>Referral Info</h3><p>${t}</p><hr>`;
+                }
+
+                if (med) {
+                    const t = document.getElementById("medsText").value.trim();
+                    if (t) html += `<h3>Medications Dispensed</h3><p>${t}</p><hr>`;
+                }
+
+                if (diet) {
+                    html += `
+<h3>Dietary Considerations for Oral Health</h3>
+<p>Your diet plays a big role…</p>
+<hr>`;
+                }
+
+                if (ohi) {
+                    html += `
+<h3>Oral Hygiene Instructions</h3>
+<p>Keeping your mouth clean…</p>
+<hr>`;
+                }
+
+                if (qanda) {
+                    const t = document.getElementById("qandaText").value.trim();
+                    if (t) html += `<h3>Questions & Answers</h3><p>${t}</p><hr>`;
+                }
+
+                if (next) {
+                    const t = document.getElementById("nextText").value.trim();
+                    if (t) html += `<h3>What You Need To do Next</h3><p>${t}</p><hr>`;
+                }
+
+                // timestamp + footer
+                const now = new Date();
+                const opts = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "2-digit" };
+                const stamp = now.toLocaleString("en-US", opts);
+
+                html += `
+<div class="footer">
+Generated on ${stamp}<br>
+Preventive Dental • (610) 678-5700<br>
+This document summarizes clinical instructions and recommendations discussed today.<br>
+It is intended to reinforce key points for patient understanding and follow-through.<br>
+If anything is unclear or symptoms change, contact the office.
+</div>
+`;
+
+                document.getElementById("printArea").innerHTML = html;
+                window.print();
+            }
+        </script>
+    </body>
+</html>

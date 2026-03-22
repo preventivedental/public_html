@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website Boilerplate</title>
+    <meta name="description" content="Boilerplate template. Replace content as needed." />
+
+    <style>
+      :root {
+        --blue: #0b4f78;
+        --blue2: #083a58;
+        --orange: #d46a1a;
+
+        --page-bg: var(--blue);
+        --surface: #f6f8fb;
+        --card: #ffffff;
+
+        --text: #0f172a;
+        --muted: #475569;
+
+        --border: rgba(15, 23, 42, 0.12);
+        --shadow: 0 10px 25px rgba(2, 6, 23, 0.10);
+
+        --radius: 16px;
+        --max: 1100px;
+
+        --hero-fallback: #2f3740; /* used if hero image is missing */
+      }
+
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background: var(--page-bg);
+        line-height: 1.35;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      a:focus-visible, button:focus-visible, summary:focus-visible {
+        outline: 3px solid rgba(212, 106, 26, 0.45);
+        outline-offset: 2px;
+        border-radius: 10px;
+      }
+
+      .container { max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+
+      /* Announcement bar (always visible as a thin blue bar) */
+      .announce {
+        background: var(--blue);
+        color: #fff;
+        min-height: 10px; /* thin bar when empty */
+        display: flex;
+        align-items: center;
+      }
+      .announce-inner {
+        width: 100%;
+        padding: 0;
+      }
+      .announce.has-content .announce-inner {
+        padding: 10px 0;
+      }
+      .announce-content {
+        font-size: 14px;
+        line-height: 1.25;
+        opacity: 0.98;
+      }
+      .announce-content:empty { display: none; }
+
+      /* Top nav */
+      .topbar {
+        background: #fff;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      }
+      .topbar-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 10px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 170px;
+      }
+      .brand-logo {
+        height: 26px;
+        width: auto;
+        display: block;
+        object-fit: contain;
+      }
+      .brand-text {
+        display: none; /* keep hidden by default if you use an image logo */
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: rgba(15, 23, 42, 0.80);
+        font-size: 13px;
+      }
+      .nav-links a { padding: 8px 6px; border-radius: 10px; }
+      .nav-links a:hover { background: rgba(15, 23, 42, 0.06); }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        background: #fff;
+        color: var(--text);
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+      }
+      .btn:hover { background: rgba(15, 23, 42, 0.04); }
+      .btn-primary {
+        background: var(--orange);
+        border-color: rgba(0, 0, 0, 0);
+        color: #fff;
+      }
+      .btn-primary:hover { filter: brightness(0.98); }
+
+      .hamburger {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        background: #fff;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .hamburger svg { width: 18px; height: 18px; }
+
+      /* Mobile menu overlay */
+      .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.45);
+        display: none;
+        z-index: 50;
+      }
+      .menu-panel {
+        position: fixed;
+        top: 58px;
+        right: 14px;
+        width: min(320px, calc(100vw - 28px));
+        background: #fff;
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        display: none;
+        z-index: 60;
+        overflow: hidden;
+      }
+      .menu-panel header {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .menu-panel header .title {
+        font-weight: 800;
+        font-size: 13px;
+        color: rgba(15, 23, 42, 0.75);
+      }
+      .menu-panel header button {
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        background: #fff;
+        border-radius: 12px;
+        padding: 8px 10px;
+        cursor: pointer;
+      }
+      .menu-panel nav {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 6px;
+      }
+      .menu-panel nav a {
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-weight: 650;
+      }
+      .menu-panel nav a:hover { background: rgba(15, 23, 42, 0.06); }
+
+      body.menu-open .menu-overlay { display: block; }
+      body.menu-open .menu-panel { display: block; }
+
+      /* Hero */
+      .hero-zone {
+        padding: 20px 0 0;
+      }
+      .hero-shell {
+        border-radius: 0; /* matches screenshot: full width dark block */
+        background: var(--hero-fallback);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-shell.has-image {
+        background: center / cover no-repeat;
+      }
+      .hero-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+        pointer-events: none;
+      }
+      .hero-inner {
+        position: relative;
+        padding: 34px 0 36px;
+      }
+      .hero-kicker {
+        font-size: 12px;
+        opacity: 0.85;
+        letter-spacing: 0.4px;
+        margin-bottom: 10px;
+      }
+      .hero-title {
+        font-size: clamp(30px, 4vw, 44px);
+        line-height: 1.06;
+        margin: 0 0 10px;
+        font-weight: 900;
+      }
+      .hero-sub {
+        max-width: 720px;
+        font-size: 14px;
+        opacity: 0.95;
+        margin: 0 0 12px;
+      }
+      .hero-sub2 {
+        max-width: 720px;
+        font-size: 14px;
+        opacity: 0.95;
+        margin: 0 0 18px;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .hero-actions .btn {
+        border-color: rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+      }
+      .hero-actions .btn:hover {
+        background: rgba(255, 255, 255, 0.10);
+      }
+      .hero-actions .btn-primary {
+        background: var(--orange);
+        border-color: rgba(0,0,0,0);
+        color: #fff;
+      }
+
+      /* Blue band separators */
+      .band { height: 56px; background: var(--blue); }
+
+      /* Light surface sections */
+      .surface {
+        background: var(--surface);
+        padding: 26px 0;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 1px 0 rgba(2, 6, 23, 0.05);
+      }
+      .card-pad { padding: 18px; }
+
+      /* Location tabs row */
+      .tabs {
+        display: flex;
+        gap: 14px;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+      .tabs span {
+        color: rgba(15, 23, 42, 0.82);
+      }
+
+      .kv {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        row-gap: 10px;
+        column-gap: 12px;
+        font-size: 13px;
+        color: rgba(15, 23, 42, 0.80);
+      }
+      .kv b { color: var(--text); }
+      .nowrap { white-space: nowrap; }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(15, 23, 42, 0.14);
+        background: #fff;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .map {
+        width: 100%;
+        height: 280px;
+        border: 0;
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: block;
+      }
+
+      /* Welcome section */
+      .welcome-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+      .placeholder {
+        background: linear-gradient(to bottom, rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.22));
+        border-radius: var(--radius);
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        min-height: 220px;
+      }
+
+      .note { margin-top: 14px; }
+
+      .mini-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 14px;
+      }
+      .mini {
+        padding: 14px;
+      }
+      .mini-top {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .check {
+        width: 22px;
+        height: 22px;
+        border-radius: 8px;
+        background: rgba(11, 79, 120, 0.10);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        margin-top: 2px;
+      }
+      .mini h4 {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 900;
+      }
+      .mini p {
+        margin: 6px 0 0;
+        font-size: 12px;
+        color: rgba(15, 23, 42, 0.75);
+      }
+
+      .tagline {
+        text-align: center;
+        padding-top: 14px;
+        font-size: 12px;
+        color: rgba(15, 23, 42, 0.75);
+      }
+
+      /* Bottom cards */
+      .bottom-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      details {
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        border-radius: 14px;
+        padding: 0;
+        overflow: hidden;
+        background: #fff;
+      }
+      summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 12px 14px;
+        font-weight: 900;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      summary::-webkit-details-marker { display: none; }
+      .chev {
+        width: 18px;
+        height: 18px;
+        opacity: 0.7;
+        transition: transform 140ms ease;
+      }
+      details[open] .chev { transform: rotate(180deg); }
+      .details-body {
+        padding: 0 14px 14px;
+        color: rgba(15, 23, 42, 0.80);
+        font-size: 13px;
+      }
+      .details-body > *:first-child { margin-top: 0; }
+
+      .footer {
+        background: var(--blue2);
+        color: rgba(255, 255, 255, 0.92);
+        padding: 22px 0;
+        font-size: 12px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 18px;
+      }
+      .footer h5 {
+        margin: 0 0 10px;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+        color: rgba(255, 255, 255, 0.95);
+      }
+      .footer a { color: rgba(255, 255, 255, 0.92); }
+      .footer a:hover { text-decoration: underline; }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .nav-links { display: none; }
+        .hamburger { display: inline-flex; }
+        .grid-2 { grid-template-columns: 1fr; }
+        .welcome-grid { grid-template-columns: 1fr; }
+        .mini-grid { grid-template-columns: 1fr; }
+        .bottom-grid { grid-template-columns: 1fr; }
+        .map { height: 260px; }
+      }
+        
+        .hours-pairs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 10px;
+}
+
+.hours-pairs span{
+  white-space:nowrap;
+  position:relative;
+  padding-right:10px;
+}
+
+.hours-pairs span::after{
+  content:",";
+  position:absolute;
+  right:2px;
+  opacity:0.75;
+}
+
+.hours-pairs span:last-child{
+  padding-right:0;
+}
+
+.hours-pairs span:last-child::after{
+  content:"";
+}
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Announcement bar: always visible as a thin blue bar.
+         JS loads announcement.html into it.
+         If announcement.html is empty, it stays thin.
+         If it has content, it expands. -->
+    <div class="announce" id="announcement" aria-hidden="true">
+      <div class="container announce-inner">
+        <div class="announce-content" id="announcementContent"></div>
+      </div>
+    </div>
+
+    <!-- Top navigation -->
+    <header class="topbar">
+      <div class="container">
+        <div class="topbar-row">
+          <a class="brand" href="#top" aria-label="Home">
+            <!-- Put your PNG logo in /images/logo.png -->
+            <img class="brand-logo" src="logo.png" alt="Your logo" />
+
+            <!-- If you prefer text instead of an image, hide the img above and enable this:
+            <div class="brand-text">YourBrand</div>
+            -->
+          </a>
+
+          <nav class="nav-links" aria-label="Primary">
+            <a href="#location">Location</a>
+            <a href="#bothering">What's bothering you</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#policies">Policies</a>
+            <a href="#contact">Contact</a>
+            <!-- Add more links here if you want -->
+          </nav>
+
+          <div class="nav-actions">
+            <a class="btn btn-primary" id="callNowTop" href="tel:16106785700">Call Now</a>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M4 7h16v2H4V7zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile menu overlay + panel -->
+    <div class="menu-overlay" id="menuOverlay" hidden></div>
+    <aside class="menu-panel" id="menuPanel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <header>
+        <div class="title">Menu</div>
+        <button id="closeMenuBtn" type="button" aria-label="Close menu">Close</button>
+      </header>
+      <nav aria-label="Mobile">
+        <a href="#location" data-close-menu>Location</a>
+        <a href="#bothering" data-close-menu>What's bothering you</a>
+        <a href="#reviews" data-close-menu>Reviews</a>
+        <a href="#policies" data-close-menu>Policies</a>
+        <a href="#contact" data-close-menu>Contact</a>
+      </nav>
+    </aside>
+
+    <!-- Hero -->
+    <main id="top">
+      <section class="hero-zone">
+        <!-- data-hero-image: if file exists, it becomes the hero background.
+             If it does not exist, JS leaves the fallback color. -->
+        <div class="hero-shell" id="hero" data-hero-image="images/hero.jpg">
+          <div class="container hero-inner">
+            <div class="hero-kicker">//yourdomain.com</div>
+
+            <h1 class="hero-title">Real Dental Care. No Pressure.</h1>
+
+            <p class="hero-sub">
+              We help with toothaches, broken teeth, swelling, bleeding gums, and that “something’s off” feeling.
+            </p>
+            <p class="hero-sub2">
+              No shame. No pressure. Just clear answers and real care. Call, get seen, and decide what makes sense for you.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" id="callNowHero" href="tel:16106785700">Call Now (610) 678-5700</a>
+              <a class="btn" href="#location">Location</a>
+              <a class="btn" href="#hours">Hours</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="band" aria-hidden="true"></div>
+
+      <!-- Location + map -->
+      <section class="surface" id="location">
+        <div class="container">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-pad">
+                <div class="tabs" id="hours">
+                  <span>Location</span>
+                  <span>Hours</span>
+                  <span>Contact</span>
+                </div>
+
+                <div class="kv">
+                  <b>Address</b>
+                  <div>
+                    2211 Quarry Dr. STE E-67<br />
+                    Reading, PA 19609
+                  </div>
+
+                  <b>Call</b>
+                  <div>(610) 678-5700</div>
+
+
+                    
+                    <b>Hours</b>
+<div class="hours-pairs" >
+  <span>Mon 10-5</span>
+  <span>Tue 10-5</span>
+  <span>Thu 10-5</span>
+  <span>Fri 10-2</span>
+</div>
+
+
+                  <b>Parking</b>
+                  <div>Right in front. No stairs.</div>
+                </div>
+
+                <div class="pill-row">
+                  <a class="pill" href="tel:16106785700">Text: (610) 678-5700</a>
+                  <a class="pill" href="mailto:you@yourdomain.com">Email: you@yourdomain.com</a>
+                </div>
+
+                <div class="pill-row" style="margin-top: 14px;">
+                  <a class="btn btn-primary" href="tel:16106785700">Call Now</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-pad">
+                <!-- Replace this iframe src with your Google Maps embed -->
+                <iframe
+                  class="map"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=Reading%20PA&output=embed"
+                  title="Map"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="band" aria-hidden="true"></div>
+
+      <!-- Welcome + cards -->
+      <section class="surface" id="bothering">
+        <div class="container">
+          <div class="welcome-grid">
+            <div class="card">
+              <div class="card-pad">
+                <h2 style="margin: 0 0 10px; font-size: 18px; line-height: 1.15;">
+                  Welcome to Your Practice Name - Your Team in Your City
+                </h2>
+
+                <p style="margin: 0 0 10px; color: rgba(15, 23, 42, 0.75); font-size: 13px;">
+                  Going to the dentist shouldn’t be complicated. With us, it won’t be.
+                </p>
+
+                <p style="margin: 0 0 10px; color: rgba(15, 23, 42, 0.75); font-size: 13px;">
+                  Whether you need reliable care for a painful tooth or long-term maintenance to keep your smile healthy,
+                  we’ll handle it with care and professionalism.
+                </p>
+
+                <p style="margin: 0; color: rgba(15, 23, 42, 0.75); font-size: 13px;">
+                  We treat what’s necessary and explain everything clearly so you’ll always know what’s happening and why.
+                </p>
+              </div>
+            </div>
+
+            <!-- Image placeholder: replace with your own image block if you want -->
+            <div class="placeholder"></div>
+          </div>
+
+          <div class="card note">
+            <div class="card-pad">
+              <h3 style="margin: 0 0 6px; font-size: 14px;">Quick note</h3>
+              <p style="margin: 0; color: rgba(15, 23, 42, 0.75); font-size: 13px;">
+                Put whatever message you want here. This will sit above the cards and below the image.
+              </p>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="card mini">
+              <div class="mini-top">
+                <div class="check" aria-hidden="true">✓</div>
+                <div>
+                  <h4>Pain that won’t quit</h4>
+                  <p>Sharp, throbbing, pressure, or “just wrong.” We find the cause and help calm it down.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mini">
+              <div class="mini-top">
+                <div class="check" aria-hidden="true">✓</div>
+                <div>
+                  <h4>Cracked or broken teeth</h4>
+                  <p>Something chipped, split, or feels fragile when you bite. We stabilize it first, then talk next steps.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mini">
+              <div class="mini-top">
+                <div class="check" aria-hidden="true">✓</div>
+                <div>
+                  <h4>Swelling or pressure</h4>
+                  <p>Jaw, face, or gum swelling is your body asking for help. We rule out infection and act quickly.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mini">
+              <div class="mini-top">
+                <div class="check" aria-hidden="true">✓</div>
+                <div>
+                  <h4>Bleeding gums</h4>
+                  <p>Blood when brushing or flossing is not normal. We explain why it’s happening and how to stop it.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mini">
+              <div class="mini-top">
+                <div class="check" aria-hidden="true">✓</div>
+                <div>
+                  <h4>Bad breath that keeps coming back</h4>
+                  <p>If it’s not food, something else is going on. We track down the source and deal with it.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card mini">
+              <div class="mini-top">
+                <div class="check" aria-hidden="true">✓</div>
+                <div>
+                  <h4>Just knowing something’s off</h4>
+                  <p>No pain yet, but something doesn’t feel right. We take a look, explain what we see, and let you decide.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tagline">If any of this sounds familiar, you’re in the right place.</div>
+        </div>
+      </section>
+
+      <div class="band" aria-hidden="true"></div>
+
+      <!-- Meet the doctor + dropdowns -->
+      <section class="surface" id="policies">
+        <div class="container">
+          <div class="bottom-grid">
+            <div class="card">
+              <div class="card-pad">
+                <h3 style="margin: 0 0 8px; font-size: 16px;">Meet the doctor</h3>
+                <p style="margin: 0 0 12px; color: rgba(15, 23, 42, 0.75); font-size: 13px;">
+                  Short bio. One paragraph. Why you run this the way you do.
+                </p>
+
+                <div class="placeholder" style="min-height: 240px;"></div>
+
+                <p style="margin: 10px 0 0; color: rgba(15, 23, 42, 0.70); font-size: 12px;">
+                  Example: “I focus on getting people out of pain and giving honest options without pressure.”
+                </p>
+              </div>
+            </div>
+
+            <div class="card" id="contact">
+              <div class="card-pad">
+                <h3 style="margin: 0 0 6px; font-size: 16px;">Insurance, finances, and policies</h3>
+                <p style="margin: 0 0 12px; color: rgba(15, 23, 42, 0.75); font-size: 13px;">
+                  Two dropdowns only. Put plain HTML inside.
+                </p>
+
+                <div style="display: grid; gap: 10px;">
+                  <details>
+                    <summary>
+                      Insurance and finances
+                      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="currentColor" d="M7 10l5 5 5-5H7z"></path>
+                      </svg>
+                    </summary>
+                    <div class="details-body">
+                      <p>Payment is due at time of service. We can submit claims, but coverage decisions are between you and your plan.</p>
+                      <!-- You can paste any HTML here: paragraphs, lists, links, etc. -->
+                    </div>
+                  </details>
+
+                  <details>
+                    <summary>
+                      Office policies
+                      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="currentColor" d="M7 10l5 5 5-5H7z"></path>
+                      </svg>
+                    </summary>
+                    <div class="details-body">
+                      <p>If you need to reschedule, please give notice. If this is urgent swelling, call now.</p>
+                      <!-- Any HTML allowed here too -->
+                    </div>
+                  </details>
+                </div>
+
+                <div class="pill-row" style="margin-top: 14px;">
+                  <a class="btn btn-primary" href="tel:16106785700">Call Now</a>
+                  <a class="btn" href="#location">Directions</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h5>Your Practice Name</h5>
+            <div>2211 Quarry Dr STE E-67, Reading, PA 19609</div>
+            <div>Phone: (610) 678-5700</div>
+            <div>Email: you@yourdomain.com</div>
+            <div style="margin-top: 10px; opacity: 0.8;">© Your Practice Name. All rights reserved.</div>
+          </div>
+
+          <div>
+            <h5>Links</h5>
+            <div><a href="#bothering">What’s bothering you</a></div>
+            <div><a href="#policies">Policies</a></div>
+            <div><a href="#contact">Contact</a></div>
+            <div><a href="#top">Top</a></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /*
+        HOW THIS TEMPLATE WORKS (high level)
+        1) Announcement bar:
+           - Always shows a thin blue bar.
+           - JS fetches announcement.html.
+           - If announcement.html has content, the bar expands and shows it.
+
+        2) Hero background image:
+           - Put a path in data-hero-image (example: images/hero.jpg).
+           - JS checks if the image exists.
+           - If it exists: it becomes the background.
+           - If not: hero uses the fallback color.
+
+        3) Mobile hamburger menu:
+           - Adds/removes body.menu-open.
+           - Closes when you click a link, click outside, or press Escape.
+      */
+
+      const CONFIG = {
+        phoneTel: "tel:16106785700",
+        announcementUrl: "announcement.html",
+      };
+
+      function setPhoneLinks() {
+        const ids = ["callNowTop", "callNowHero"];
+        for (const id of ids) {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute("href", CONFIG.phoneTel);
+        }
+      }
+
+      async function loadAnnouncement() {
+        const bar = document.getElementById("announcement");
+        const slot = document.getElementById("announcementContent");
+
+        try {
+          const res = await fetch(CONFIG.announcementUrl, { cache: "no-store" });
+          const html = (await res.text()).trim();
+
+          if (html.length > 0) {
+            slot.innerHTML = html;
+            bar.classList.add("has-content");
+            bar.setAttribute("aria-hidden", "false");
+          } else {
+            slot.innerHTML = "";
+            bar.classList.remove("has-content");
+            bar.setAttribute("aria-hidden", "true");
+          }
+        } catch (e) {
+          // If fetch fails (common when opening file:// locally),
+          // keep the thin blue bar and show no content.
+          slot.innerHTML = "";
+          bar.classList.remove("has-content");
+          bar.setAttribute("aria-hidden", "true");
+        }
+      }
+
+      function applyHeroImage() {
+        const hero = document.getElementById("hero");
+        if (!hero) return;
+
+        const url = hero.getAttribute("data-hero-image");
+        if (!url) return;
+
+        const img = new Image();
+        img.onload = () => {
+          hero.classList.add("has-image");
+          hero.style.backgroundImage = `url('${url}')`;
+        };
+        img.onerror = () => {
+          hero.classList.remove("has-image");
+          hero.style.backgroundImage = "";
+        };
+        img.src = url;
+      }
+
+      function setupMobileMenu() {
+        const btn = document.getElementById("hamburgerBtn");
+        const overlay = document.getElementById("menuOverlay");
+        const panel = document.getElementById("menuPanel");
+        const closeBtn = document.getElementById("closeMenuBtn");
+
+        if (!btn || !overlay || !panel || !closeBtn) return;
+
+        function openMenu() {
+          document.body.classList.add("menu-open");
+          overlay.hidden = false;
+          panel.hidden = false;
+          btn.setAttribute("aria-expanded", "true");
+
+          const firstLink = panel.querySelector("nav a");
+          if (firstLink) firstLink.focus();
+        }
+
+        function closeMenu() {
+          document.body.classList.remove("menu-open");
+          overlay.hidden = true;
+          panel.hidden = true;
+          btn.setAttribute("aria-expanded", "false");
+          btn.focus();
+        }
+
+        btn.addEventListener("click", () => {
+          if (document.body.classList.contains("menu-open")) closeMenu();
+          else openMenu();
+        });
+
+        closeBtn.addEventListener("click", closeMenu);
+        overlay.addEventListener("click", closeMenu);
+
+        panel.addEventListener("click", (e) => {
+          const t = e.target;
+          if (t && t.matches("[data-close-menu]")) closeMenu();
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
+            closeMenu();
+          }
+        });
+      }
+
+      setPhoneLinks();
+      loadAnnouncement();
+      applyHeroImage();
+      setupMobileMenu();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+
+RewriteOptions inherit
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html
+RewriteCond %{HTTP_HOST} ^.*$
+RewriteRule ^internal$ "https\:\/\/sites\.google\.com\/preventive\.dental\/internal\/home" [R=301,L]

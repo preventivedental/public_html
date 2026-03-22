@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="noindex, follow" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Template Documentation</title>
+        <style>
+            /* Documentation Styles (These styles are separate from your template’s CSS) */
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 20px;
+                line-height: 1.6;
+                background: #fafafa;
+                color: #333;
+            }
+            h1,
+            h2,
+            h3 {
+                color: #20275b;
+            }
+            pre {
+                background: #f4f4f4;
+                border: 1px solid #ddd;
+                padding: 10px;
+                overflow-x: auto;
+            }
+            code {
+                font-family: "Courier New", Courier, monospace;
+            }
+            ul {
+                margin-left: 20px;
+            }
+            .example {
+                background: #fff;
+                border: 1px dashed #ccc;
+                padding: 15px;
+                margin: 15px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="logo-wrapper">
+            <a href="https://preventive.dental"
+                ><img
+                    src="logo.png"
+                    alt="Preventive Dental logo in Reading, PA"
+                    style="display: block; margin: 0 auto; max-width: 150px; height: auto" />
+            </a>
+        </div>
+        <h1>Template Documentation</h1>
+        <p>
+            This documentation explains the structure, JavaScript functionality, and CSS styling of your template. The
+            code below is organized into sections, covering the header with navigation, main content area,
+            call-to-action (CTA) buttons, FAQ accordion, optional content, and footer.
+        </p>
+
+        <h2>1. Template Structure Overview</h2>
+        <p>The template is composed of the following key sections:</p>
+        <ul>
+            <li><strong>Header:</strong> Contains the logo, navigation (hamburger menu), and CTA buttons.</li>
+            <li><strong>Main Content:</strong> A container for page-specific content.</li>
+            <li>
+                <strong>Footer:</strong> Displays contact information, hours of operation, local info, and additional
+                links.
+            </li>
+        </ul>
+
+        <h3>HTML Document Outline</h3>
+        <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;!-- Metadata, Google Tag, CSS, etc. --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header class="header-section"&gt;
+      &lt;!-- Logo, Navigation, CTA buttons, and phone number --&gt;
+    &lt;/header&gt;
+    &lt;main class="container"&gt;
+      &lt;!-- Page-specific content goes here --&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;!-- Contact info, hours, local info, and policy links --&gt;
+    &lt;/footer&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+        <h2>2. Header and Navigation</h2>
+        <p>The header provides a hook for your site’s identity and quick access to navigation and contact actions.</p>
+
+        <h3>Logo</h3>
+        <p>The logo is centered at the top and links back to the homepage.</p>
+        <pre><code>&lt;div class="logo-wrapper"&gt;
+  &lt;a href="https://preventive.dental"&gt;
+    &lt;img src="logo.png" alt="Preventive Dental logo" class="logo" /&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+    </code></pre>
+
+        <h3>Hamburger Menu &amp; Navigation</h3>
+        <p>
+            The navigation is loaded dynamically from an external <code>nav.html</code> file. The hamburger button
+            toggles a mobile-friendly menu and a background overlay.
+        </p>
+        <pre><code>&lt;nav id="main-nav"&gt;
+  &lt;button id="hamburger" aria-label="Toggle Menu"&gt;
+    &lt;span class="bar"&gt;&lt;/span&gt;
+    &lt;span class="bar"&gt;&lt;/span&gt;
+    &lt;span class="bar"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;div id="nav-container"&gt;&lt;/div&gt;
+&lt;/nav&gt;
+    </code></pre>
+        <p>
+            The associated JavaScript (function <code>initHamburger()</code>) toggles the <code>open</code> class on the
+            hamburger, mobile menu, and overlay to display or hide the menu.
+        </p>
+
+        <h2>3. Call-to-Action (CTA) Buttons</h2>
+        <p>Two CTA buttons are provided for calling and texting. They include Google Analytics event tracking.</p>
+        <pre><code>&lt;a href="tel:+16106785700" class="cta"
+   onclick="gtag('event', 'click', { event_category: 'Contact', event_label: 'Call Now' });"&gt;
+  📞 Call Now
+&lt;/a&gt;
+
+&lt;a href="sms:+16106785700" class="cta"
+   onclick="gtag('event', 'click', { event_category: 'Contact', event_label: 'Text Now' });"&gt;
+  📱 Text Now
+&lt;/a&gt;
+    </code></pre>
+        <p>For example, you can modify the text to use dummy text like:</p>
+        <pre><code>&lt;a href="tel:+1234567890" class="cta"&gt;
+  📞 Call Lorem Ipsum
+&lt;/a&gt;
+    </code></pre>
+
+        <h2>4. Main Content &amp; Section Elements</h2>
+        <p>
+            The <code>main</code> element uses a <code>container</code> class to standardize the width and background of
+            your content. Multiple <code>section</code> elements can be added.
+        </p>
+        <pre><code>&lt;main class="container"&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Welcome&lt;/h2&gt;
+    &lt;p&gt;Hi, I'm Lorem Ipsum and welcome to our website. Here you can find detailed information about our services.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Our Services&lt;/h2&gt;
+    &lt;p&gt;We offer a variety of services to cater to your needs. Customize this section as needed.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+    </code></pre>
+
+        <h2>5. FAQ Accordion</h2>
+        <p>
+            An FAQ accordion allows users to click on questions to reveal answers. The accordion’s behavior is managed
+            via JavaScript.
+        </p>
+        <pre><code>&lt;div id="faq"&gt;
+  &lt;button class="accordion" aria-expanded="false"&gt;
+    What services do we offer?
+  &lt;/button&gt;
+  &lt;div id="faq-panel-all" class="panel" aria-hidden="true"&gt;
+    &lt;p&gt;Lorem Ipsum explains that our services include dental cleanings, checkups, and emergency dental care.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+    </code></pre>
+        <p>
+            The JavaScript listens for clicks on the <code>.accordion</code> button and toggles the
+            <code>active</code> class and inline styles on the panel.
+        </p>
+
+        <h2>6. Optional Content Section</h2>
+        <p>
+            The optional content block (<code>#optional-content</code>) is displayed only when it contains content.
+            Otherwise, it is hidden.
+        </p>
+        <pre><code>&lt;div id="optional-content"&gt;
+  &lt;p&gt;Here is some extra info provided by Lorem Ipsum that you can show or hide based on your needs.&lt;/p&gt;
+&lt;/div&gt;
+    </code></pre>
+
+        <h2>7. Footer Structure</h2>
+        <p>
+            The footer includes multiple columns that provide contact details, operating hours, and local information.
+            It also contains legal links.
+        </p>
+        <pre><code>&lt;footer&gt;
+  &lt;div class="footer-content"&gt;
+    &lt;div class="footer-columns"&gt;
+      &lt;div class="footer-column"&gt;
+        &lt;h4&gt;Preventive Dental&lt;/h4&gt;
+        &lt;p&gt;
+          2211 Quarry Dr STE E-67&lt;br /&gt;
+          Reading, PA 19609&lt;br /&gt;
+          +1 (610) 678-5700
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-column"&gt;
+        &lt;h4&gt;Hours of Operation&lt;/h4&gt;
+        &lt;p&gt;
+          Mon, Tue, Thu: 10AM – 5PM&lt;br /&gt;
+          Fri: 10AM – 2PM&lt;br /&gt;
+          and by appointment.
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="footer-column"&gt;
+        &lt;h4&gt;Local Info&lt;/h4&gt;
+        &lt;p&gt;⭐ Trusted by patients in Reading, PA for over 20 years&lt;/p&gt;
+        &lt;p&gt;&lt;a href="https://g.co/kgs/gGFu3Ks" target="_blank"&gt;📍 Get Directions on Google Maps&lt;/a&gt;&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer-note"&gt;
+      &lt;p&gt;
+        © 2025 Preventive Dental. All Rights Reserved.&lt;br /&gt;
+        &lt;a href="privacy.html"&gt;Privacy Policy&lt;/a&gt;
+        &lt;a href="tos.html"&gt;Terms of Service&lt;/a&gt;
+      &lt;/p&gt;
+      &lt;p&gt;Call or text – we’ll make it easy. Ready to feel good about your smile? We’re ready for you.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+    </code></pre>
+
+        <h2>8. JavaScript Functionality</h2>
+        <p>The JavaScript in your template adds interactivity by:</p>
+        <ul>
+            <li>Loading external navigation from <code>nav.html</code>.</li>
+            <li>Toggling the hamburger menu and overlay.</li>
+            <li>Managing the FAQ accordion open/close behavior.</li>
+            <li>Conditionally displaying optional content.</li>
+            <li>Tracking non-CTA link clicks using Google Tag Manager.</li>
+        </ul>
+        <p>For example, the accordion initialization script is as follows:</p>
+        <pre><code>function initAccordion() {
+  const accordion = document.querySelector(".accordion");
+  const panel = document.getElementById("faq-panel-all");
+  if (accordion && panel) {
+    accordion.addEventListener("click", function () {
+      this.classList.toggle("active");
+      const isOpen = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", !isOpen);
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        panel.setAttribute("aria-hidden", "false");
+      } else {
+        panel.style.maxHeight = null;
+        panel.setAttribute("aria-hidden", "true");
+      }
+    });
+  }
+}
+    </code></pre>
+
+        <h2>9. CSS Styling Overview</h2>
+        <p>The CSS file begins with a reset and base styles to remove browser inconsistencies. It then defines:</p>
+        <ul>
+            <li>
+                <strong>Typography &amp; Headings:</strong> Styles for <code>h1</code>, <code>h2</code>,
+                <code>h3</code>, paragraphs, and links.
+            </li>
+            <li>
+                <strong>Header &amp; Navigation:</strong> Layout for the header, logo, hamburger menu, mobile menu, and
+                overlay.
+            </li>
+            <li><strong>CTA Styles:</strong> Button appearance and hover effects.</li>
+            <li><strong>FAQ Accordion:</strong> Styling for accordion buttons and panels with smooth transitions.</li>
+            <li><strong>Optional Content:</strong> A bordered and shadowed container that pops out.</li>
+            <li>
+                <strong>Responsive Behavior:</strong> Media queries adjust typography and layout for mobile devices.
+            </li>
+            <li><strong>Footer Structure:</strong> Multi-column layout, link styling, and background colors.</li>
+        </ul>
+        <p>To change the look of a button, for example, you might update the CSS like so:</p>
+        <pre><code>.cta {
+  background: #1e3a5f;  /* Default button color */
+  padding: 16px 24px;
+  border-radius: 8px;
+}
+.cta:hover {
+  background: #28b293;  /* Hover state */
+}
+    </code></pre>
+
+        <h2>10. Customization Example</h2>
+        <p>You can extend this template by adding new sections. For example, to create an “About” section:</p>
+        <pre><code>&lt;section&gt;
+  &lt;h2&gt;About Lorem Ipsum&lt;/h2&gt;
+  &lt;p&gt;
+    Lorem Ipsum is a dedicated professional committed to providing exceptional service.
+    Customize this section with your content and imagery.
+  &lt;/p&gt;
+&lt;/section&gt;
+    </code></pre>
+
+        <p>
+            This documentation should help you and your client understand how the template works and how to adapt it for
+            various needs. Simply replace the dummy text with your actual content and adjust the styling as needed.
+        </p>
+        <p><strong>Happy coding!</strong></p>
+    </body>
+</html>

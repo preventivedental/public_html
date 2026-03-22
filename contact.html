@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Basic Meta Tags -->
+        <meta charset="UTF-8" />
+
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8ZJ2ZV10S"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-G8ZJ2ZV10S");
+
+            // Custom event for tracking page views of this specific topic
+            gtag("event", "page_view_contact");
+        </script>
+
+        <!-- Structured Data -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Dentist",
+                "name": "Preventive Dental",
+                "url": "https://preventive.dental/contact.html",
+                "logo": "https://preventive.dental/logo.png",
+                "image": "https://preventive.dental/ogimage.png",
+                "description": "Contact Preventive Dental in Reading, PA for emergency dental care, preventive checkups, and same-day appointments.",
+                "telephone": "+1-610-678-5700",
+                "email": "secure@preventive.dental",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "2211 Quarry Dr STE E-67",
+                    "addressLocality": "Reading",
+                    "addressRegion": "PA",
+                    "postalCode": "19609",
+                    "addressCountry": "US"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+1-610-678-5700",
+                    "contactType": "Customer Service",
+                    "areaServed": "US",
+                    "availableLanguage": ["English"]
+                }
+            }
+        </script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="canonical" href="https://preventive.dental/contact.html" />
+
+        <title>Preventive Dental Contact</title>
+        <meta
+            name="description"
+            content="Emergency & Preventive Dental Care — Fast help, honest advice. Contact Preventive Dental now." />
+        <meta name="theme-color" content="#1e3a5f" />
+        <meta property="og:title" content="Preventive Dental Contact | Emergency Dental Care in Reading, PA" />
+        <meta
+            property="og:description"
+            content="Emergency & Preventive Dental Care — Fast help, honest advice. Call, text, or email Preventive Dental today." />
+        <meta property="og:image" content="https://preventive.dental/ogimage.png" />
+        <meta property="og:url" content="https://preventive.dental/contact.html" />
+
+        <!-- Icons -->
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="favicon.png" type="image/png" />
+
+        <!-- Inline CSS -->
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                color: #20275b;
+                padding: 2rem 1rem;
+                text-align: center;
+                background: #f4f4f7;
+            }
+
+            @media screen and (min-width: 768px) {
+                body {
+                    background: linear-gradient(to bottom right, #dcf1ff, #ffffff);
+                }
+
+                .card {
+                    background: #fff;
+                }
+            }
+
+            .card {
+                max-width: 420px;
+                margin: 0 auto;
+                background: linear-gradient(45deg, #dcf1ff, #ffffff);
+                border-radius: 12px;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+                padding: 2rem 1.5rem;
+                transition: background 0.3s ease;
+            }
+
+            img.logo {
+                max-width: 140px;
+                margin-bottom: 1rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                color: #555;
+                margin-bottom: 1.8rem;
+                line-height: 1.4;
+            }
+
+            .name-with-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+                margin: 0 auto 0.25rem;
+                font-size: 1rem;
+            }
+
+            .name-with-icon button {
+                background: none;
+                border: none;
+                padding: 0;
+                font-size: 0.9rem;
+                line-height: 1;
+                cursor: pointer;
+            }
+
+            .button,
+            .personal-button {
+                background: #1e3a5f;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 6px;
+                transition: background 0.3s ease;
+            }
+
+            .button {
+                display: block;
+                padding: 12px 16px;
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 0.5rem auto;
+                max-width: 320px;
+            }
+
+            .button:hover {
+                background: #28b293;
+            }
+
+            footer {
+                margin-top: 2rem;
+                font-size: 0.8rem;
+                color: #999;
+            }
+
+            /* Popup base */
+            .share-popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 10;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .share-popup-content {
+                background: #fff;
+                padding: 1.5rem;
+                border-radius: 10px;
+                text-align: center;
+                width: 90%;
+                max-width: 320px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                transition: all 0.25s ease;
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            .share-popup.show .share-popup-content {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            .share-popup-content h3 {
+                margin-bottom: 1rem;
+                font-size: 1.1rem;
+            }
+
+            .share-popup-content p {
+                margin-bottom: 1rem;
+                font-size: 0.95rem;
+                color: #333;
+                line-height: 1.5;
+            }
+
+            .share-popup-content a,
+            .share-popup-content button {
+                display: block;
+                margin: 0.5rem auto;
+                padding: 10px;
+                background: #1e3a5f;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                border: none;
+                font-size: 0.95rem;
+                cursor: pointer;
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .share-popup-content a:hover,
+            .share-popup-content button:hover {
+                background: #28b293;
+            }
+
+            /* Announcement popup styling */
+            .notice-badge {
+                display: inline-block;
+                padding: 6px 10px;
+                border-radius: 999px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                background: #fff6e4;
+                color: #b24d00;
+                border: 1px solid #d4a373;
+                margin-bottom: 0.75rem;
+            }
+
+            .announcement-small {
+                margin-top: 0.75rem;
+                font-size: 0.85rem;
+                color: #666;
+                line-height: 1.4;
+            }
+
+            /* Announcement button block (above Call Now) */
+            .announcement-block {
+                max-width: 320px;
+                margin: 0 auto 0.75rem;
+                text-align: left;
+            }
+
+            .announcement-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                width: 100%;
+                padding: 12px 16px;
+                border-radius: 8px;
+                background: #1e3a5f;
+                color: #fff;
+                font-weight: 800;
+                text-decoration: none;
+                transition: background 0.3s ease;
+            }
+
+            .announcement-button:hover {
+                background: #28b293;
+            }
+
+            .announcement-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 999px;
+                background: #ebec8e;
+                display: inline-block;
+            }
+
+            .announcement-dates {
+                margin-top: 6px;
+                font-size: 0.85rem;
+                color: #5a6470;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <div class="card">
+                <header>
+                    <a href="https://preventive.dental">
+                        <img src="logo.png" alt="Preventive Dental Logo" class="logo" />
+                    </a>
+                    <h1>Preventive Dental</h1>
+
+                    <p class="tagline">
+                        Emergency & Preventive Dental Care<br />
+                        Clear, Honest, No Pressure
+                    </p>
+                </header>
+
+                <section class="contact-buttons">
+                    <!-- Announcement button ABOVE Call Now -->
+                    <div class="announcement-block" id="announcementBlock" style="display: none">
+                        <a href="#" class="announcement-button" id="announcementOpen" aria-label="Open announcement">
+                            <span class="announcement-dot"></span>
+                            <span id="announcementButtonText">Limited availability</span>
+                        </a>
+                        <div class="announcement-dates" id="announcementButtonDates">
+                            Out: Dec 23, 2025 – Jan 5, 2026
+                        </div>
+                    </div>
+
+                    <a href="tel:+16106785700" class="button" onclick="gtag('event', 'click_call_now');">📞 Call Now</a>
+                    <a href="sms:+16106785700" class="button" onclick="gtag('event', 'click_text_now');">📱 Text Now</a>
+                    <a href="mailto:secure@preventive.dental" class="button" onclick="gtag('event', 'click_email');"
+                        >✉️ Email</a
+                    >
+                    <a
+                        href="https://g.co/kgs/8pXwYeQ"
+                        target="_blank"
+                        class="button"
+                        onclick="gtag('event', 'click_directions');"
+                        >📍 Directions</a
+                    >
+                </section>
+
+                <section class="qr-section" style="margin-top: 2rem">
+                    <p style="margin-bottom: 0.5rem; font-size: 0.95rem; color: #444">
+                        Share in person?<br />
+                        Just scan 👇
+                    </p>
+                    <img src="qr.png" alt="Scan to open this card" style="width: 120px; height: auto; margin: 0 auto" />
+                    <p style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; color: #444">
+                        https://preventive.dental/vcard.html
+                    </p>
+
+                    <div class="name-with-icon">
+                        <strong>Dr. Shad Lewis DMD</strong>
+                        <button onclick="openAboutPopup()" aria-label="Learn more about Dr. Shad Lewis">ⓘ</button>
+                    </div>
+                </section>
+
+                <section class="share-card">
+                    <a href="#" onclick="openSharePopup(); return false;" class="button" style="margin-top: 1.5rem"
+                        >📤 Share This Card</a
+                    >
+                </section>
+
+                <p style="font-size: 0.75rem; color: #888; margin-top: 1.5rem">
+                    🛡️ Any message you send through this page comes directly to me. I won’t sell it, share it, or use it
+                    for anything other than helping you. Period.
+                </p>
+
+                <footer>
+                    © 2025 Preventive Dental<br />
+                    2211 Quarry Dr STE E-67 Reading, PA 19609<br />
+                    +1 (610) 678-5700 voice and text<br />
+                    <a href="https://wa.me/16106785700" target="_blank" rel="noopener">WhatsApp +16106785700</a><br />
+                    secure@preventive.dental<br />
+                    <a href="https://preventive.dental/privacy.html" rel="noopener">Privacy Policy</a>
+                </footer>
+            </div>
+        </main>
+
+        <!-- About Popup -->
+        <div class="share-popup" id="aboutPopup" role="dialog" aria-modal="true" aria-labelledby="aboutPopupTitle">
+            <div class="share-popup-content">
+                <h3 id="aboutPopupTitle">About Me</h3>
+                <p>
+                    I’m a husband, dad, dentist, and veteran. I’ve been practicing since 2002, including a deployment to
+                    Iraq in 2008. I believe in simple, honest care. No pressure, no guilt. If it’s been a while, that’s
+                    okay. You’re still welcome here.
+                </p>
+                <img width="64px" src="initials.png" alt="Initials" />
+                <button onclick="closeAboutPopup()">Close</button>
+            </div>
+        </div>
+
+        <!-- Share Popup -->
+        <div class="share-popup" id="sharePopup" role="dialog" aria-modal="true" aria-labelledby="sharePopupTitle">
+            <div class="share-popup-content">
+                <h3 id="sharePopupTitle">Share this card</h3>
+                <a
+                    href="sms:?body=Check out this dental office — Preventive Dental: https://preventive.dental/vcard.html"
+                    onclick="gtag('event', 'click_text');"
+                    >📱 Share via Text</a
+                >
+                <a
+                    href="mailto:?subject=Great%20Local%20Dentist&body=I%20recommend%20Preventive%20Dental.%20Here%E2%80%99s%20their%20info%3A%20https%3A%2F%2Fpreventive.dental%2Fvcard.html"
+                    onclick="gtag('event', 'click_email');"
+                    >✉️ Share via Email</a
+                >
+                <button onclick="closeSharePopup()">Close</button>
+            </div>
+        </div>
+
+        <!-- Announcement Popup (Option A: edit text right here, just like About Me) -->
+        <div
+            class="share-popup"
+            id="announcementPopup"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="announcementPopupTitle">
+            <div class="share-popup-content">
+                <div class="notice-badge">Office update</div>
+                <h3 id="announcementPopupTitle">Limited availability</h3>
+                <p id="announcementPopupBody">
+                    I’m out of the office for the next two weeks. Text or call and we’ll get you scheduled as soon as
+                    possible.
+                </p>
+                <p class="announcement-small" id="announcementPopupDates">Out: Dec 23, 2025 – Jan 5, 2026</p>
+                <button id="announcementClose">Close</button>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            // Option A: ONE toggle only. Content is edited in HTML.
+            const ANNOUNCEMENT_ENABLED = true;
+
+            function openPopup(popupId) {
+                const popup = document.getElementById(popupId);
+                if (!popup) return;
+                popup.style.display = "flex";
+                setTimeout(() => popup.classList.add("show"), 10);
+            }
+
+            function closePopup(popupId) {
+                const popup = document.getElementById(popupId);
+                if (!popup) return;
+                popup.classList.remove("show");
+                setTimeout(() => (popup.style.display = "none"), 250);
+            }
+
+            function openSharePopup() {
+                openPopup("sharePopup");
+            }
+            function closeSharePopup() {
+                closePopup("sharePopup");
+            }
+
+            function openAboutPopup() {
+                openPopup("aboutPopup");
+            }
+            function closeAboutPopup() {
+                closePopup("aboutPopup");
+            }
+
+            function openAnnouncementPopup() {
+                openPopup("announcementPopup");
+                if (typeof gtag === "function") gtag("event", "announcement_opened");
+            }
+            function closeAnnouncementPopup() {
+                closePopup("announcementPopup");
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const announcementBlock = document.getElementById("announcementBlock");
+                if (announcementBlock) {
+                    announcementBlock.style.display = ANNOUNCEMENT_ENABLED ? "block" : "none";
+                }
+
+                const announcementOpen = document.getElementById("announcementOpen");
+                const announcementClose = document.getElementById("announcementClose");
+
+                if (announcementOpen) {
+                    announcementOpen.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        openAnnouncementPopup();
+                    });
+                }
+
+                if (announcementClose) {
+                    announcementClose.addEventListener("click", function () {
+                        closeAnnouncementPopup();
+                    });
+                }
+            });
+
+            // Close popups when clicking outside
+            document.addEventListener("click", function (e) {
+                const sharePopup = document.getElementById("sharePopup");
+                const aboutPopup = document.getElementById("aboutPopup");
+                const announcementPopup = document.getElementById("announcementPopup");
+
+                if (e.target === sharePopup) closeSharePopup();
+                if (e.target === aboutPopup) closeAboutPopup();
+                if (e.target === announcementPopup) closeAnnouncementPopup();
+            });
+        </script>
+    </body>
+</html>
