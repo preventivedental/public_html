@@ -18,149 +18,297 @@
     <meta name="author" content="Preventive Dental" />
     <title>Notice of Privacy Practices | Preventive Dental</title>
     <link rel="icon" type="image/png" sizes="32x32" href="https://preventive.dental/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
     <style>
+      :root {
+        --ink: #1f2844;
+        --body: #2f3852;
+        --muted: #5d6786;
+        --panel: #ffffff;
+        --line: #dae2f4;
+        --accent: #0d7f8c;
+        --accent-soft: #dff6f8;
+        --hero-a: #eef4ff;
+        --hero-b: #f8fcff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-        background-color: #f7f7f7;
-        color: #333;
+        font-family: "Manrope", -apple-system, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at 10% 0%, #edf6ff 0%, rgba(237, 246, 255, 0) 40%),
+          linear-gradient(180deg, #f6fbff 0%, #f4f7fb 100%);
+        color: var(--body);
         line-height: 1.7;
         padding: 0;
       }
+
+      .page-shell {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 16px 42px;
+      }
+
+      .hero {
+        background: linear-gradient(130deg, var(--hero-a), var(--hero-b));
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 30px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 14px 34px rgba(22, 36, 73, 0.08);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 999px;
+        border: 1px solid #c7d6ee;
+        background: #ffffff;
+        color: #3f4f73;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
       .container {
-        max-width: 800px;
-        margin: 2rem auto;
-        background-color: #ffffff;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        max-width: 980px;
+        margin: 0 auto;
+        background-color: var(--panel);
+        padding: 28px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        box-shadow: 0 18px 40px rgba(19, 36, 71, 0.09);
       }
-      h1, h2 {
-        color: #20275b;
-      }
-      h1 {
-        font-size: 1.8rem;
-        text-align: center;
-        margin-top: 0;
-      }
+
+      h1,
       h2 {
-        font-size: 1.2rem;
-        margin-top: 2rem;
+        color: var(--ink);
+        font-family: "Fraunces", Georgia, serif;
       }
+
+      h1 {
+        font-size: clamp(1.9rem, 3.2vw, 2.55rem);
+        margin: 12px 0;
+        line-height: 1.15;
+      }
+
+      h2 {
+        font-size: clamp(1.25rem, 2.1vw, 1.55rem);
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .lead {
+        color: #3e4965;
+        font-size: 1.06rem;
+        max-width: 70ch;
+      }
+
+      .policy-section {
+        border-top: 1px solid var(--line);
+        padding-top: 22px;
+        margin-top: 22px;
+      }
+
+      .policy-section:first-of-type {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 4px;
+      }
+
       p {
         margin-bottom: 1rem;
       }
+
       ul {
-        margin: 0 0 1rem 1.2rem;
+        margin: 0 0 1rem 0;
+        padding-left: 1.2rem;
       }
+
       li {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.6rem;
       }
+
+      .highlight {
+        background: var(--accent-soft);
+        border: 1px solid #bfeaf0;
+        border-radius: 12px;
+        padding: 14px 14px 2px;
+      }
+
       footer {
         text-align: center;
-        margin-top: 3rem;
+        margin-top: 2.2rem;
         font-size: 0.9rem;
-        color: #666;
+        color: var(--muted);
       }
+
       a {
-        color: #0044cc;
+        color: #04507a;
         text-decoration: none;
+        font-weight: 700;
       }
+
       a:hover {
         text-decoration: underline;
+      }
+
+      a:focus-visible {
+        outline: 3px solid #087486;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      @media (max-width: 720px) {
+        .page-shell {
+          padding: 14px 12px 28px;
+        }
+
+        .hero,
+        .container {
+          border-radius: 14px;
+          padding: 20px 16px;
+        }
+
+        .lead {
+          font-size: 1rem;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>Notice of Privacy Practices and Office Privacy Policy</h1>
-      <p><strong>Effective Date:</strong> October 12, 2025</p>
-      <p><strong>Provider:</strong> Preventive Dental<br />
-			  Dr. Shad Lewis, DMD</p>
+    <main class="page-shell">
+      <header class="hero" aria-labelledby="privacy-title">
+        <span class="eyebrow">Privacy Notice</span>
+        <h1 id="privacy-title">Notice of Privacy Practices and Office Privacy Policy</h1>
+        <p class="meta"><strong>Effective Date:</strong> October 12, 2025</p>
+        <p class="meta"><strong>Provider:</strong> Preventive Dental<br />Dr. Shad Lewis, DMD</p>
+        <p class="lead">
+          This notice describes how your health information may be used and disclosed, and how you can access that
+          information. Please review it carefully.
+        </p>
+      </header>
 
-      <h2>Purpose of This Notice</h2>
-      <p>
-        This notice describes how your health information may be used and disclosed, and how you can access that information.
-        Please review it carefully.
-      </p>
+      <div class="container">
+        <section class="policy-section" aria-labelledby="commitment-heading">
+          <h2 id="commitment-heading">Our Commitment to Your Privacy</h2>
+          <p>
+            We protect your personal and health information. Your dental record contains information about your health
+            history, diagnosis, and treatment. Federal and state laws require us to keep this information private.
+          </p>
+        </section>
 
-      <h2>Our Commitment to Your Privacy</h2>
-      <p>
-        We protect your personal and health information. Your dental record contains information about
-        your health history, diagnosis, and treatment. Federal and state laws require us to keep this information private.
-      </p>
+        <section class="policy-section" aria-labelledby="use-heading">
+          <h2 id="use-heading">Use and Disclosure of Health Information</h2>
+          <p>Your health information may be used or shared for the following purposes:</p>
+          <ul>
+            <li>
+              <strong>Treatment:</strong> To provide, coordinate, or manage your dental care. This may include sharing
+              information with other healthcare providers involved in your care.
+            </li>
+            <li>
+              <strong>Payment:</strong> To bill and collect payment from you, your insurance company, or a third
+              party.
+            </li>
+            <li><strong>Healthcare Operations:</strong> For office management, quality improvement, and staff training.</li>
+          </ul>
+          <p>We may also disclose your information:</p>
+          <ul>
+            <li>When required by law.</li>
+            <li>To public health authorities to prevent or control disease.</li>
+            <li>To comply with court orders or law enforcement requests.</li>
+            <li>To dental boards or other regulatory agencies as required.</li>
+          </ul>
+        </section>
 
-      <h2>Use and Disclosure of Health Information</h2>
-      <p>Your health information may be used or shared for the following purposes:</p>
-      <ul>
-        <li><strong>Treatment:</strong> To provide, coordinate, or manage your dental care. This may include sharing information with other healthcare providers involved in your care.</li>
-        <li><strong>Payment:</strong> To bill and collect payment from you, your insurance company, or a third party.</li>
-        <li><strong>Healthcare Operations:</strong> For office management, quality improvement, and staff training.</li>
-      </ul>
-      <p>We may also disclose your information:</p>
-      <ul>
-        <li>When required by law.</li>
-        <li>To public health authorities to prevent or control disease.</li>
-        <li>To comply with court orders or law enforcement requests.</li>
-        <li>To dental boards or other regulatory agencies as required.</li>
-      </ul>
+        <section class="policy-section" aria-labelledby="authorization-heading">
+          <h2 id="authorization-heading">Other Uses Require Your Authorization</h2>
+          <p>
+            Other disclosures of your information will only be made with your written consent. You can revoke your
+            authorization at any time in writing.
+          </p>
+        </section>
 
-      <h2>Other Uses Require Your Authorization</h2>
-      <p>
-        Other disclosures of your information will only be made with your written consent. You can revoke your authorization at any time in writing.
-      </p>
+        <section class="policy-section" aria-labelledby="rights-heading">
+          <h2 id="rights-heading">Your Rights Regarding Health Information</h2>
+          <ul>
+            <li>Request a copy of your dental record.</li>
+            <li>Request corrections to your record if you believe it is inaccurate.</li>
+            <li>Request limits on how we use or share your information.</li>
+            <li>Receive an accounting of certain disclosures we make.</li>
+            <li>Request confidential communication (for example, to send bills to a different address).</li>
+          </ul>
+        </section>
 
-      <h2>Your Rights Regarding Health Information</h2>
-      <ul>
-        <li>Request a copy of your dental record.</li>
-        <li>Request corrections to your record if you believe it is inaccurate.</li>
-        <li>Request limits on how we use or share your information.</li>
-        <li>Receive an accounting of certain disclosures we make.</li>
-        <li>Request confidential communication (for example, to send bills to a different address).</li>
-      </ul>
+        <section class="policy-section" aria-labelledby="duties-heading">
+          <h2 id="duties-heading">Our Legal Duties</h2>
+          <ul>
+            <li>Maintain the privacy of your health information.</li>
+            <li>Provide you with this notice of our privacy practices.</li>
+            <li>Notify you if there is a breach of unsecured information that affects you.</li>
+          </ul>
+        </section>
 
-      <h2>Our Legal Duties</h2>
-      <ul>
-        <li>Maintain the privacy of your health information.</li>
-        <li>Provide you with this notice of our privacy practices.</li>
-        <li>Notify you if there is a breach of unsecured information that affects you.</li>
-      </ul>
+        <section class="policy-section" aria-labelledby="confidentiality-heading">
+          <h2 id="confidentiality-heading">Office Policy on Confidentiality</h2>
+          <p>
+            We will not share your information with friends, family members, or others without your permission, except
+            when required by law or necessary for your care. Conversations about your treatment may be overheard only
+            as part of the normal course of providing care in an open clinical environment, but staff are trained to
+            minimize this as much as possible.
+          </p>
+        </section>
 
-      <h2>Office Policy on Confidentiality</h2>
-      <p>
-        We will not share your information with friends, family members, or others without your permission, except when required by law or necessary for your care.
-        Conversations about your treatment may be overheard only as part of the normal course of providing care in an open clinical environment,
-        but staff are trained to minimize this as much as possible.
-      </p>
+        <section class="policy-section" aria-labelledby="changes-heading">
+          <h2 id="changes-heading">Changes to This Notice</h2>
+          <p>
+            We reserve the right to change this policy and will post the current version in our office and on our
+            website.
+          </p>
+        </section>
 
-      <h2>Changes to This Notice</h2>
-      <p>
-        We reserve the right to change this policy and will post the current version in our office and on our website.
-      </p>
+        <section class="policy-section" aria-labelledby="questions-heading">
+          <h2 id="questions-heading">Questions or Complaints</h2>
+          <div class="highlight">
+            <p>If you have any questions about this notice or believe your privacy rights have been violated, contact:</p>
+            <p>
+              <strong>Privacy Officer</strong><br />
+              Preventive Dental<br />
+              Shad Lewis<br />
+              2211 Quarry Dr, Suite E-67<br />
+              Reading, PA 19609
+            </p>
+            <p>
+              You may also contact:<br />
+              U.S. Department of Health and Human Services<br />
+              Office for Civil Rights<br />
+              200 Independence Avenue, S.W.<br />
+              Washington, D.C. 20201
+            </p>
+          </div>
+        </section>
 
-      <h2>Questions or Complaints</h2>
-      <p>
-        If you have any questions about this notice or believe your privacy rights have been violated, contact:
-      </p>
-      <p>
-        <strong>Privacy Officer</strong><br />
-        Preventive Dental<br />
-				Shad Lewis <br />
-        2211 Quarry Dr, Suite E-67<br />
-        Reading, PA 19609<br />
-      </p>
-      <p>
-        You may also contact:<br />
-        U.S. Department of Health and Human Services<br />
-        Office for Civil Rights<br />
-        200 Independence Avenue, S.W.<br />
-        Washington, D.C. 20201
-      </p>
-
-      <footer>
-        © 2025 Preventive Dental — 
-        <a href="https://preventive.dental" rel="noopener">preventive.dental</a>
-      </footer>
-    </div>
+        <footer>
+          © 2025 Preventive Dental -
+          <a href="https://preventive.dental" rel="noopener">preventive.dental</a>
+        </footer>
+      </div>
+      </main>
   </body>
 </html>

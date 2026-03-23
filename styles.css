@@ -31,6 +31,15 @@ a:hover {
   color: #0bd58e;
 }
 
+a:focus-visible,
+button:focus-visible,
+.cta:focus-visible,
+#hamburger:focus-visible {
+  outline: 3px solid #0b96d4;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 /* ================================
    2. LIST STYLES 
    ================================ */
@@ -298,6 +307,16 @@ header {
   visibility: hidden;
   transition: opacity 0.3s ease;
   z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .menu-overlay.open {

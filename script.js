@@ -23,12 +23,15 @@ fetch("nav.html")
     .catch((err) => console.error("NAV LOAD FAIL:", err));
 
 // Auto update change date 2025-04-11
-const lastModified = new Date(document.lastModified);
-document.getElementById("lastModified").textContent = lastModified.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-});
+const lastModifiedEl = document.getElementById("lastModified");
+if (lastModifiedEl) {
+    const lastModified = new Date(document.lastModified);
+    lastModifiedEl.textContent = lastModified.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+}
 
 // Hamburger logic
 function initHamburger() {
@@ -42,15 +45,18 @@ function initHamburger() {
     }
 
     hamburger.addEventListener("click", () => {
+        const isOpening = !mobileMenu.classList.contains("open");
         hamburger.classList.toggle("open");
         mobileMenu.classList.toggle("open");
         overlay.classList.toggle("open");
+        hamburger.setAttribute("aria-expanded", String(isOpening));
     });
 
     overlay.addEventListener("click", () => {
         hamburger.classList.remove("open");
         mobileMenu.classList.remove("open");
         overlay.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
     });
 
     mobileMenu.querySelectorAll("a").forEach((link) =>
@@ -58,8 +64,19 @@ function initHamburger() {
             hamburger.classList.remove("open");
             mobileMenu.classList.remove("open");
             overlay.classList.remove("open");
+            hamburger.setAttribute("aria-expanded", "false");
         })
     );
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+            hamburger.classList.remove("open");
+            mobileMenu.classList.remove("open");
+            overlay.classList.remove("open");
+            hamburger.setAttribute("aria-expanded", "false");
+            hamburger.focus();
+        }
+    });
 }
 
 // The rest of your scripts
