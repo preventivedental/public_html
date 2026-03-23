@@ -66,9 +66,24 @@
         <!-- Icons -->
         <link rel="apple-touch-icon" href="/favicon.png" />
         <link rel="icon" href="favicon.png" type="image/png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
         <!-- Inline CSS -->
         <style>
+            :root {
+                --ink: #1e2a4f;
+                --body: #2e3852;
+                --muted: #5a647d;
+                --panel: #ffffff;
+                --line: #d8e1f3;
+                --brand: #1e3a5f;
+                --brand-hover: #167f79;
+                --accent-bg: #eef6ff;
+                --shadow: 0 18px 42px rgba(13, 31, 67, 0.12);
+            }
+
             * {
                 box-sizing: border-box;
                 margin: 0;
@@ -76,48 +91,59 @@
             }
 
             body {
-                font-family: Arial, sans-serif;
-                color: #20275b;
-                padding: 2rem 1rem;
+                font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+                color: var(--body);
+                padding: clamp(1rem, 3vw, 2rem) 0.9rem;
                 text-align: center;
-                background: #f4f4f7;
+                background:
+                    radial-gradient(circle at 15% 5%, #dff0ff 0%, rgba(223, 240, 255, 0) 42%),
+                    linear-gradient(180deg, #f5f9ff 0%, #f1f3f8 100%);
+                min-height: 100dvh;
             }
 
             @media screen and (min-width: 768px) {
                 body {
-                    background: linear-gradient(to bottom right, #dcf1ff, #ffffff);
+                    padding: 2.2rem 1.2rem;
                 }
 
                 .card {
-                    background: #fff;
+                    max-width: 460px;
                 }
             }
 
             .card {
-                max-width: 420px;
+                max-width: 440px;
                 margin: 0 auto;
-                background: linear-gradient(45deg, #dcf1ff, #ffffff);
-                border-radius: 12px;
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-                padding: 2rem 1.5rem;
-                transition: background 0.3s ease;
+                background: linear-gradient(160deg, var(--accent-bg), #ffffff 48%);
+                border-radius: 18px;
+                border: 1px solid var(--line);
+                box-shadow: var(--shadow);
+                padding: clamp(1.2rem, 3vw, 2rem) clamp(1rem, 3vw, 1.6rem);
             }
 
             img.logo {
-                max-width: 140px;
+                max-width: 152px;
                 margin-bottom: 1rem;
+                filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.08));
             }
 
             h1 {
-                font-size: 1.4rem;
+                color: var(--ink);
+                font-size: clamp(1.35rem, 4vw, 1.7rem);
                 margin-bottom: 0.3rem;
+                line-height: 1.15;
             }
 
             .tagline {
-                font-size: 1rem;
-                color: #555;
+                font-size: 0.98rem;
+                color: var(--muted);
                 margin-bottom: 1.8rem;
                 line-height: 1.4;
+            }
+
+            .contact-buttons {
+                display: grid;
+                gap: 0.65rem;
             }
 
             .name-with-icon {
@@ -140,30 +166,89 @@
 
             .button,
             .personal-button {
-                background: #1e3a5f;
+                background: var(--brand);
                 color: #fff;
                 text-decoration: none;
-                border-radius: 6px;
-                transition: background 0.3s ease;
+                border-radius: 10px;
+                transition: background 0.2s ease;
             }
 
             .button {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 48px;
                 padding: 12px 16px;
                 font-size: 1rem;
-                font-weight: 600;
-                margin: 0.5rem auto;
-                max-width: 320px;
+                font-weight: 700;
+                margin: 0 auto;
+                width: 100%;
+                max-width: 340px;
             }
 
             .button:hover {
-                background: #28b293;
+                background: var(--brand-hover);
+            }
+
+            .button:focus-visible,
+            .name-with-icon button:focus-visible,
+            .announcement-button:focus-visible,
+            .share-popup-content button:focus-visible,
+            .share-popup-content a:focus-visible {
+                outline: 3px solid #0c89a6;
+                outline-offset: 2px;
             }
 
             footer {
                 margin-top: 2rem;
                 font-size: 0.8rem;
-                color: #999;
+                color: #6b7590;
+                line-height: 1.5;
+            }
+
+            .qr-section {
+                margin-top: 1.8rem;
+            }
+
+            .qr-label,
+            .qr-url {
+                margin-bottom: 0.55rem;
+                font-size: 0.95rem;
+                color: #3f4d72;
+            }
+
+            .qr-url {
+                margin-top: 0.55rem;
+            }
+
+            .qr-image {
+                width: 120px;
+                height: auto;
+                margin: 0 auto;
+                border: 6px solid #fff;
+                border-radius: 12px;
+                box-shadow: 0 10px 24px rgba(10, 28, 63, 0.16);
+            }
+
+            .share-card {
+                margin-top: 1.4rem;
+            }
+
+            .privacy-note {
+                font-size: 0.78rem;
+                color: #707990;
+                margin-top: 1.4rem;
+                line-height: 1.5;
+            }
+
+            .footer-link {
+                color: #1a4b7a;
+                font-weight: 700;
+                text-decoration: none;
+            }
+
+            .footer-link:hover {
+                text-decoration: underline;
             }
 
             /* Popup base */
@@ -175,6 +260,7 @@
                 width: 100%;
                 height: 100%;
                 background: rgba(0, 0, 0, 0.4);
+                backdrop-filter: blur(2px);
                 z-index: 10;
                 justify-content: center;
                 align-items: center;
@@ -183,11 +269,12 @@
             .share-popup-content {
                 background: #fff;
                 padding: 1.5rem;
-                border-radius: 10px;
+                border-radius: 14px;
+                border: 1px solid #dbe4f6;
                 text-align: center;
                 width: 90%;
                 max-width: 320px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 12px 34px rgba(7, 21, 49, 0.24);
                 transition: all 0.25s ease;
                 transform: scale(0.95);
                 opacity: 0;
@@ -215,15 +302,16 @@
                 display: block;
                 margin: 0.5rem auto;
                 padding: 10px;
-                background: #1e3a5f;
+                background: var(--brand);
                 color: white;
                 text-decoration: none;
-                border-radius: 5px;
+                border-radius: 8px;
                 border: none;
                 font-size: 0.95rem;
                 cursor: pointer;
                 width: 100%;
                 max-width: 260px;
+                min-height: 44px;
             }
 
             .share-popup-content a:hover,
@@ -253,7 +341,7 @@
 
             /* Announcement button block (above Call Now) */
             .announcement-block {
-                max-width: 320px;
+                max-width: 340px;
                 margin: 0 auto 0.75rem;
                 text-align: left;
             }
@@ -265,16 +353,17 @@
                 gap: 0.5rem;
                 width: 100%;
                 padding: 12px 16px;
-                border-radius: 8px;
-                background: #1e3a5f;
+                border-radius: 10px;
+                background: var(--brand);
                 color: #fff;
                 font-weight: 800;
                 text-decoration: none;
                 transition: background 0.3s ease;
+                min-height: 48px;
             }
 
             .announcement-button:hover {
-                background: #28b293;
+                background: var(--brand-hover);
             }
 
             .announcement-dot {
@@ -290,6 +379,16 @@
                 font-size: 0.85rem;
                 color: #5a6470;
                 text-align: center;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation: none !important;
+                    transition: none !important;
+                    scroll-behavior: auto !important;
+                }
             }
         </style>
     </head>
@@ -321,43 +420,44 @@
                         </div>
                     </div>
 
-                    <a href="tel:+16106785700" class="button" onclick="gtag('event', 'click_call_now');">📞 Call Now</a>
-                    <a href="sms:+16106785700" class="button" onclick="gtag('event', 'click_text_now');">📱 Text Now</a>
-                    <a href="mailto:secure@preventive.dental" class="button" onclick="gtag('event', 'click_email');"
+                    <a href="tel:+16106785700" class="button" id="callNowBtn">📞 Call Now</a>
+                    <a href="sms:+16106785700" class="button" id="textNowBtn">📱 Text Now</a>
+                    <a href="mailto:secure@preventive.dental" class="button" id="emailBtn"
                         >✉️ Email</a
                     >
                     <a
                         href="https://g.co/kgs/8pXwYeQ"
                         target="_blank"
+                        rel="noopener"
                         class="button"
-                        onclick="gtag('event', 'click_directions');"
+                        id="directionsBtn"
                         >📍 Directions</a
                     >
                 </section>
 
-                <section class="qr-section" style="margin-top: 2rem">
-                    <p style="margin-bottom: 0.5rem; font-size: 0.95rem; color: #444">
+                <section class="qr-section">
+                    <p class="qr-label">
                         Share in person?<br />
                         Just scan 👇
                     </p>
-                    <img src="qr.png" alt="Scan to open this card" style="width: 120px; height: auto; margin: 0 auto" />
-                    <p style="margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 0.95rem; color: #444">
+                    <img src="qr.png" alt="Scan to open this card" class="qr-image" />
+                    <p class="qr-url">
                         https://preventive.dental/vcard.html
                     </p>
 
                     <div class="name-with-icon">
                         <strong>Dr. Shad Lewis DMD</strong>
-                        <button onclick="openAboutPopup()" aria-label="Learn more about Dr. Shad Lewis">ⓘ</button>
+                        <button id="aboutOpenBtn" aria-label="Learn more about Dr. Shad Lewis">ⓘ</button>
                     </div>
                 </section>
 
                 <section class="share-card">
-                    <a href="#" onclick="openSharePopup(); return false;" class="button" style="margin-top: 1.5rem"
+                    <a href="#" id="shareCardBtn" class="button"
                         >📤 Share This Card</a
                     >
                 </section>
 
-                <p style="font-size: 0.75rem; color: #888; margin-top: 1.5rem">
+                <p class="privacy-note">
                     🛡️ Any message you send through this page comes directly to me. I won’t sell it, share it, or use it
                     for anything other than helping you. Period.
                 </p>
@@ -366,9 +466,9 @@
                     © 2025 Preventive Dental<br />
                     2211 Quarry Dr STE E-67 Reading, PA 19609<br />
                     +1 (610) 678-5700 voice and text<br />
-                    <a href="https://wa.me/16106785700" target="_blank" rel="noopener">WhatsApp +16106785700</a><br />
+                    <a href="https://wa.me/16106785700" target="_blank" rel="noopener" class="footer-link">WhatsApp +16106785700</a><br />
                     secure@preventive.dental<br />
-                    <a href="https://preventive.dental/privacy.html" rel="noopener">Privacy Policy</a>
+                    <a href="https://preventive.dental/privacy.html" rel="noopener" class="footer-link">Privacy Policy</a>
                 </footer>
             </div>
         </main>
@@ -383,7 +483,7 @@
                     okay. You’re still welcome here.
                 </p>
                 <img width="64px" src="initials.png" alt="Initials" />
-                <button onclick="closeAboutPopup()">Close</button>
+                <button id="aboutCloseBtn">Close</button>
             </div>
         </div>
 
@@ -393,15 +493,15 @@
                 <h3 id="sharePopupTitle">Share this card</h3>
                 <a
                     href="sms:?body=Check out this dental office — Preventive Dental: https://preventive.dental/vcard.html"
-                    onclick="gtag('event', 'click_text');"
+                    id="shareTextBtn"
                     >📱 Share via Text</a
                 >
                 <a
                     href="mailto:?subject=Great%20Local%20Dentist&body=I%20recommend%20Preventive%20Dental.%20Here%E2%80%99s%20their%20info%3A%20https%3A%2F%2Fpreventive.dental%2Fvcard.html"
-                    onclick="gtag('event', 'click_email');"
+                    id="shareEmailBtn"
                     >✉️ Share via Email</a
                 >
-                <button onclick="closeSharePopup()">Close</button>
+                <button id="shareCloseBtn">Close</button>
             </div>
         </div>
 
@@ -428,11 +528,15 @@
         <script>
             // Option A: ONE toggle only. Content is edited in HTML.
             const ANNOUNCEMENT_ENABLED = true;
+            let currentPopupId = null;
 
             function openPopup(popupId) {
                 const popup = document.getElementById(popupId);
                 if (!popup) return;
                 popup.style.display = "flex";
+                popup.setAttribute("aria-hidden", "false");
+                currentPopupId = popupId;
+                document.body.style.overflow = "hidden";
                 setTimeout(() => popup.classList.add("show"), 10);
             }
 
@@ -440,7 +544,10 @@
                 const popup = document.getElementById(popupId);
                 if (!popup) return;
                 popup.classList.remove("show");
+                popup.setAttribute("aria-hidden", "true");
                 setTimeout(() => (popup.style.display = "none"), 250);
+                currentPopupId = null;
+                document.body.style.overflow = "";
             }
 
             function openSharePopup() {
@@ -471,6 +578,78 @@
                     announcementBlock.style.display = ANNOUNCEMENT_ENABLED ? "block" : "none";
                 }
 
+                const callNowBtn = document.getElementById("callNowBtn");
+                const textNowBtn = document.getElementById("textNowBtn");
+                const emailBtn = document.getElementById("emailBtn");
+                const directionsBtn = document.getElementById("directionsBtn");
+                const shareCardBtn = document.getElementById("shareCardBtn");
+                const aboutOpenBtn = document.getElementById("aboutOpenBtn");
+                const aboutCloseBtn = document.getElementById("aboutCloseBtn");
+                const shareCloseBtn = document.getElementById("shareCloseBtn");
+                const shareTextBtn = document.getElementById("shareTextBtn");
+                const shareEmailBtn = document.getElementById("shareEmailBtn");
+
+                if (callNowBtn) {
+                    callNowBtn.addEventListener("click", function () {
+                        if (typeof gtag === "function") gtag("event", "click_call_now");
+                    });
+                }
+
+                if (textNowBtn) {
+                    textNowBtn.addEventListener("click", function () {
+                        if (typeof gtag === "function") gtag("event", "click_text_now");
+                    });
+                }
+
+                if (emailBtn) {
+                    emailBtn.addEventListener("click", function () {
+                        if (typeof gtag === "function") gtag("event", "click_email");
+                    });
+                }
+
+                if (directionsBtn) {
+                    directionsBtn.addEventListener("click", function () {
+                        if (typeof gtag === "function") gtag("event", "click_directions");
+                    });
+                }
+
+                if (shareCardBtn) {
+                    shareCardBtn.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        openSharePopup();
+                    });
+                }
+
+                if (aboutOpenBtn) {
+                    aboutOpenBtn.addEventListener("click", function () {
+                        openAboutPopup();
+                    });
+                }
+
+                if (aboutCloseBtn) {
+                    aboutCloseBtn.addEventListener("click", function () {
+                        closeAboutPopup();
+                    });
+                }
+
+                if (shareCloseBtn) {
+                    shareCloseBtn.addEventListener("click", function () {
+                        closeSharePopup();
+                    });
+                }
+
+                if (shareTextBtn) {
+                    shareTextBtn.addEventListener("click", function () {
+                        if (typeof gtag === "function") gtag("event", "click_text");
+                    });
+                }
+
+                if (shareEmailBtn) {
+                    shareEmailBtn.addEventListener("click", function () {
+                        if (typeof gtag === "function") gtag("event", "click_email");
+                    });
+                }
+
                 const announcementOpen = document.getElementById("announcementOpen");
                 const announcementClose = document.getElementById("announcementClose");
 
@@ -486,6 +665,11 @@
                         closeAnnouncementPopup();
                     });
                 }
+
+                ["aboutPopup", "sharePopup", "announcementPopup"].forEach(function (popupId) {
+                    const popup = document.getElementById(popupId);
+                    if (popup) popup.setAttribute("aria-hidden", "true");
+                });
             });
 
             // Close popups when clicking outside
@@ -497,6 +681,12 @@
                 if (e.target === sharePopup) closeSharePopup();
                 if (e.target === aboutPopup) closeAboutPopup();
                 if (e.target === announcementPopup) closeAnnouncementPopup();
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape" && currentPopupId) {
+                    closePopup(currentPopupId);
+                }
             });
         </script>
     </body>
