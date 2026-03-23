@@ -413,10 +413,10 @@
                     <div class="announcement-block" id="announcementBlock" style="display: none">
                         <a href="#" class="announcement-button" id="announcementOpen" aria-label="Open announcement">
                             <span class="announcement-dot"></span>
-                            <span id="announcementButtonText">Limited availability</span>
+                            <span id="announcementButtonText">Office update</span>
                         </a>
                         <div class="announcement-dates" id="announcementButtonDates">
-                            Out: Dec 23, 2025 – Jan 5, 2026
+                            Please contact us for current availability.
                         </div>
                     </div>
 
@@ -514,21 +514,33 @@
             aria-labelledby="announcementPopupTitle">
             <div class="share-popup-content">
                 <div class="notice-badge">Office update</div>
-                <h3 id="announcementPopupTitle">Limited availability</h3>
+                <h3 id="announcementPopupTitle">Scheduling update</h3>
                 <p id="announcementPopupBody">
-                    I’m out of the office for the next two weeks. Text or call and we’ll get you scheduled as soon as
-                    possible.
+                    Please call or text us for the latest appointment availability.
                 </p>
-                <p class="announcement-small" id="announcementPopupDates">Out: Dec 23, 2025 – Jan 5, 2026</p>
+                <p class="announcement-small" id="announcementPopupDates">Updated regularly</p>
                 <button id="announcementClose">Close</button>
             </div>
         </div>
 
         <!-- Scripts -->
         <script>
-            // Option A: ONE toggle only. Content is edited in HTML.
-            const ANNOUNCEMENT_ENABLED = true;
             let currentPopupId = null;
+
+            function elementHasText(id) {
+                const el = document.getElementById(id);
+                return Boolean(el && el.textContent && el.textContent.trim().length > 0);
+            }
+
+            function hasAnnouncementContent() {
+                return [
+                    "announcementButtonText",
+                    "announcementButtonDates",
+                    "announcementPopupTitle",
+                    "announcementPopupBody",
+                    "announcementPopupDates"
+                ].some(elementHasText);
+            }
 
             function openPopup(popupId) {
                 const popup = document.getElementById(popupId);
@@ -565,6 +577,7 @@
             }
 
             function openAnnouncementPopup() {
+                if (!hasAnnouncementContent()) return;
                 openPopup("announcementPopup");
                 if (typeof gtag === "function") gtag("event", "announcement_opened");
             }
@@ -574,8 +587,10 @@
 
             document.addEventListener("DOMContentLoaded", function () {
                 const announcementBlock = document.getElementById("announcementBlock");
+                const showAnnouncement = hasAnnouncementContent();
+
                 if (announcementBlock) {
-                    announcementBlock.style.display = ANNOUNCEMENT_ENABLED ? "block" : "none";
+                    announcementBlock.style.display = showAnnouncement ? "block" : "none";
                 }
 
                 const callNowBtn = document.getElementById("callNowBtn");
@@ -653,7 +668,7 @@
                 const announcementOpen = document.getElementById("announcementOpen");
                 const announcementClose = document.getElementById("announcementClose");
 
-                if (announcementOpen) {
+                if (showAnnouncement && announcementOpen) {
                     announcementOpen.addEventListener("click", function (e) {
                         e.preventDefault();
                         openAnnouncementPopup();
