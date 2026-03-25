@@ -32,22 +32,35 @@ body {
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
+  padding: 0;
+}
+
+main.page-shell {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 3rem 1rem;
 }
 
-.page-shell {
+.container {
   max-width: 800px;
   margin: 0 auto;
-}
-
-/* Hero / Header Section */
-.hero {
-  background: linear-gradient(135deg, #f0f7ff 0%, #f5fbff 100%);
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2.5rem 2rem;
-  margin-bottom: 2rem;
   box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+}
+
+main.page-shell .container {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.content {
+  padding: 0;
 }
 
 .eyebrow {
@@ -60,11 +73,14 @@ body {
   margin: 0 0 0.8rem 0;
 }
 
-.hero h1 {
-  margin: 0 0 0.8rem 0;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  line-height: 1.15;
-  color: var(--text);
+/* Hero / Header Section */
+.hero {
+  background: linear-gradient(135deg, #f0f7ff 0%, #f5fbff 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
 }
 
 .intro,
@@ -81,14 +97,7 @@ body {
   margin: 0.5rem 0;
 }
 
-/* Main Content Container */
-.container {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
-}
+
 
 /* Content Sections */
 .policy-section {
@@ -104,11 +113,21 @@ body {
 }
 
 /* Typography */
+h1,
+h2 {
+  color: var(--text);
+}
+
+h1 {
+  margin: 0.5rem 0 0.8rem 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.15;
+}
+
 h2 {
   margin: 0 0 1rem 0;
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);
   line-height: 1.25;
-  color: var(--text);
 }
 
 h3 {
@@ -262,22 +281,70 @@ footer {
 }
 
 @media (max-width: 720px) {
-  body {
+  main.page-shell,
+  .container {
     padding: 1.5rem 1rem;
   }
 
-  .hero,
-  .container {
+  .hero {
     padding: 1.5rem 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
   }
 
   .intro,
   .lead {
     font-size: 1rem;
+  }
+
+  .content {
+    padding: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  main.page-shell,
+  .container {
+    padding: 1rem;
+  }
+
+  .hero {
+    padding: 1.2rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+  }
+
+  .container {
+    border-radius: 12px;
+  }
+
+  h1 {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  }
+
+  .intro,
+  .lead {
+    font-size: 0.95rem;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.2rem;
+  }
+
+  li {
+    margin-bottom: 0.6rem;
   }
 }
 

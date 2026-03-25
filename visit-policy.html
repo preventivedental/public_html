@@ -8,17 +8,18 @@
         <link rel="stylesheet" href="styles-blog.css" />
     </head>
     <body>
-        <div class="container">
-            <div class="hero anim">
+        <main class="page-shell">
+            <header class="hero" aria-labelledby="policy-title">
                 <p class="eyebrow">Preventive Dental Office Policy</p>
-                <h1>Appointment and Financial Terms</h1>
+                <h1 id="policy-title">Appointment and Financial Terms</h1>
                 <p class="intro">
                     We keep care straightforward and efficient. This page explains how appointments, payments, and
                     communication are handled so every visit runs on time and with no surprises.
                 </p>
-            </div>
+            </header>
 
-            <div class="content">
+            <div class="container">
+                <div class="content">
                 <h2>Appointments</h2>
             <p>
                 When we make an appointment, it's confirmed. We set that time aside for you. Any reminders you get from
@@ -128,6 +129,7 @@
 
             <p class="final-note">We're here for results.</p>
 
+                </div>
             </div>
 
             <div class="footer-note">
@@ -137,7 +139,7 @@
                     <span id="revision-date"></span>
                 </p>
             </div>
-        </div>
+        </main>
 
         <script>
             // Display auto-updating revision date based on last modified timestamp
