@@ -83,7 +83,7 @@ p:last-child {
 .announce {
   background: var(--blue);
   color: #fff;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .announce .wrap {
