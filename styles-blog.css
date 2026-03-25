@@ -37,19 +37,19 @@ body {
 
 main.page-shell {
   display: block;
-  max-width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 3rem 1rem;
+  padding: 2.5rem 2rem;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+  max-width: none;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 main.page-shell .container {
@@ -78,9 +78,16 @@ main.page-shell .container {
   background: linear-gradient(135deg, #f0f7ff 0%, #f5fbff 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  margin-bottom: 2rem;
+  padding: 3rem 3rem;
+  margin: 0 0 2.5rem 0;
   box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+  max-width: 100%;
+}
+
+main.page-shell > .hero {
+  margin: -2.5rem -2rem 2.5rem -2rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 3rem 3rem;
 }
 
 .intro,
@@ -101,15 +108,20 @@ main.page-shell .container {
 
 /* Content Sections */
 .policy-section {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
+  max-width: 900px;
 }
 
 .policy-section:last-of-type {
   border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+.content {
+  max-width: 900px;
 }
 
 /* Typography */
@@ -212,10 +224,15 @@ footer {
 .footer-note {
   background: linear-gradient(135deg, var(--blue), var(--blue2));
   color: white;
-  padding: 2rem;
+  padding: 2.5rem 3rem;
   border-radius: var(--radius);
-  margin-top: 2rem;
+  margin: 3rem -2rem -2.5rem -2rem;
   text-align: center;
+}
+
+main.page-shell .footer-note {
+  margin: 3rem -2rem 0 -2rem;
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .footer-note p {
@@ -280,15 +297,43 @@ footer {
   }
 }
 
+@media (max-width: 900px) {
+  main.page-shell {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero {
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  main.page-shell > .hero {
+    margin: -2rem -1.5rem 2rem -1.5rem;
+  }
+
+  .policy-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-note {
+    padding: 2rem 2rem;
+    margin: 2.5rem -1.5rem 0 -1.5rem;
+  }
+}
+
 @media (max-width: 720px) {
-  main.page-shell,
-  .container {
+  main.page-shell {
     padding: 1.5rem 1rem;
   }
 
   .hero {
     padding: 1.5rem 1.2rem;
     margin-bottom: 1.5rem;
+  }
+
+  main.page-shell > .hero {
+    margin: -1.5rem -1rem 1.5rem -1rem;
   }
 
   h1 {
@@ -307,11 +352,15 @@ footer {
   .content {
     padding: 0;
   }
+
+  .footer-note {
+    padding: 1.5rem 1.2rem;
+    margin: 2rem -1rem 0 -1rem;
+  }
 }
 
 @media (max-width: 520px) {
-  main.page-shell,
-  .container {
+  main.page-shell {
     padding: 1rem;
   }
 
@@ -321,7 +370,8 @@ footer {
     margin-bottom: 1.2rem;
   }
 
-  .container {
+  main.page-shell > .hero {
+    margin: -1rem -1rem 1.2rem -1rem;
     border-radius: 12px;
   }
 
@@ -345,6 +395,12 @@ footer {
 
   li {
     margin-bottom: 0.6rem;
+  }
+
+  .footer-note {
+    padding: 1.2rem 1rem;
+    margin: 1.5rem -1rem 0 -1rem;
+    border-radius: 12px;
   }
 }
 
