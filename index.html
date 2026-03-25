@@ -55,6 +55,7 @@
     <div class="announce is-empty" id="announceBar">
       <div class="wrap">
         <div id="announceText"></div>
+        <a id="announceCta" class="announce-cta" href="#" hidden>Learn more</a>
       </div>
     </div>
 
@@ -545,27 +546,96 @@
         // Announcement loader (plain text only, avoids HTML injection)
         var bar = document.getElementById("announceBar");
         var text = document.getElementById("announceText");
+        var cta = document.getElementById("announceCta");
+
+        function hideAnnouncement() {
+          bar.classList.add("is-empty");
+          text.textContent = "";
+
+          if (cta) {
+            cta.hidden = true;
+            cta.removeAttribute("href");
+            cta.removeAttribute("target");
+            cta.removeAttribute("rel");
+          }
+        }
+
+        function isSafeAnnouncementHref(href) {
+          if (!href) return false;
+          if (/^\s*javascript:/i.test(href)) return false;
+          return /^(\/|\.\/|\.\.\/|#|https?:\/\/)/i.test(href);
+        }
+
+        function applyAnnouncementCta(linkContent) {
+          if (!cta) return;
+
+          var config = (linkContent || "").trim();
+          if (!config) {
+            cta.hidden = true;
+            cta.removeAttribute("href");
+            cta.removeAttribute("target");
+            cta.removeAttribute("rel");
+            return;
+          }
+
+          var parts = config.split("|");
+          var href = (parts[0] || "").trim();
+          var label = (parts[1] || "Learn more").trim();
+
+          if (!isSafeAnnouncementHref(href)) {
+            cta.hidden = true;
+            cta.removeAttribute("href");
+            cta.removeAttribute("target");
+            cta.removeAttribute("rel");
+            return;
+          }
+
+          cta.href = href;
+          cta.textContent = label || "Learn more";
+          cta.hidden = false;
+
+          if (/^https?:\/\//i.test(href)) {
+            cta.setAttribute("target", "_blank");
+            cta.setAttribute("rel", "noopener noreferrer");
+          } else {
+            cta.removeAttribute("target");
+            cta.removeAttribute("rel");
+          }
+        }
 
         if (bar && text) {
-          fetch("/announcement.html", { cache: "no-store" })
-            .then(function (res) {
-              return res.ok ? res.text() : "";
-            })
-            .then(function (content) {
+          Promise.all([
+            fetch("/announcement.html", { cache: "no-store" })
+              .then(function (res) {
+                return res.ok ? res.text() : "";
+              })
+              .catch(function () {
+                return "";
+              }),
+            fetch("/announcement-link.txt", { cache: "no-store" })
+              .then(function (res) {
+                return res.ok ? res.text() : "";
+              })
+              .catch(function () {
+                return "";
+              })
+          ])
+            .then(function (results) {
+              var content = results[0];
+              var linkConfig = results[1];
               var trimmed = (content || "").trim();
 
               if (!trimmed) {
-                bar.classList.add("is-empty");
-                text.textContent = "";
+                hideAnnouncement();
                 return;
               }
 
               bar.classList.remove("is-empty");
               text.textContent = trimmed;
+              applyAnnouncementCta(linkConfig);
             })
             .catch(function () {
-              bar.classList.add("is-empty");
-              text.textContent = "";
+              hideAnnouncement();
             });
         }
 
