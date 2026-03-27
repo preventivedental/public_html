@@ -401,102 +401,40 @@
         margin-bottom: 10px;
       }
 
-      .modal-backdrop {
-        position: fixed;
-        inset: 0;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        background: rgba(15, 23, 42, 0.66);
-        z-index: 100;
+      .call-stop {
+        padding: 22px;
+        border-radius: 18px;
+        background: #fff7ed;
+        border: 2px solid #c2410c;
+        box-shadow: var(--shadow);
       }
 
-      .modal-backdrop.open {
-        display: flex;
+      .call-stop h2 {
+        font-size: clamp(1.6rem, 2.4vw, 2rem);
+        margin-bottom: 10px;
       }
 
-      .modal-card {
-        width: min(100%, 560px);
-        padding: 24px;
-        border-radius: 20px;
-        border: 1px solid var(--border);
-        background: #fff;
-        box-shadow: 0 24px 60px rgba(2, 6, 23, 0.28);
+      .call-stop p {
+        margin-bottom: 12px;
       }
 
-      .modal-head {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 14px;
-      }
-
-      .modal-head h3 {
-        font-size: 1.5rem;
-      }
-
-      .modal-close {
-        min-width: 42px;
-        min-height: 42px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: #fff;
-        color: var(--text);
-        font-size: 20px;
-        cursor: pointer;
-      }
-
-      .check-list {
+      .call-stop-grid {
         display: grid;
-        gap: 12px;
-        margin: 18px 0;
-      }
-
-      .check-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 14px;
-        border-radius: 16px;
-        background: rgba(11, 79, 120, 0.05);
-        border: 1px solid rgba(11, 79, 120, 0.1);
-      }
-
-      .check-item input {
-        margin-top: 3px;
-        width: 18px;
-        height: 18px;
-        flex: 0 0 auto;
-      }
-
-      .gate-message {
-        min-height: 22px;
-        margin: 10px 0 0;
-        color: #b91c1c;
-        font-weight: 700;
-      }
-
-      .gate-actions {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
-      .revealed-actions {
-        display: none;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+        gap: 14px;
+        margin-top: 16px;
       }
 
-      .revealed-actions.open {
-        display: grid;
+      .call-stop-item {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(194, 65, 12, 0.18);
       }
 
-      .gate-note {
-        margin-top: 12px;
-        color: var(--muted);
-        font-size: 0.95rem;
+      .call-stop-item strong {
+        display: block;
+        margin-bottom: 6px;
       }
 
       .footer-note {
@@ -508,6 +446,7 @@
 
       @media (max-width: 900px) {
         .hero-grid,
+        .call-stop-grid,
         .warning-grid,
         .compare-grid,
         .qa-grid,
@@ -550,10 +489,6 @@
         .btn {
           width: 100%;
         }
-
-        .revealed-actions {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
@@ -566,8 +501,8 @@
           </a>
           <div class="header-links">
             <a class="btn btn-secondary" href="/">Back to Home</a>
-            <button class="btn btn-secondary contact-trigger" type="button">Text (610) 678-5700</button>
-            <button class="btn btn-primary contact-trigger" type="button">Call Now</button>
+            <a class="btn btn-secondary" href="sms:+16106785700">Text (610) 678-5700</a>
+            <a class="btn btn-primary" href="tel:+16106785700">Call Now</a>
           </div>
         </div>
       </div>
@@ -621,6 +556,36 @@
       </section>
 
       <div class="wrap stack">
+        <section class="call-stop" aria-labelledby="call-stop-title">
+          <h2 id="call-stop-title">Before you call or text, stop here first.</h2>
+          <p>
+            If any of the items below apply to you, this Wednesday block is not the right fit. Do not assume we can
+            make an exception when you arrive.
+          </p>
+          <div class="call-stop-grid">
+            <div class="call-stop-item">
+              <strong>Blood thinners</strong>
+              If you take Eliquis, Xarelto, Warfarin, or other blood thinners, do not walk in. You require a
+              hospital-grade or specialist setting for your safety.
+            </div>
+            <div class="call-stop-item">
+              <strong>Specialist referral already given</strong>
+              If a dentist or oral surgeon already told you the tooth is impacted or needs specialist care, we cannot
+              bypass that referral.
+            </div>
+            <div class="call-stop-item">
+              <strong>Not extraction-only</strong>
+              If your goal is a root canal, implant planning, bone grafting, or saving the tooth, this is the wrong
+              visit.
+            </div>
+            <div class="call-stop-item">
+              <strong>Complex swelling or infection</strong>
+              If you have trouble swallowing, breathing, or opening your mouth, go to the ER instead of calling this
+              walk-in block.
+            </div>
+          </div>
+        </section>
+
         <section class="warning-panel" aria-labelledby="preflight-title">
           <h2 id="preflight-title">Before you come, confirm all four of these.</h2>
           <p>
@@ -767,8 +732,8 @@
             your case still fits, call or text us now.
           </p>
           <div class="btn-row" style="margin-top: 18px">
-            <button class="btn btn-primary contact-trigger" type="button">Reveal Phone Number</button>
-            <button class="btn btn-secondary contact-trigger" type="button">Reveal Text Link</button>
+            <a class="btn btn-primary" href="tel:+16106785700">Call (610) 678-5700</a>
+            <a class="btn btn-secondary" href="sms:+16106785700">Text Us First</a>
           </div>
         </section>
 
@@ -777,120 +742,5 @@
         </div>
       </div>
     </main>
-
-    <div class="modal-backdrop" id="eligibilityModal" aria-hidden="true">
-      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="eligibilityTitle">
-        <div class="modal-head">
-          <div>
-            <h3 id="eligibilityTitle">Quick Check: Can we help you today?</h3>
-            <p class="muted" style="margin-top: 8px">
-              Confirm all three statements before we reveal the call or text options.
-            </p>
-          </div>
-          <button class="modal-close" id="eligibilityClose" type="button" aria-label="Close quick check">×</button>
-        </div>
-
-        <div class="check-list">
-          <label class="check-item">
-            <input type="checkbox" id="gateNoThinners" />
-            <span>I am not on blood thinners.</span>
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="gateNoReferral" />
-            <span>I do not have a referral to an oral surgeon or specialist for this tooth.</span>
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="gateExtractionOnly" />
-            <span>I understand this is extraction only. No implants, root canals, or bone grafting.</span>
-          </label>
-          <label class="check-item">
-            <input type="checkbox" id="gateExamFee" />
-            <span>I understand exam and x-ray fees still apply if my case is too complex for treatment here.</span>
-          </label>
-        </div>
-
-        <div class="gate-actions">
-          <button class="btn btn-primary" id="revealContactBtn" type="button">Reveal Contact Options</button>
-          <div class="gate-message" id="gateMessage" aria-live="polite"></div>
-          <div class="revealed-actions" id="revealedActions">
-            <a class="btn btn-primary" href="tel:+16106785700">Call (610) 678-5700</a>
-            <a class="btn btn-secondary" href="sms:+16106785700">Text (610) 678-5700</a>
-          </div>
-          <p class="gate-note">If any box is false for you, this walk-in block is probably not the right fit.</p>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      (function () {
-        var modal = document.getElementById("eligibilityModal");
-        var closeBtn = document.getElementById("eligibilityClose");
-        var revealBtn = document.getElementById("revealContactBtn");
-        var revealedActions = document.getElementById("revealedActions");
-        var gateMessage = document.getElementById("gateMessage");
-        var triggerButtons = document.querySelectorAll(".contact-trigger");
-        var checkboxes = [
-          document.getElementById("gateNoThinners"),
-          document.getElementById("gateNoReferral"),
-          document.getElementById("gateExtractionOnly"),
-          document.getElementById("gateExamFee")
-        ];
-
-        if (!modal || !closeBtn || !revealBtn || !revealedActions || !gateMessage || !triggerButtons.length) return;
-
-        function openModal() {
-          modal.classList.add("open");
-          modal.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
-        }
-
-        function closeModal() {
-          modal.classList.remove("open");
-          modal.setAttribute("aria-hidden", "true");
-          document.body.style.overflow = "";
-        }
-
-        function allChecked() {
-          return checkboxes.every(function (checkbox) {
-            return checkbox && checkbox.checked;
-          });
-        }
-
-        triggerButtons.forEach(function (button) {
-          button.addEventListener("click", openModal);
-        });
-
-        closeBtn.addEventListener("click", closeModal);
-
-        modal.addEventListener("click", function (event) {
-          if (event.target === modal) closeModal();
-        });
-
-        document.addEventListener("keydown", function (event) {
-          if (event.key === "Escape" && modal.classList.contains("open")) {
-            closeModal();
-          }
-        });
-
-        revealBtn.addEventListener("click", function () {
-          if (!allChecked()) {
-            gateMessage.textContent = "You must confirm all three statements before we reveal the contact options.";
-            revealedActions.classList.remove("open");
-            return;
-          }
-
-          gateMessage.textContent = "";
-          revealedActions.classList.add("open");
-        });
-
-        checkboxes.forEach(function (checkbox) {
-          checkbox.addEventListener("change", function () {
-            if (allChecked()) {
-              gateMessage.textContent = "";
-            }
-          });
-        });
-      })();
-    </script>
   </body>
 </html>
