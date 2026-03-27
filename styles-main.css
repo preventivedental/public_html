@@ -101,6 +101,20 @@ p:last-child {
   font-weight: 700;
 }
 
+#announceCta,
+#announceSchedulerButton {
+  flex-shrink: 0;
+}
+
+#announceSchedulerButton {
+  display: inline-flex;
+}
+
+#announceSchedulerButton a,
+#announceSchedulerButton button {
+  white-space: nowrap;
+}
+
 .announce-cta {
   display: inline-flex;
   align-items: center;
@@ -868,6 +882,14 @@ footer {
 }
 
 @media (max-width: 520px) {
+  .announce .wrap {
+    row-gap: 12px;
+  }
+
+  #announceText {
+    flex: 1 0 100%;
+  }
+
   .hero-ctas a {
     width: 67%;
   }
