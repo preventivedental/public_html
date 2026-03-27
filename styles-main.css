@@ -89,6 +89,7 @@ p:last-child {
 .announce .wrap {
   padding: 10px 18px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 10px;

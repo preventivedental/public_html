@@ -9,6 +9,8 @@
       content="Honest dental care in Reading, PA. No upsells, no pressure. Dr. Shad Lewis, DMD — straightforward dentistry that keeps your teeth healthy for life." />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" />
     <link rel="stylesheet" href="styles-main.css" />
+    <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet" />
+    <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
 
     <script type="application/ld+json">
       {
@@ -56,6 +58,21 @@
       <div class="wrap">
         <div id="announceText"></div>
         <a id="announceCta" class="announce-cta" href="#" hidden>Learn more</a>
+        <div id="announceSchedulerButton"></div>
+        <script>
+          (function () {
+            var target = document.getElementById("announceSchedulerButton");
+            window.addEventListener("load", function () {
+              if (!target || !window.calendar || !calendar.schedulingButton) return;
+              calendar.schedulingButton.load({
+                url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3HuA_7iFKKeQ6fjPoUGXVLN6zLVfvuN4EXvQwOgJ7J8sDTQRJawXaR5KpJ7PoLxPewutRj586m?gv=true",
+                color: "#039BE5",
+                label: "Book an appointment",
+                target: target
+              });
+            });
+          })();
+        </script>
       </div>
     </div>
 
