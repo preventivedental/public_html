@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Walk-In Wednesday Extractions | Preventive Dental</title>
+    <meta
+      name="description"
+      content="Walk-In Wednesdays in Reading, PA for simple and surgical extractions. We remove the tooth, stop the pain, and keep it straightforward. Starts at $250 per tooth including exam and x-rays." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" />
+    <style>
+      :root {
+        --blue: #0b4f78;
+        --blue2: #083a58;
+        --orange: #d46a1a;
+        --bg: #f6f8fb;
+        --text: #0f172a;
+        --muted: #475569;
+        --card: #ffffff;
+        --border: rgba(15, 23, 42, 0.12);
+        --shadow: 0 10px 25px rgba(2, 6, 23, 0.1);
+        --radius: 18px;
+        --max: 1080px;
+        --danger-bg: #fff1f2;
+        --danger-border: #be123c;
+        --success-bg: #f0fdf4;
+        --success-border: #15803d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(11, 79, 120, 0.08), transparent 28%),
+          linear-gradient(180deg, #f8fafc 0%, #eef4f8 100%);
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      p {
+        margin: 0 0 14px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.05;
+      }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(11, 79, 120, 0.09);
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .btn-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 11px 16px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-size: 14px;
+        font-weight: 750;
+        white-space: nowrap;
+        transition:
+          transform 0.08s ease,
+          filter 0.15s ease,
+          background 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--orange);
+        color: #fff;
+        box-shadow: 0 10px 24px rgba(212, 106, 26, 0.25);
+      }
+
+      .btn-secondary {
+        background: #fff;
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.94);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .brand img {
+        width: 160px;
+        height: 44px;
+        object-fit: contain;
+      }
+
+      .header-links {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero {
+        padding: 44px 0 24px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .hero-copy,
+      .hero-card,
+      .section-card,
+      .compare-card,
+      .qa-card,
+      .cta-panel,
+      .warning-panel {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 28px;
+      }
+
+      .hero-copy h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.3rem, 4.8vw, 4.4rem);
+        letter-spacing: -0.04em;
+        margin-top: 14px;
+      }
+
+      .hero-copy .lede {
+        margin-top: 16px;
+        font-size: 1.15rem;
+        max-width: 42rem;
+      }
+
+      .mini-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .fact {
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(11, 79, 120, 0.06);
+      }
+
+      .fact strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+
+      .hero-card {
+        padding: 24px;
+        background: linear-gradient(180deg, var(--blue), var(--blue2));
+        color: #fff;
+      }
+
+      .hero-card h2 {
+        font-size: 1.45rem;
+      }
+
+      .hero-card ul {
+        margin: 16px 0 0;
+        padding-left: 18px;
+      }
+
+      .hero-card li + li {
+        margin-top: 10px;
+      }
+
+      .stack {
+        display: grid;
+        gap: 22px;
+        padding-bottom: 48px;
+      }
+
+      .warning-panel {
+        padding: 22px;
+        background: var(--danger-bg);
+        border: 2px solid var(--danger-border);
+      }
+
+      .warning-panel h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .warning-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .warning-item {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(190, 18, 60, 0.2);
+      }
+
+      .warning-item strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .section-card {
+        padding: 24px;
+      }
+
+      .section-head {
+        margin-bottom: 18px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.6rem, 2vw, 2rem);
+      }
+
+      .compare-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .compare-card {
+        overflow: hidden;
+      }
+
+      .compare-card h3 {
+        padding: 18px 20px;
+        font-size: 1.25rem;
+      }
+
+      .compare-card.good h3 {
+        background: var(--success-bg);
+        border-bottom: 1px solid rgba(21, 128, 61, 0.18);
+      }
+
+      .compare-card.bad h3 {
+        background: var(--danger-bg);
+        border-bottom: 1px solid rgba(190, 18, 60, 0.18);
+      }
+
+      .compare-card ul {
+        margin: 0;
+        padding: 18px 22px 22px 40px;
+      }
+
+      .compare-card li + li {
+        margin-top: 10px;
+      }
+
+      .qa-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .qa-card {
+        padding: 18px;
+      }
+
+      .qa-card .number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        background: rgba(11, 79, 120, 0.12);
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .qa-card h3 {
+        font-size: 1.06rem;
+        margin-bottom: 8px;
+      }
+
+      .flow-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .flow-step {
+        padding: 18px;
+        border-radius: 16px;
+        background: rgba(11, 79, 120, 0.05);
+        border: 1px solid rgba(11, 79, 120, 0.1);
+      }
+
+      .flow-step strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .price-box {
+        margin-top: 16px;
+        padding: 20px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(11, 79, 120, 0.08), rgba(11, 79, 120, 0.02));
+        border: 1px solid rgba(11, 79, 120, 0.14);
+      }
+
+      .price-box .amount {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .cta-panel {
+        padding: 28px;
+        background: linear-gradient(180deg, #052c43, #083a58);
+        color: #fff;
+      }
+
+      .cta-panel h2 {
+        font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+        margin-bottom: 10px;
+      }
+
+      .footer-note {
+        padding: 0 0 40px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .warning-grid,
+        .compare-grid,
+        .qa-grid,
+        .flow-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .header-inner {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .header-links {
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .hero {
+          padding-top: 28px;
+        }
+
+        .hero-copy,
+        .hero-card,
+        .section-card,
+        .cta-panel,
+        .warning-panel {
+          padding: 20px;
+        }
+
+        .mini-facts {
+          grid-template-columns: 1fr;
+        }
+
+        .btn-row {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="header-inner">
+          <a class="brand" href="/" aria-label="Preventive Dental home">
+            <img src="logo.png" alt="Preventive Dental logo" width="160" height="44" />
+          </a>
+          <div class="header-links">
+            <a class="btn btn-secondary" href="/">Back to Home</a>
+            <a class="btn btn-secondary" href="sms:+16106785700">Text (610) 678-5700</a>
+            <a class="btn btn-primary" href="tel:+16106785700">Call Now</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">Walk-In Wednesdays 8am-12pm</div>
+            <h1>We stop the pain. We remove the tooth. You get back to your life.</h1>
+            <p class="lede">
+              This block is for people who want one thing: the tooth out. It is built for fast relief, not for saving
+              teeth, sedation, bone grafts, or complex surgery.
+            </p>
+
+            <div class="mini-facts">
+              <div class="fact">
+                <strong>First come, first served</strong>
+                No appointment needed for this Wednesday block.
+              </div>
+              <div class="fact">
+                <strong>Starts at $250 per tooth</strong>
+                Includes exam and x-rays.
+              </div>
+              <div class="fact">
+                <strong>Local anesthetic only</strong>
+                You will be awake. We numb the area and remove the tooth.
+              </div>
+              <div class="fact">
+                <strong>Simple and surgical extractions</strong>
+                Not implants, bone grafts, or buried wisdom teeth.
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Who this visit is for">
+            <h2>Best fit for this block</h2>
+            <ul>
+              <li>You are in pain and want the tooth gone.</li>
+              <li>The tooth is visible, broken, loose, or down to the gumline.</li>
+              <li>You want a straightforward, no-frills visit.</li>
+              <li>You can manage treatment with standard numbing.</li>
+            </ul>
+            <div class="btn-row" style="margin-top: 20px">
+              <a class="btn btn-primary" href="tel:+16106785700">Call (610) 678-5700</a>
+              <a class="btn btn-secondary" href="sms:+16106785700">Text Questions First</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="wrap stack">
+        <section class="warning-panel" aria-labelledby="preflight-title">
+          <h2 id="preflight-title">Before you come, confirm all four of these.</h2>
+          <p>
+            This is the pre-flight checklist. If any of these are a "no," this Wednesday block is probably not the
+            right place for your case.
+          </p>
+
+          <div class="warning-grid">
+            <div class="warning-item">
+              <strong>No blood thinners</strong>
+              We cannot safely perform these extractions if you are on prescription anticoagulants such as Warfarin or
+              Eliquis.
+            </div>
+            <div class="warning-item">
+              <strong>Extractions only</strong>
+              We remove the tooth to stop the pain. We do not do bone grafting, implant placement, or restorative work
+              in this block.
+            </div>
+            <div class="warning-item">
+              <strong>Local anesthetic only</strong>
+              You will be awake. We numb the area, but we do not offer IV sedation or general anesthesia.
+            </div>
+            <div class="warning-item">
+              <strong>No referral shopping</strong>
+              If an oral surgeon already told you the case is impacted, buried, or unusually complex, we are likely not
+              the right fit.
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" aria-labelledby="fit-title">
+          <div class="section-head">
+            <h2 id="fit-title">What we do vs. what we do not do</h2>
+            <p class="muted">This page is for pain-to-resolution patients. It is not for complex restorative planning.</p>
+          </div>
+
+          <div class="compare-grid">
+            <article class="compare-card good">
+              <h3>We are your best bet if...</h3>
+              <ul>
+                <li>You are in pain and want the tooth gone today.</li>
+                <li>The tooth is visible or broken at the gumline.</li>
+                <li>You want a fast, no-frills procedure.</li>
+                <li>You can tolerate a normal numbing shot.</li>
+              </ul>
+            </article>
+
+            <article class="compare-card bad">
+              <h3>We are not for you if...</h3>
+              <ul>
+                <li>You want to save the tooth with a root canal or crown.</li>
+                <li>The tooth is fully buried under bone or an impacted wisdom tooth.</li>
+                <li>You are planning socket preservation or bone grafting for a future implant.</li>
+                <li>You need sedation or "going under" to get through treatment.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" aria-labelledby="screening-title">
+          <div class="section-head">
+            <h2 id="screening-title">Screening questions</h2>
+            <p class="muted">
+              If the answer to any of these is yes, call before you come. In many cases, that means you should go to a
+              specialist or the ER instead.
+            </p>
+          </div>
+
+          <div class="qa-grid">
+            <article class="qa-card">
+              <div class="number">1</div>
+              <h3>Are you currently taking blood-thinning medications?</h3>
+              <p>Goal: avoid post-op bleeding problems that should not be managed in a fast walk-in block.</p>
+            </article>
+
+            <article class="qa-card">
+              <div class="number">2</div>
+              <h3>Has a dentist already told you this tooth needs an oral surgeon?</h3>
+              <p>Goal: filter out cases already identified as too complex or too risky for a standard extraction visit.</p>
+            </article>
+
+            <article class="qa-card">
+              <div class="number">3</div>
+              <h3>Do you have major swelling, trouble swallowing, or trouble opening your mouth?</h3>
+              <p>Goal: send serious infections to the ER instead of delaying proper care.</p>
+            </article>
+
+            <article class="qa-card">
+              <div class="number">4</div>
+              <h3>Are you looking for a bone graft or socket preservation for a future implant?</h3>
+              <p>Goal: keep restorative and implant-planning cases out of a relief-focused extraction block.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-card" aria-labelledby="expect-title">
+          <div class="section-head">
+            <h2 id="expect-title">How this block works</h2>
+            <p class="muted">Simple, fast, and direct. This is not a long consult.</p>
+          </div>
+
+          <div class="flow-grid">
+            <div class="flow-step">
+              <strong>1. Walk in Wednesday morning</strong>
+              Arrive during the 8am-12pm block. It is first come, first served.
+            </div>
+            <div class="flow-step">
+              <strong>2. We confirm the case fits</strong>
+              We examine the tooth, take x-rays, and make sure this is an extraction case we can safely handle.
+            </div>
+            <div class="flow-step">
+              <strong>3. If it fits, we remove the tooth</strong>
+              The goal is relief. We numb the area, remove the tooth, review aftercare, and get you on with your day.
+            </div>
+          </div>
+
+          <div class="price-box">
+            <div class="amount">Starts at $250</div>
+            <p><strong>Per tooth, including exam and x-rays.</strong></p>
+            <p class="muted">
+              Final cost depends on the tooth and how difficult the extraction is. If the case turns out to be outside
+              the scope of this block, we will tell you directly before treatment starts.
+            </p>
+          </div>
+        </section>
+
+        <section class="section-card" aria-labelledby="not-fit-title">
+          <div class="section-head">
+            <h2 id="not-fit-title">Do not use this block for these situations</h2>
+          </div>
+          <p><strong>Go to the ER now</strong> if swelling is affecting swallowing, breathing, or how wide you can open.</p>
+          <p><strong>Call a specialist</strong> if you were already told the tooth is impacted, buried, or needs complex surgery.</p>
+          <p><strong>Book something else</strong> if your goal is to save the tooth, place an implant, or do grafting.</p>
+        </section>
+
+        <section class="cta-panel" aria-labelledby="cta-title">
+          <h2 id="cta-title">If your goal is simple relief, this is the page you wanted.</h2>
+          <p>
+            If you are trying to save the tooth, this is not the right block. If you want the tooth out and want a
+            direct answer, call or text us now.
+          </p>
+          <div class="btn-row" style="margin-top: 18px">
+            <a class="btn btn-primary" href="tel:+16106785700">Call (610) 678-5700</a>
+            <a class="btn btn-secondary" href="sms:+16106785700">Text Us First</a>
+          </div>
+        </section>
+
+        <div class="footer-note">
+          Preventive Dental · 2211 Quarry Dr. STE E-67, Reading, PA 19609 · Wednesdays 8am-12pm
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
