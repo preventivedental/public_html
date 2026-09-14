@@ -23,7 +23,7 @@
 
 <style>
 :root{
-  --paper:#E1ECF5;
+  --paper:#E7EEF4;
   --ink:#0F2942;
   --ink-soft:#48627A;
   --signal:#154A77;
@@ -31,7 +31,7 @@
   --orange:#C25008;
   --green:#0D6B4E;
   --alert:#8E2B1B;
-  --rule:#B6CADC;
+  --rule:#C3D2DE;
   --bar:76px;
 }
 *{box-sizing:border-box}
@@ -41,7 +41,7 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:"Barlow",system-ui,-apple-system,sans-serif;
-  font-size:17.5px;line-height:1.52;
+  font-size:17.5px;line-height:1.62;
   padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom));
 }
 .wrap{max-width:34rem;margin:0 auto;padding:0 1.25rem}
@@ -49,6 +49,11 @@ a{color:var(--signal-dk)}
 .book{border-color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
 p{margin:0 0 .9rem}
+
+.mast{background:var(--ink);padding:1.3rem 1.25rem 1.4rem;
+  display:flex;justify-content:center}
+.mast svg{width:212px;height:auto;display:block;
+  font-family:"Barlow Condensed",sans-serif}
 
 /* ---------- status light ---------- */
 .status{display:flex;align-items:center;gap:.55rem;padding:1.1rem 0 .2rem;
@@ -67,7 +72,7 @@ h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;
 
 /* ---------- call button ---------- */
 .call{display:block;background:var(--signal);color:#fff;text-decoration:none;
-  text-align:center;border-radius:9px;padding:1.05rem 1rem;margin:0 0 .55rem;
+  text-align:center;border-radius:14px;padding:1.05rem 1rem;margin:0 0 .55rem;
   font-family:"Barlow Condensed",sans-serif;font-weight:700;
   font-size:2.35rem;line-height:1;letter-spacing:.005em}
 .call:active{background:var(--signal-dk)}
@@ -77,7 +82,7 @@ h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;
 .row2{display:flex;gap:.6rem;margin:0 0 .55rem}
 .alt{flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;
   text-align:center;text-decoration:none;color:var(--ink);
-  border:2px solid var(--ink);border-radius:9px;padding:.78rem .6rem;
+  border:2px solid var(--ink);border-radius:14px;padding:.78rem .6rem;
   font-weight:600;font-size:1.02rem;line-height:1.15}
 .alt:active{background:rgba(15,41,66,.07)}
 .book{display:none}
@@ -108,6 +113,9 @@ ul.plain li::before{content:"";position:absolute;left:.15rem;top:1.12rem;
   width:.5rem;height:.5rem;background:var(--ink-soft);border-radius:1px}
 ul.plain.no li::before{background:var(--rule)}
 
+.anchor{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:1.35rem;line-height:1.2;margin:0 0 1rem;color:var(--ink)}
+
 /* ---------- price table ---------- */
 table{width:100%;border-collapse:collapse;margin:0 0 1rem}
 th,td{text-align:left;padding:.62rem 0;border-bottom:1px solid var(--rule);
@@ -126,6 +134,11 @@ tr.free td{color:var(--orange);font-weight:700}
   font-size:1.5rem;line-height:1.14;margin:1.3rem 0 .25rem}
 .promise dt:first-of-type{margin-top:0}
 .promise dd{margin:0;color:#A8C0D6;font-size:1.02rem}
+
+/* ---------- who ---------- */
+.me img{display:block;width:108px;height:108px;border-radius:50%;object-fit:cover;
+  margin:0 0 1rem;border:3px solid var(--paper);box-shadow:0 0 0 1px var(--rule)}
+.me b{font-weight:600}
 
 /* ---------- where ---------- */
 .where{font-size:1.05rem}
@@ -156,17 +169,26 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
 </head>
 <body>
 
+<header class="mast">
+  <svg viewBox="0 0 340 180" role="img" aria-label="Berks Urgent Dental" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="61" width="340" height="57" fill="#C25008"/>
+    <text x="40" y="50" textLength="260" lengthAdjust="spacing" font-size="42" font-weight="700" fill="#fff">BERKS</text>
+    <text x="40" y="108" textLength="260" lengthAdjust="spacing" font-size="52" font-weight="800" fill="#fff">URGENT</text>
+    <text x="40" y="160" textLength="260" lengthAdjust="spacing" font-size="42" font-weight="700" fill="#fff">DENTAL</text>
+  </svg>
+</header>
+
 <div class="wrap">
 
   <p class="status" id="status" data-state="closed"><span class="dot"></span><span id="statusText">Call to check today's openings</span></p>
 
-  <h1>A tooth that hurts, looked at today.</h1>
+  <h1>We'll look at that tooth today.</h1>
 
-  <p class="lede"><span class="who">Berks Urgent Dental</span> — West Lawn, PA.
-  One problem, one visit, price before we start.</p>
+  <p class="lede"><span class="who">Berks Urgent Dental</span> in West Lawn.
+  One problem, one visit, and you'll know what it costs before we start.</p>
 
   <a class="call" href="tel:+16107755521">(610) 775-5521<span>Tap to call</span></a>
-  <p class="undercall">A real person picks up. Not an answering service, not a menu.</p>
+  <p class="undercall">Somebody here answers the phone. No menu, no answering service.</p>
 
   <div class="row2">
     <a class="alt" href="sms:+16107755521?&amp;body=Tooth%20problem%20%E2%80%94%20here%27s%20what%27s%20going%20on%3A%20">Text us</a>
@@ -182,35 +204,29 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
   <section>
     <h2>What happens when you come in</h2>
     <ol class="seq">
-      <li><b>We look at the tooth.</b>
-        <p>No charge for this. It takes a few minutes and nothing is billed for it.</p></li>
-      <li><b>You hear what it is and what it costs.</b>
-        <p>If it needs treatment, we say so, and we hand you the price in writing before anything starts.</p></li>
-      <li><b>You decide.</b>
-        <p>Go ahead the same day, or don't. If you'd rather think about it, that's a fine answer and there's no charge for the look either way.</p></li>
+      <li><b>We take a look.</b>
+        <p>Costs you nothing. It takes a few minutes and you're not billed for it.</p></li>
+      <li><b>We tell you what's going on.</b>
+        <p>If it needs work, we'll say so plainly, and you'll have the price in your hand, in writing, before anything starts.</p></li>
+      <li><b>You decide what happens next.</b>
+        <p>Go ahead today, or take it home and think it over. Either answer is fine by us, and the look costs you nothing either way.</p></li>
     </ol>
-    <p class="note">Once you decide to go ahead, that's when the exam and x-ray begin — those are treatment, and they're on the price list below.</p>
+    <p class="note">If you decide to go ahead, that's when the exam and x-ray come in. Those are treatment, and they're on the list below.</p>
   </section>
 
   <section>
-    <h2>What we take care of</h2>
+    <h2>What we can take care of</h2>
     <ul class="plain">
       <li>A tooth that needs to come out</li>
-      <li>Toothache or an abscess</li>
+      <li>A toothache, or an abscess that's blown up on you</li>
       <li>A broken tooth, a lost crown, a filling that came out</li>
-      <li>Swelling on one side of the face</li>
-      <li>A denture or partial that broke or won't stay in</li>
-    </ul>
-    <h2 style="margin-top:1.8rem">What we don't</h2>
-    <ul class="plain no">
-      <li>Cleanings and checkups</li>
-      <li>Braces, whitening, veneers</li>
-      <li>Anything that isn't the reason you called</li>
+      <li>Swelling on one side of your face</li>
     </ul>
   </section>
 
   <section>
     <h2>What it costs</h2>
+    <p class="anchor">You came in for one tooth. That's what you pay for.</p>
     <table>
       <thead>
         <tr><th scope="col">Service</th><th scope="col" style="text-align:right">Fee</th></tr>
@@ -220,13 +236,14 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
         <tr><td>Exam and x-ray<span class="code">D0140, D0220</span></td><td class="fee" data-fee="exam"></td></tr>
         <tr><td>Extraction<span class="code">D7140</span></td><td class="fee" data-fee="ext"></td></tr>
         <tr><td>Surgical extraction<span class="code">D7210</span></td><td class="fee" data-fee="surg"></td></tr>
+        <tr><td>Re-cement a crown that came off<span class="code">D2920</span></td><td class="fee" data-fee="recem"></td></tr>
         <tr><td>Crown<span class="code">D2740</span></td><td class="fee" data-fee="crown"></td></tr>
         <tr><td>Filling<span class="code">D2391</span></td><td class="fee" data-fee="fill"></td></tr>
       </tbody>
     </table>
-    <p class="note">The codes are there so you can compare us to anyone else. Not every tooth is the same — a tooth that's broken at the gumline costs more to remove than one that isn't. You get your exact number after we look, in writing, before anything starts.</p>
-    <p class="note">Paid the day of the visit. Cash, card, HSA, FSA. Monthly payment plans are available if you'd rather split it up, and we can check that in about two minutes.</p>
-    <p class="note">These are self-pay prices. If you carry dental insurance we're contracted with, your plan's rates apply instead and we'll explain what that means before we begin.</p>
+    <p class="note">The codes are there so you can price us against anybody else in town. And not every tooth is the same — one that's broken off at the gumline takes more work than one that isn't. You'll get your own number after we look, in writing, before we start.</p>
+    <p class="note">Paid the day you come in. Cash, card, HSA, FSA. If you'd rather split it into monthly payments, we can check what you'd qualify for in about two minutes.</p>
+    <p class="note">These are self-pay prices. If you carry dental insurance we work with, your plan's rates apply instead, and we'll walk you through what that means before we begin.</p>
   </section>
 
 </div>
@@ -235,14 +252,14 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
   <div class="wrap">
     <h2>What you leave with</h2>
     <dl>
-      <dt>The problem you came in for, handled.</dt>
-      <dd>Same day where we can. If it's beyond what we should do here, we say that and we tell you where to go.</dd>
+      <dt>The thing you came in for, taken care of.</dt>
+      <dd>Same day when we can. And if it's bigger than what we should be doing here, we'll tell you straight and point you to the right person.</dd>
 
       <dt>A number you saw before we started.</dt>
-      <dd>In writing. It doesn't move once you've agreed to it.</dd>
+      <dd>In writing. Once you've agreed to it, it doesn't move.</dd>
 
       <dt>Nothing you didn't come in for.</dt>
-      <dd>No five-figure plan for teeth that weren't bothering you. Nobody here has a sales quota.</dd>
+      <dd>No long treatment plan for teeth that weren't bothering you. Nobody here has a sales quota.</dd>
     </dl>
   </div>
 </div>
@@ -253,12 +270,25 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
     <h2>What to bring</h2>
     <ul class="plain">
       <li>A photo ID</li>
-      <li>A list of the medicines you take, or the bottles</li>
+      <li>A list of the medicines you take — or just bring the bottles</li>
       <li>Your insurance card, if you have one</li>
-      <li>Payment for the day — treatment is paid at the visit</li>
-      <li>A driver, if you know you'll want to be sedated</li>
+      <li>A way to pay for the day, since treatment is paid at the visit</li>
+      <li>Somebody to drive you, if you know you'll want to be put out</li>
     </ul>
-    <p class="note">If you're not sure whether we can help, call and describe it. That conversation is free too.</p>
+    <p class="note">Not sure we're the right place? Call and tell us what's going on. That conversation doesn't cost anything either.</p>
+  </section>
+
+  <section class="me">
+    <h2>Who you'll see</h2>
+    <img id="photo" alt="Shad Lewis, DMD" hidden>
+    <p><b>Shad Lewis, DMD.</b> I've been practicing dentistry in Berks County for
+    twenty-two years. When you come in, I'm the one who looks at your tooth and
+    I'm the one who treats it. There's no associate, no rotating schedule, and
+    nobody handing you off.</p>
+    <p>If it's been a long time since you've been to a dentist, that's alright.
+    A lot of people who come here haven't been in years. Nobody is going to
+    lecture you about it — we're just going to take care of the tooth that's
+    bothering you.</p>
   </section>
 
   <section class="where">
@@ -266,7 +296,7 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
     <p><strong>Berks Urgent Dental</strong>
     2211 Quarry Drive, Suite E-<span data-cfg="suite"></span><br>
     West Lawn, PA 19609</p>
-    <p><a href="" data-cfg="maps">Open in Maps</a> &nbsp;·&nbsp; Free parking at the door</p>
+    <p><a href="" data-cfg="maps">Open in Maps</a> &nbsp;·&nbsp; Park right at the door, no charge</p>
     <table class="hours" id="hours"></table>
   </section>
 
@@ -294,12 +324,16 @@ var CONFIG = {
   // Leave it as "" and the booking button simply won't appear.
   booking: "",
 
+  // A photo of you. Leave "" and the section still reads fine without one.
+  photo: "",
+
   // Fees. Write them exactly as you want them to appear on the page.
   fees: {
     exam:  "$150",
     ext:   "from $000",
     surg:  "from $000",
-    crown: "$000",
+    recem: "$000",
+    crown: "from $000",
     fill:  "from $000"
   },
 
@@ -348,6 +382,13 @@ var CONFIG = {
     b.setAttribute("rel", "noopener");
     b.className = "alt book on";
     document.getElementById("bookNote").className = "bookNote";
+  }
+
+  // optional photo
+  if (CONFIG.photo) {
+    var ph = document.getElementById("photo");
+    ph.src = CONFIG.photo;
+    ph.hidden = false;
   }
 
   // hours table
