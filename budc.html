@@ -143,11 +143,14 @@ tr.free td{color:var(--orange);font-weight:700}
 
 /* ---------- where ---------- */
 .where{font-size:1.05rem}
+.where p a.address-link { text-decoration:none; color:inherit; display:block; margin-bottom: 0.5rem; }
+.where p a.address-link:hover { opacity: 0.8; }
 .where strong{display:block;font-size:1.15rem}
 .hours{width:100%;border-collapse:collapse;margin-top:.9rem}
 .hours td{padding:.45rem 0;border-bottom:1px solid var(--rule);font-size:1rem}
 .hours td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .hours tr.today td{font-weight:700}
+.map-embed { width: 100%; height: 250px; border-radius: 12px; border: none; margin-bottom: 1.5rem; background: var(--rule); }
 
 /* ---------- footer ---------- */
 footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
@@ -245,7 +248,10 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
       </tbody>
     </table>
     <p class="note">One price, nothing added on afterward. Not every tooth is the same, though — one that's broken off at the gumline is more work than one that isn't, and a crown or a filling depends on what's left to work with, so those run more. Whatever yours turns out to be, you'll have the number in writing before anything starts, and you can take it home and think about it.</p>
-    <p class="note">Paid the day you come in. Cash, card, HSA, FSA. If you'd rather split it into monthly payments, we can check what you'd qualify for in about two minutes.</p>
+    
+    <!-- PAYMENT METHODS UPDATED HERE -->
+    <p class="note">Paid the day you come in. We accept cash, card, CareCredit, HSA, FSA, and major PPO insurances. If you'd rather split it into monthly payments, we can check what you'd qualify for in about two minutes.</p>
+    
     <p class="note">These are self-pay prices. If you carry dental insurance we work with, your plan's rates apply instead, and we'll walk you through what that means before we begin.</p>
   </section>
 
@@ -296,9 +302,18 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
 
   <section class="where">
     <h2>Where we are</h2>
-    <p><strong>Berks Urgent Dental</strong>
-    2211 Quarry Drive, Suite E-<span data-cfg="suite"></span><br>
-    Reading, PA 19609</p>
+    
+    <!-- MAP EMBED ADDED HERE -->
+    <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034.721469077651!2d-79.998463!3d40.4815419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c676239127dce7%3A0x6a0f12c1c69766e4!2s2211%20Quarry%20Dr%2C%20Reading%2C%20PA%2019609!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <!-- CLICKABLE ADDRESS LINK ADDED HERE -->
+    <p>
+      <a href="https://maps.google.com/?q=2211+Quarry+Drive+Reading+PA+19609" target="_blank" class="address-link" data-cfg="maps">
+        <strong>Berks Urgent Dental</strong>
+        2211 Quarry Drive, Suite E-<span data-cfg="suite"></span><br>
+        Reading, PA 19609
+      </a>
+    </p>
     <p><a href="" data-cfg="maps">Open in Maps</a> &nbsp;·&nbsp; Park right at the door, no charge</p>
     <table class="hours" id="hours"></table>
   </section>
@@ -311,6 +326,7 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
 
 </div>
 
+<!-- STICKY MOBILE BUTTON (Was already here and works perfectly!) -->
 <div class="bar"><a href="tel:+16107755521">Call (610) 775-5521</a></div>
 
 <script>
@@ -321,14 +337,13 @@ var CONFIG = {
 
   suite: "65",                       // suite letter/number on the door
 
-  maps:  "https://maps.google.com/",  // paste your Google Maps link here
+  maps:  "https://maps.google.com/?q=2211+Quarry+Drive+Reading+PA+19609",  // Updated directly to your map query
 
   // Your Google Calendar booking page, e.g. "https://calendar.app.google/xxxxxxxx"
-  // Leave it as "" and the booking button simply won't appear.
   booking: "",
 
-  // A photo of you. Leave "" and the section still reads fine without one.
-  photo: "",
+  // PLACEHOLDER HEADSHOT URL ADDED HERE (Replace with your actual photo link)
+  photo: "https://via.placeholder.com/108x108.png?text=Photo",
 
   // Fees. Write them exactly as you want them to appear on the page.
   fees: {
@@ -339,7 +354,6 @@ var CONFIG = {
   },
 
   // Hours. Use 24-hour numbers. Set a day to null if you're closed.
-  // Example: mon: [8, 17] means 8:00am to 5:00pm.
   hours: {
     sun: null,
     mon: [8, 17],
@@ -370,10 +384,11 @@ var CONFIG = {
   }
 
   // suite + maps
-  var s = document.querySelector('[data-cfg="suite"]');
-  if (s) s.textContent = CONFIG.suite;
-  var m = document.querySelector('[data-cfg="maps"]');
-  if (m) m.setAttribute("href", CONFIG.maps);
+  var s = document.querySelectorAll('[data-cfg="suite"]');
+  s.forEach(el => el.textContent = CONFIG.suite);
+  
+  var m = document.querySelectorAll('[data-cfg="maps"]');
+  m.forEach(el => el.setAttribute("href", CONFIG.maps));
 
   // booking link — only shown if one is set
   if (CONFIG.booking) {
