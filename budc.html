@@ -23,13 +23,15 @@
 
 <style>
 :root{
-  --paper:#F2F3F0;
-  --ink:#14222A;
-  --ink-soft:#51606A;
-  --signal:#0D6B4E;
-  --signal-dk:#0A5340;
-  --alert:#A33019;
-  --rule:#C6CCC5;
+  --paper:#E1ECF5;
+  --ink:#0F2942;
+  --ink-soft:#48627A;
+  --signal:#154A77;
+  --signal-dk:#0F3557;
+  --orange:#C25008;
+  --green:#0D6B4E;
+  --alert:#8E2B1B;
+  --rule:#B6CADC;
   --bar:76px;
 }
 *{box-sizing:border-box}
@@ -44,13 +46,15 @@ body{
 }
 .wrap{max-width:34rem;margin:0 auto;padding:0 1.25rem}
 a{color:var(--signal-dk)}
+.book{border-color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
 p{margin:0 0 .9rem}
 
 /* ---------- status light ---------- */
 .status{display:flex;align-items:center;gap:.55rem;padding:1.1rem 0 .2rem;
   font-weight:600;font-size:1rem}
-.dot{width:.66rem;height:.66rem;border-radius:50%;background:var(--signal);flex:none}
+.status[data-state="open"]{color:var(--green)}
+.dot{width:.66rem;height:.66rem;border-radius:50%;background:var(--green);flex:none}
 .status[data-state="closed"]{color:var(--alert)}
 .status[data-state="closed"] .dot{background:var(--alert)}
 
@@ -70,10 +74,14 @@ h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;
 .call span{display:block;font-family:"Barlow",sans-serif;font-weight:500;
   font-size:.82rem;letter-spacing:.03em;margin-top:.4rem;opacity:.9}
 .undercall{font-size:.98rem;color:var(--ink-soft);margin:0 0 1.1rem}
-.book{display:none;text-align:center;text-decoration:none;color:var(--ink);
-  border:2px solid var(--ink);border-radius:9px;padding:.78rem 1rem;margin:0 0 .5rem;
-  font-weight:600;font-size:1.05rem}
-.book.on{display:block}
+.row2{display:flex;gap:.6rem;margin:0 0 .55rem}
+.alt{flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;
+  text-align:center;text-decoration:none;color:var(--ink);
+  border:2px solid var(--ink);border-radius:9px;padding:.78rem .6rem;
+  font-weight:600;font-size:1.02rem;line-height:1.15}
+.alt:active{background:rgba(15,41,66,.07)}
+.book{display:none}
+.book.on{display:flex}
 .bookNote{font-size:.92rem;color:var(--ink-soft);margin:0 0 2.2rem}
 .bookNote.off{display:none}
 
@@ -86,7 +94,7 @@ h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;
 ol.seq{list-style:none;margin:0;padding:0;counter-reset:s}
 ol.seq li{counter-increment:s;position:relative;padding-left:2.4rem;margin-bottom:1.15rem}
 ol.seq li::before{content:counter(s);position:absolute;left:0;top:.08rem;
-  width:1.65rem;height:1.65rem;border-radius:50%;background:var(--ink);color:var(--paper);
+  width:1.65rem;height:1.65rem;border-radius:50%;background:var(--orange);color:#fff;
   font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.05rem;
   display:flex;align-items:center;justify-content:center}
 ol.seq b{display:block;font-weight:600}
@@ -97,7 +105,7 @@ ul.plain{list-style:none;margin:0 0 .9rem;padding:0}
 ul.plain li{padding:.5rem 0 .5rem 1.5rem;border-bottom:1px solid var(--rule);position:relative}
 ul.plain li:last-child{border-bottom:0}
 ul.plain li::before{content:"";position:absolute;left:.15rem;top:1.12rem;
-  width:.5rem;height:.5rem;background:var(--signal);border-radius:1px}
+  width:.5rem;height:.5rem;background:var(--ink-soft);border-radius:1px}
 ul.plain.no li::before{background:var(--rule)}
 
 /* ---------- price table ---------- */
@@ -107,7 +115,7 @@ th,td{text-align:left;padding:.62rem 0;border-bottom:1px solid var(--rule);
 th{font-size:.82rem;font-weight:600;color:var(--ink-soft);letter-spacing:.02em}
 td.fee{text-align:right;font-weight:600;white-space:nowrap}
 td .code{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:400;margin-top:.08rem}
-tr.free td{color:var(--signal-dk);font-weight:600}
+tr.free td{color:var(--orange);font-weight:700}
 .note{font-size:.95rem;color:var(--ink-soft);margin:0 0 .7rem}
 
 /* ---------- the one bold moment ---------- */
@@ -117,7 +125,7 @@ tr.free td{color:var(--signal-dk);font-weight:600}
 .promise dt{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   font-size:1.5rem;line-height:1.14;margin:1.3rem 0 .25rem}
 .promise dt:first-of-type{margin-top:0}
-.promise dd{margin:0;color:#B9C6C9;font-size:1.02rem}
+.promise dd{margin:0;color:#A8C0D6;font-size:1.02rem}
 
 /* ---------- where ---------- */
 .where{font-size:1.05rem}
@@ -160,9 +168,12 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
   <a class="call" href="tel:+16107755521">(610) 775-5521<span>Tap to call</span></a>
   <p class="undercall">A real person picks up. Not an answering service, not a menu.</p>
 
-  <a class="book" id="book" href="">See today's open times and book online</a>
-  <p class="bookNote off" id="bookNote">If nothing shows as available, call — we hold room
-  in the day for pain that can't wait.</p>
+  <div class="row2">
+    <a class="alt" href="sms:+16107755521?&amp;body=Tooth%20problem%20%E2%80%94%20here%27s%20what%27s%20going%20on%3A%20">Text us</a>
+    <a class="alt book" id="book" href="">Book online</a>
+  </div>
+  <p class="bookNote off" id="bookNote">If nothing shows as available, call or text — we hold
+  room in the day for pain that can't wait.</p>
 
 </div>
 
@@ -281,7 +292,7 @@ var CONFIG = {
 
   // Your Google Calendar booking page, e.g. "https://calendar.app.google/xxxxxxxx"
   // Leave it as "" and the booking button simply won't appear.
-  booking: "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3HuA_7iFKKeQ6fjPoUGXVLN6zLVfvuN4EXvQwOgJ7J8sDTQRJawXaR5KpJ7PoLxPewutRj586m?gv=true",
+  booking: "",
 
   // Fees. Write them exactly as you want them to appear on the page.
   fees: {
@@ -335,7 +346,7 @@ var CONFIG = {
     b.setAttribute("href", CONFIG.booking);
     b.setAttribute("target", "_blank");
     b.setAttribute("rel", "noopener");
-    b.className = "book on";
+    b.className = "alt book on";
     document.getElementById("bookNote").className = "bookNote";
   }
 
