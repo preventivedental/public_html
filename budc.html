@@ -3,21 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Berks Urgent Dental — Tooth pain? Seen today in West Lawn, PA</title>
-<meta name="description" content="Same-day dental care in West Lawn, PA. No charge for a look at the tooth that's bothering you. Extractions, broken teeth, swelling. Posted prices, no sales pitch.">
+<title>Berks Urgent Dental — Tooth pain seen today | West Lawn, PA</title>
+<meta name="description" content="Same-day dental care in West Lawn, PA. No charge for a look at the tooth that's bothering you. Extractions, broken teeth, abscess. Posted prices. No treatment plan for things you didn't come in for.">
+<link rel="canonical" href="https://berksurgentdental.com/">
 
-<!-- =====================================================================
-     REPLACE BEFORE LAUNCH — search "SETME"
-       SETME-PHONE     urgent line (appears in 3 tel: links + 2 display spots)
-       SETME-SUITE     suite number of the next-door unit
-       SETME-LOW/HIGH  extraction range
-       SETME-PRICE     exam+x-ray, crown, filling
-       SETME-MAPS      Google Maps link once the GBP listing verifies
-     HOURS live in two places: the visible text AND the script at the bottom.
-     TODAY'S SLOTS: the .slots block is edited by hand each morning. If you'd
-     rather not touch it daily, delete the whole <div class="slots"> section —
-     the page works fine without it.
-     ===================================================================== -->
+<!-- ======================================================================
+     EDIT BEFORE LAUNCH. Everything you need to change is in ONE place:
+     the CONFIG block in the <script> at the bottom of this file.
+     Change a price or your hours there and the whole page updates,
+     including the open/closed light and the hours table.
+
+     Still to decide: the five fees, the suite letter, your hours,
+     and the Maps link (paste it once the listing verifies).
+     ====================================================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,29 +25,30 @@
 :root{
   --paper:#F2F3F0;
   --ink:#14222A;
-  --ink-soft:#4E5D65;
+  --ink-soft:#51606A;
   --signal:#0D6B4E;
   --signal-dk:#0A5340;
   --alert:#A33019;
   --rule:#C6CCC5;
-  --bar:78px;
+  --bar:76px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:"Barlow",system-ui,-apple-system,sans-serif;
-  font-size:17.5px;line-height:1.5;
+  font-size:17.5px;line-height:1.52;
   padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom));
 }
 .wrap{max-width:34rem;margin:0 auto;padding:0 1.25rem}
 a{color:var(--signal-dk)}
-a:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
+p{margin:0 0 .9rem}
 
-/* ---------- status ---------- */
-.status{display:flex;align-items:center;gap:.55rem;padding:1rem 0 0;
+/* ---------- status light ---------- */
+.status{display:flex;align-items:center;gap:.55rem;padding:1.1rem 0 .2rem;
   font-weight:600;font-size:1rem}
 .dot{width:.66rem;height:.66rem;border-radius:50%;background:var(--signal);flex:none}
 .status[data-state="closed"]{color:var(--alert)}
@@ -57,128 +56,182 @@ a:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2p
 
 /* ---------- hero ---------- */
 h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;
-  font-size:clamp(3rem,14.5vw,5rem);line-height:.93;letter-spacing:-.012em;
-  margin:.4rem 0 0;text-wrap:balance}
-.sub{font-size:1.16rem;color:var(--ink-soft);margin:.8rem 0 1.3rem;max-width:26rem}
+  font-size:clamp(2.9rem,13.5vw,4.6rem);line-height:.94;letter-spacing:-.012em;
+  margin:.35rem 0 .7rem}
+.lede{font-size:1.15rem;color:var(--ink-soft);margin:0 0 1.3rem}
+.who{font-weight:600;color:var(--ink)}
 
-/* ---------- call ---------- */
-.call{display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:var(--signal);color:#fff;text-decoration:none;
-  padding:1.05rem 1rem;border-radius:5px;
-  font-family:"Barlow Condensed",sans-serif;font-weight:700;line-height:1}
-.call .num{font-size:2.5rem}
-.call .lab{font-family:"Barlow",sans-serif;font-weight:500;font-size:.95rem;
-  margin-top:.45rem;opacity:.93}
+/* ---------- call button ---------- */
+.call{display:block;background:var(--signal);color:#fff;text-decoration:none;
+  text-align:center;border-radius:9px;padding:1.05rem 1rem;margin:0 0 .55rem;
+  font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:2.35rem;line-height:1;letter-spacing:.005em}
 .call:active{background:var(--signal-dk)}
-.answered{text-align:center;font-size:1rem;color:var(--ink-soft);margin:.7rem 0 0}
-
-/* ---------- today's slots ---------- */
-.slots{margin:1.6rem 0 0;padding:1rem 1.1rem;background:#fff;
-  border:1px solid var(--rule);border-radius:5px}
-.slots h2{font-family:"Barlow",sans-serif;font-weight:600;font-size:1rem;
-  margin:0 0 .7rem;color:var(--ink-soft)}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0;padding:0;list-style:none}
-.chips a{display:block;padding:.5rem .85rem;border:1.5px solid var(--signal);
-  border-radius:3px;color:var(--signal-dk);text-decoration:none;
-  font-weight:600;font-size:1.08rem;font-variant-numeric:tabular-nums}
-.chips a:active{background:var(--signal);color:#fff}
-
-/* ---------- promise panel ---------- */
-.promise{background:var(--ink);color:var(--paper);margin-top:2.6rem}
-.promise .wrap{padding-top:2.1rem;padding-bottom:2.2rem}
-.promise dl{margin:0}
-.promise dt{font-family:"Barlow Condensed",sans-serif;font-weight:700;
-  font-size:1.95rem;line-height:1.08;letter-spacing:.002em}
-.promise dd{margin:.3rem 0 1.5rem;font-size:1.06rem;color:#B9C4C8;max-width:27rem}
-.promise dd:last-of-type{margin-bottom:0}
+.call span{display:block;font-family:"Barlow",sans-serif;font-weight:500;
+  font-size:.82rem;letter-spacing:.03em;margin-top:.4rem;opacity:.9}
+.undercall{font-size:.98rem;color:var(--ink-soft);margin:0 0 1.1rem}
+.book{display:none;text-align:center;text-decoration:none;color:var(--ink);
+  border:2px solid var(--ink);border-radius:9px;padding:.78rem 1rem;margin:0 0 .5rem;
+  font-weight:600;font-size:1.05rem}
+.book.on{display:block}
+.bookNote{font-size:.92rem;color:var(--ink-soft);margin:0 0 2.2rem}
+.bookNote.off{display:none}
 
 /* ---------- sections ---------- */
-section{padding:2.7rem 0 0}
-h2.sec{font-family:"Barlow Condensed",sans-serif;font-weight:600;
-  font-size:1.7rem;margin:0 0 1rem}
+section{padding:1.9rem 0;border-top:1px solid var(--rule)}
+h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:1.75rem;line-height:1.1;margin:0 0 .9rem;letter-spacing:.002em}
 
-ul.treat{list-style:none;margin:0;padding:0;font-size:1.24rem}
-ul.treat li{padding:.66rem 0;border-bottom:1px solid var(--rule)}
-ul.treat li:first-child{border-top:1px solid var(--rule)}
+/* ---------- numbered sequence ---------- */
+ol.seq{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.seq li{counter-increment:s;position:relative;padding-left:2.4rem;margin-bottom:1.15rem}
+ol.seq li::before{content:counter(s);position:absolute;left:0;top:.08rem;
+  width:1.65rem;height:1.65rem;border-radius:50%;background:var(--ink);color:var(--paper);
+  font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center}
+ol.seq b{display:block;font-weight:600}
+ol.seq p{margin:.1rem 0 0;color:var(--ink-soft);font-size:1.02rem}
 
-/* ---------- price board ---------- */
-table{width:100%;border-collapse:collapse;font-size:1.08rem}
-th{text-align:left;font-weight:500;font-size:.94rem;color:var(--ink-soft);
-  padding:0 0 .5rem;border-bottom:2px solid var(--ink)}
-th:last-child{text-align:right}
-td{padding:.68rem 0;border-bottom:1px solid var(--rule)}
-td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;
-  white-space:nowrap}
-.note{font-size:.99rem;color:var(--ink-soft);margin:.9rem 0 0}
+/* ---------- plain lists ---------- */
+ul.plain{list-style:none;margin:0 0 .9rem;padding:0}
+ul.plain li{padding:.5rem 0 .5rem 1.5rem;border-bottom:1px solid var(--rule);position:relative}
+ul.plain li:last-child{border-bottom:0}
+ul.plain li::before{content:"";position:absolute;left:.15rem;top:1.12rem;
+  width:.5rem;height:.5rem;background:var(--signal);border-radius:1px}
+ul.plain.no li::before{background:var(--rule)}
 
-address{font-style:normal;font-size:1.24rem;line-height:1.42}
-footer{margin-top:3rem;padding:1.4rem 0 2.4rem;border-top:1px solid var(--rule);
-  font-size:.94rem;color:var(--ink-soft)}
+/* ---------- price table ---------- */
+table{width:100%;border-collapse:collapse;margin:0 0 1rem}
+th,td{text-align:left;padding:.62rem 0;border-bottom:1px solid var(--rule);
+  vertical-align:baseline}
+th{font-size:.82rem;font-weight:600;color:var(--ink-soft);letter-spacing:.02em}
+td.fee{text-align:right;font-weight:600;white-space:nowrap}
+td .code{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:400;margin-top:.08rem}
+tr.free td{color:var(--signal-dk);font-weight:600}
+.note{font-size:.95rem;color:var(--ink-soft);margin:0 0 .7rem}
+
+/* ---------- the one bold moment ---------- */
+.promise{background:var(--ink);color:var(--paper);margin:0;padding:2.3rem 0 2.4rem}
+.promise h2{color:var(--paper)}
+.promise dl{margin:0}
+.promise dt{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:1.5rem;line-height:1.14;margin:1.3rem 0 .25rem}
+.promise dt:first-of-type{margin-top:0}
+.promise dd{margin:0;color:#B9C6C9;font-size:1.02rem}
+
+/* ---------- where ---------- */
+.where{font-size:1.05rem}
+.where strong{display:block;font-size:1.15rem}
+.hours{width:100%;border-collapse:collapse;margin-top:.9rem}
+.hours td{padding:.45rem 0;border-bottom:1px solid var(--rule);font-size:1rem}
+.hours td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.hours tr.today td{font-weight:700}
+
+/* ---------- footer ---------- */
+footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
+  font-size:.95rem;color:var(--ink-soft)}
+.er{border-left:4px solid var(--alert);padding:.15rem 0 .15rem .85rem;margin:0 0 1.3rem;
+  color:var(--ink)}
+.er b{color:var(--alert)}
 
 /* ---------- sticky bar ---------- */
-.stick{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--signal);
-  padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -1px 0 rgba(0,0,0,.16)}
-.stick a{display:flex;align-items:center;justify-content:center;gap:.65rem;
-  height:var(--bar);color:#fff;text-decoration:none;
-  font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.95rem}
-.stick a:active{background:var(--signal-dk)}
-.stick .tag{font-family:"Barlow",sans-serif;font-weight:500;font-size:.95rem;opacity:.9}
-
-@media (min-width:720px){
-  body{font-size:18px;padding-bottom:0}
-  .wrap{max-width:38rem;padding:0 2rem}
-  .stick{display:none}
-  section{padding-top:3.2rem}
-  .promise dt{font-size:2.1rem}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--signal);
+  padding:.8rem 1rem calc(.8rem + env(safe-area-inset-bottom));
+  box-shadow:0 -2px 14px rgba(20,34,42,.17)}
+.bar a{display:block;text-align:center;color:#fff;text-decoration:none;
+  font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.6rem;line-height:1}
+@media (min-width:700px){
+  .bar{display:none}
+  body{padding-bottom:0}
 }
 </style>
 </head>
 <body>
 
-<main>
+<div class="wrap">
+
+  <p class="status" id="status" data-state="closed"><span class="dot"></span><span id="statusText">Call to check today's openings</span></p>
+
+  <h1>A tooth that hurts, looked at today.</h1>
+
+  <p class="lede"><span class="who">Berks Urgent Dental</span> — West Lawn, PA.
+  One problem, one visit, price before we start.</p>
+
+  <a class="call" href="tel:+16107755521">(610) 775-5521<span>Tap to call</span></a>
+  <p class="undercall">A real person picks up. Not an answering service, not a menu.</p>
+
+  <a class="book" id="book" href="">See today's open times and book online</a>
+  <p class="bookNote off" id="bookNote">If nothing shows as available, call — we hold room
+  in the day for pain that can't wait.</p>
+
+</div>
 
 <div class="wrap">
-  <p class="status" id="status" data-state="open">
-    <span class="dot" aria-hidden="true"></span><span id="statusText">Open today</span>
-  </p>
 
-  <h1>Tooth hurts? Come in today.</h1>
+  <section>
+    <h2>What happens when you come in</h2>
+    <ol class="seq">
+      <li><b>We look at the tooth.</b>
+        <p>No charge for this. It takes a few minutes and nothing is billed for it.</p></li>
+      <li><b>You hear what it is and what it costs.</b>
+        <p>If it needs treatment, we say so, and we hand you the price in writing before anything starts.</p></li>
+      <li><b>You decide.</b>
+        <p>Go ahead the same day, or don't. If you'd rather think about it, that's a fine answer and there's no charge for the look either way.</p></li>
+    </ol>
+    <p class="note">Once you decide to go ahead, that's when the exam and x-ray begin — those are treatment, and they're on the price list below.</p>
+  </section>
 
-  <p class="sub">An independent dentist in West Lawn who keeps rooms open for
-  people in pain. We look at the tooth that's bothering you, tell you what it
-  needs, and you decide from there.</p>
-
-  <a class="call" href="tel:+1610SETMEPHONE">
-    <span class="num">SETME-PHONE</span>
-    <span class="lab">Tap to call</span>
-  </a>
-  <p class="answered">A real person picks up. Not an answering service.</p>
-
-  <div class="slots">
-    <h2>Open today</h2>
-    <ul class="chips">
-      <li><a href="tel:+1610SETMEPHONE">10:20 am</a></li>
-      <li><a href="tel:+1610SETMEPHONE">1:00 pm</a></li>
-      <li><a href="tel:+1610SETMEPHONE">2:40 pm</a></li>
+  <section>
+    <h2>What we take care of</h2>
+    <ul class="plain">
+      <li>A tooth that needs to come out</li>
+      <li>Toothache or an abscess</li>
+      <li>A broken tooth, a lost crown, a filling that came out</li>
+      <li>Swelling on one side of the face</li>
+      <li>A denture or partial that broke or won't stay in</li>
     </ul>
-  </div>
+    <h2 style="margin-top:1.8rem">What we don't</h2>
+    <ul class="plain no">
+      <li>Cleanings and checkups</li>
+      <li>Braces, whitening, veneers</li>
+      <li>Anything that isn't the reason you called</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What it costs</h2>
+    <table>
+      <thead>
+        <tr><th scope="col">Service</th><th scope="col" style="text-align:right">Fee</th></tr>
+      </thead>
+      <tbody>
+        <tr class="free"><td>A look at the tooth</td><td class="fee">No charge</td></tr>
+        <tr><td>Exam and x-ray<span class="code">D0140, D0220</span></td><td class="fee" data-fee="exam"></td></tr>
+        <tr><td>Extraction<span class="code">D7140</span></td><td class="fee" data-fee="ext"></td></tr>
+        <tr><td>Surgical extraction<span class="code">D7210</span></td><td class="fee" data-fee="surg"></td></tr>
+        <tr><td>Crown<span class="code">D2740</span></td><td class="fee" data-fee="crown"></td></tr>
+        <tr><td>Filling<span class="code">D2391</span></td><td class="fee" data-fee="fill"></td></tr>
+      </tbody>
+    </table>
+    <p class="note">The codes are there so you can compare us to anyone else. Not every tooth is the same — a tooth that's broken at the gumline costs more to remove than one that isn't. You get your exact number after we look, in writing, before anything starts.</p>
+    <p class="note">Paid the day of the visit. Cash, card, HSA, FSA. Monthly payment plans are available if you'd rather split it up, and we can check that in about two minutes.</p>
+    <p class="note">These are self-pay prices. If you carry dental insurance we're contracted with, your plan's rates apply instead and we'll explain what that means before we begin.</p>
+  </section>
+
 </div>
 
 <div class="promise">
   <div class="wrap">
+    <h2>What you leave with</h2>
     <dl>
-      <dt>No charge for a look.</dt>
-      <dd>Come in and we'll tell you what's going on with the tooth. Nothing is
-      billed for that conversation. If you decide to go ahead with treatment,
-      that's when the exam, x-rays, and the price start.</dd>
+      <dt>The problem you came in for, handled.</dt>
+      <dd>Same day where we can. If it's beyond what we should do here, we say that and we tell you where to go.</dd>
 
-      <dt>You get the number first.</dt>
-      <dd>Before anything is done, you hear the exact cost. No estimate that
-      changes later, no bill you didn't agree to.</dd>
+      <dt>A number you saw before we started.</dt>
+      <dd>In writing. It doesn't move once you've agreed to it.</dd>
 
       <dt>Nothing you didn't come in for.</dt>
-      <dd>We treat the tooth that's bothering you. You won't leave holding a
-      plan for work somewhere else in your mouth.</dd>
+      <dd>No five-figure plan for teeth that weren't bothering you. Nobody here has a sales quota.</dd>
     </dl>
   </div>
 </div>
@@ -186,110 +239,141 @@ footer{margin-top:3rem;padding:1.4rem 0 2.4rem;border-top:1px solid var(--rule);
 <div class="wrap">
 
   <section>
-    <h2 class="sec">What we handle</h2>
-    <ul class="treat">
-      <li>A tooth that needs to come out</li>
-      <li>Toothache or an abscess</li>
-      <li>Broken tooth, lost crown or filling</li>
-      <li>Swelling on one side of your face</li>
+    <h2>What to bring</h2>
+    <ul class="plain">
+      <li>A photo ID</li>
+      <li>A list of the medicines you take, or the bottles</li>
+      <li>Your insurance card, if you have one</li>
+      <li>Payment for the day — treatment is paid at the visit</li>
+      <li>A driver, if you know you'll want to be sedated</li>
     </ul>
+    <p class="note">If you're not sure whether we can help, call and describe it. That conversation is free too.</p>
   </section>
 
-  <section>
-    <h2 class="sec">What it costs</h2>
-    <table>
-      <thead>
-        <tr><th scope="col">Item</th><th scope="col">Fee</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>A look at the tooth</td><td>No charge</td></tr>
-        <tr><td>Exam and x-ray</td><td>$SETME-PRICE</td></tr>
-        <tr><td>Extraction</td><td>$SETME-LOW–$SETME-HIGH</td></tr>
-        <tr><td>Crown, seated next day</td><td>$SETME-PRICE</td></tr>
-        <tr><td>Filling</td><td>from $SETME-PRICE</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Extractions vary by how the tooth is sitting — you get the
-    exact number after we look, not before. Paid the day of the visit. Cash,
-    card, or monthly payments through Cherry and Sunbit.</p>
-    <p class="note">These are self-pay prices. If you have dental insurance we're
-    contracted with, your plan's rates apply instead and we'll walk you through
-    what that means before we start.</p>
-  </section>
-
-  <section>
-    <h2 class="sec">Why there are no reviews yet</h2>
-    <p>Because we just opened. Every other office you're looking at has years of
-    them and we have none — so judge this one on what's above instead. Prices
-    posted, no charge to be looked at, and the cost in your hand before you
-    agree to anything.</p>
-    <p class="note">Dr. Shad Lewis has practiced in Berks County for 22 years.
-    This is an owner-run office, not a corporate one. Nobody here has a sales
-    quota.</p>
-  </section>
-
-  <section>
-    <h2 class="sec">Where to go</h2>
-    <address>2211 Quarry Drive, Suite SETME-SUITE<br>West Lawn, PA 19609</address>
-    <p style="margin:.8rem 0 0"><a href="SETME-MAPS"><b>Open in Maps</b></a></p>
-    <p class="note">Ground floor, parking at the door.</p>
-  </section>
-
-  <section>
-    <h2 class="sec">Hours</h2>
-    <table>
-      <tbody>
-        <tr><td>Monday</td><td>SETME-HOURS</td></tr>
-        <tr><td>Tuesday</td><td>SETME-HOURS</td></tr>
-        <tr><td>Wednesday</td><td>Closed</td></tr>
-        <tr><td>Thursday</td><td>SETME-HOURS</td></tr>
-        <tr><td>Friday</td><td>SETME-HOURS</td></tr>
-        <tr><td>Saturday &amp; Sunday</td><td>Closed</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Business hours only — we're not a 24-hour office. If it's
-    after hours, call when we open and we'll get you in that day.</p>
+  <section class="where">
+    <h2>Where we are</h2>
+    <p><strong>Berks Urgent Dental</strong>
+    2211 Quarry Drive, Suite E-<span data-cfg="suite"></span><br>
+    West Lawn, PA 19609</p>
+    <p><a href="" data-cfg="maps">Open in Maps</a> &nbsp;·&nbsp; Free parking at the door</p>
+    <table class="hours" id="hours"></table>
   </section>
 
   <footer>
-    Berks Urgent Dental · Shad Lewis, DMD · Owner-operated, not a corporate
-    office.<br><br>
-    If you have trouble breathing or swallowing, or swelling that's spreading
-    toward your eye or down your neck, go to the emergency department now —
-    don't wait for us to open.
+    <p class="er"><b>Go to an emergency room instead</b> if the swelling is spreading toward your eye or down your neck, if you're having trouble breathing or swallowing, or if you can't open your mouth.</p>
+    <p>Berks Urgent Dental is a registered fictitious name of Shad Lewis, DMD.
+    Emergency and same-day dental care for Reading, West Lawn, Wyomissing, Sinking Spring, Shillington, Mohnton and the surrounding Berks County area.</p>
   </footer>
 
 </div>
-</main>
 
-<div class="stick">
-  <a href="tel:+1610SETMEPHONE">Call now <span class="tag">seen today</span></a>
-</div>
+<div class="bar"><a href="tel:+16107755521">Call (610) 775-5521</a></div>
 
 <script>
-(function(){
-  /* SETME-HOURS — 24h clock. Days: 1=Mon 2=Tue 4=Thu 5=Fri */
-  var OPEN_HOUR = 8, CLOSE_HOUR = 16, OPEN_DAYS = [1,2,4,5];
+/* =====================================================================
+   CONFIG — this is the only part you need to edit.
+   ===================================================================== */
+var CONFIG = {
 
-  var el = document.getElementById('status');
-  var txt = document.getElementById('statusText');
-  var slots = document.querySelector('.slots');
-  var now = new Date(), day = now.getDay(), hr = now.getHours();
-  var isOpenDay = OPEN_DAYS.indexOf(day) !== -1;
-  var openNow = isOpenDay && hr >= OPEN_HOUR && hr < CLOSE_HOUR;
+  suite: "65",                       // suite letter/number on the door
 
-  function hr12(h){ return (h % 12 || 12) + (h < 12 ? ' am' : ' pm'); }
+  maps:  "https://maps.google.com/",  // paste your Google Maps link here
 
-  if (openNow) {
-    el.dataset.state = 'open';
-    txt.textContent = 'Open now — call and come in';
-  } else if (isOpenDay && hr < OPEN_HOUR) {
-    el.dataset.state = 'closed';
-    txt.textContent = 'Opens at ' + hr12(OPEN_HOUR) + ' this morning';
+  // Your Google Calendar booking page, e.g. "https://calendar.app.google/xxxxxxxx"
+  // Leave it as "" and the booking button simply won't appear.
+  booking: "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3HuA_7iFKKeQ6fjPoUGXVLN6zLVfvuN4EXvQwOgJ7J8sDTQRJawXaR5KpJ7PoLxPewutRj586m?gv=true",
+
+  // Fees. Write them exactly as you want them to appear on the page.
+  fees: {
+    exam:  "$150",
+    ext:   "from $000",
+    surg:  "from $000",
+    crown: "$000",
+    fill:  "from $000"
+  },
+
+  // Hours. Use 24-hour numbers. Set a day to null if you're closed.
+  // Example: mon: [8, 17] means 8:00am to 5:00pm.
+  hours: {
+    sun: null,
+    mon: [8, 17],
+    tue: [8, 17],
+    wed: [8, 17],
+    thu: [8, 17],
+    fri: [8, 15],
+    sat: null
+  }
+};
+/* ===================================================================== */
+
+(function () {
+  var DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
+  var NAMES = {sun:"Sunday",mon:"Monday",tue:"Tuesday",wed:"Wednesday",
+               thu:"Thursday",fri:"Friday",sat:"Saturday"};
+
+  function fmt(h) {
+    var ampm = h >= 12 ? "pm" : "am";
+    var hr = h % 12; if (hr === 0) hr = 12;
+    return hr + ampm;
+  }
+
+  // fees
+  for (var k in CONFIG.fees) {
+    var cell = document.querySelector('[data-fee="' + k + '"]');
+    if (cell) cell.textContent = CONFIG.fees[k];
+  }
+
+  // suite + maps
+  var s = document.querySelector('[data-cfg="suite"]');
+  if (s) s.textContent = CONFIG.suite;
+  var m = document.querySelector('[data-cfg="maps"]');
+  if (m) m.setAttribute("href", CONFIG.maps);
+
+  // booking link — only shown if one is set
+  if (CONFIG.booking) {
+    var b = document.getElementById("book");
+    b.setAttribute("href", CONFIG.booking);
+    b.setAttribute("target", "_blank");
+    b.setAttribute("rel", "noopener");
+    b.className = "book on";
+    document.getElementById("bookNote").className = "bookNote";
+  }
+
+  // hours table
+  var now = new Date();
+  var todayKey = DAYS[now.getDay()];
+  var rows = "";
+  for (var i = 1; i <= 7; i++) {
+    var key = DAYS[i % 7];
+    var h = CONFIG.hours[key];
+    var txt = h ? fmt(h[0]) + " – " + fmt(h[1]) : "Closed";
+    rows += '<tr' + (key === todayKey ? ' class="today"' : '') + '><td>' +
+            NAMES[key] + '</td><td>' + txt + '</td></tr>';
+  }
+  document.getElementById("hours").innerHTML = rows;
+
+  // open / closed light
+  var t = CONFIG.hours[todayKey];
+  var mins = now.getHours() * 60 + now.getMinutes();
+  var open = !!t && mins >= t[0] * 60 && mins < t[1] * 60;
+  var box = document.getElementById("status");
+  var label = document.getElementById("statusText");
+
+  if (open) {
+    box.setAttribute("data-state", "open");
+    label.textContent = "Open now until " + fmt(t[1]) + " — call and come in";
   } else {
-    el.dataset.state = 'closed';
-    txt.textContent = 'Closed right now — call when we open';
-    if (slots) slots.style.display = 'none';
+    box.setAttribute("data-state", "closed");
+    var next = null;
+    for (var j = 0; j <= 7; j++) {
+      var kk = DAYS[(now.getDay() + j) % 7];
+      var hh = CONFIG.hours[kk];
+      if (hh && !(j === 0 && mins >= hh[1] * 60)) {
+        next = (j === 0 ? "today" : j === 1 ? "tomorrow" : NAMES[kk]) + " at " + fmt(hh[0]);
+        break;
+      }
+    }
+    label.textContent = next ? "Closed now — opens " + next : "Closed now";
   }
 })();
 </script>
