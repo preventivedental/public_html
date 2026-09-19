@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Berks Urgent Dental — Tooth pain seen today | West Lawn, PA</title>
-<meta name="description" content="Same-day dental care in West Lawn, PA. No charge for a look at the tooth that's bothering you. Extractions, broken teeth, abscess. Posted prices. No treatment plan for things you didn't come in for.">
+<title>Berks Urgent Dental — Tooth pain seen today | Reading, PA</title>
+<meta name="description" content="Same-day dental care in Reading, PA. No charge for a look at the tooth that's bothering you. Extractions, broken teeth, abscess. Posted prices. No treatment plan for things you didn't come in for.">
 <link rel="canonical" href="https://berksurgentdental.com/">
 
 <!-- ======================================================================
@@ -49,6 +49,11 @@ a{color:var(--signal-dk)}
 .book{border-color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:2px}
 p{margin:0 0 .9rem}
+
+.mast{background:var(--ink);padding:1.3rem 1.25rem 1.4rem;
+  display:flex;justify-content:center}
+.mast svg{width:212px;height:auto;display:block;
+  font-family:"Barlow Condensed",sans-serif}
 
 /* ---------- status light ---------- */
 .status{display:flex;align-items:center;gap:.55rem;padding:1.1rem 0 .2rem;
@@ -116,6 +121,7 @@ table{width:100%;border-collapse:collapse;margin:0 0 1rem}
 th,td{text-align:left;padding:.62rem 0;border-bottom:1px solid var(--rule);
   vertical-align:baseline}
 th{font-size:.82rem;font-weight:600;color:var(--ink-soft);letter-spacing:.02em}
+.sub{display:block;font-size:.82rem;color:var(--ink-soft);margin-top:.15rem}
 td.fee{text-align:right;font-weight:600;white-space:nowrap}
 td .code{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:400;margin-top:.08rem}
 tr.free td{color:var(--orange);font-weight:700}
@@ -137,11 +143,14 @@ tr.free td{color:var(--orange);font-weight:700}
 
 /* ---------- where ---------- */
 .where{font-size:1.05rem}
+.where p a.address-link { text-decoration:none; color:inherit; display:block; margin-bottom: 0.5rem; }
+.where p a.address-link:hover { opacity: 0.8; }
 .where strong{display:block;font-size:1.15rem}
 .hours{width:100%;border-collapse:collapse;margin-top:.9rem}
 .hours td{padding:.45rem 0;border-bottom:1px solid var(--rule);font-size:1rem}
 .hours td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .hours tr.today td{font-weight:700}
+.map-embed { width: 100%; height: 250px; border-radius: 12px; border: none; margin-bottom: 1.5rem; background: var(--rule); }
 
 /* ---------- footer ---------- */
 footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
@@ -164,10 +173,20 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
 </head>
 <body>
 
+<header class="mast">
+  <svg viewBox="0 0 340 180" role="img" aria-label="Berks Urgent Dental" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="61" width="340" height="57" fill="#C25008"/>
+    <text x="40" y="50" textLength="260" lengthAdjust="spacing" font-size="42" font-weight="700" fill="#fff">BERKS</text>
+    <text x="40" y="108" textLength="260" lengthAdjust="spacing" font-size="52" font-weight="800" fill="#fff">URGENT</text>
+    <text x="40" y="160" textLength="260" lengthAdjust="spacing" font-size="42" font-weight="700" fill="#fff">DENTAL</text>
+  </svg>
+</header>
+
 <div class="wrap">
 
   <p class="status" id="status" data-state="closed"><span class="dot"></span><span id="statusText">Call to check today's openings</span></p>
 
+<<<<<<< HEAD
   <h1>We'll look at that tooth today.</h1>
 
   <p class="lede"><span class="who">Berks Urgent Dental</span> in West Lawn.
@@ -175,6 +194,17 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
 
   <a class="call" href="tel:+16107755521">(610) 775-5521<span>Tap to call</span></a>
   <p class="undercall">Somebody here answers the phone. No menu, no answering service.</p>
+=======
+  <h1>When Advil stops working.</h1>
+
+  <p class="lede">You've been getting by on ibuprofen and chewing on the other side.
+  When that quits, <span class="who">Berks Urgent Dental</span> in Reading will look
+  at that tooth the same day. One problem, one visit, and you'll know what it costs
+  before we start.</p>
+
+  <a class="call" href="tel:+16107755521">(610) 775-5521<span>Tap to call</span></a>
+  <p class="undercall">A real person picks up. No menu, no answering service, no callback list.</p>
+>>>>>>> 91f0e334849efb728ae2308c12cef1b79ecd77ac
 
   <div class="row2">
     <a class="alt" href="sms:+16107755521?&amp;body=Tooth%20problem%20%E2%80%94%20here%27s%20what%27s%20going%20on%3A%20">Text us</a>
@@ -201,13 +231,26 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
   </section>
 
   <section>
+<<<<<<< HEAD
     <h2>What we can take care of</h2>
     <ul class="plain">
       <li>A tooth that needs to come out</li>
       <li>A toothache, or an abscess that's blown up on you</li>
       <li>A broken tooth, a lost crown, a filling that came out</li>
       <li>Swelling on one side of your face</li>
+=======
+    <h2>Sound familiar?</h2>
+    <ul class="plain">
+      <li>It wakes you up, or it won't let you get to sleep</li>
+      <li>You've been chewing on one side for weeks</li>
+      <li>Hot and cold both set it off</li>
+      <li>A piece broke off, or a crown or filling came out</li>
+      <li>It throbs, and the ibuprofen isn't touching it anymore</li>
+      <li>One side of your face is swollen</li>
+>>>>>>> 91f0e334849efb728ae2308c12cef1b79ecd77ac
     </ul>
+    <p class="note">Any of those, we can take care of. Come in and we'll find out
+    what's going on.</p>
   </section>
 
   <section>
@@ -219,6 +262,7 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
       </thead>
       <tbody>
         <tr class="free"><td>A look at the tooth</td><td class="fee">No charge</td></tr>
+<<<<<<< HEAD
         <tr><td>Exam and x-ray<span class="code">D0140, D0220</span></td><td class="fee" data-fee="exam"></td></tr>
         <tr><td>Extraction<span class="code">D7140</span></td><td class="fee" data-fee="ext"></td></tr>
         <tr><td>Surgical extraction<span class="code">D7210</span></td><td class="fee" data-fee="surg"></td></tr>
@@ -229,6 +273,17 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
     </table>
     <p class="note">The codes are there so you can price us against anybody else in town. And not every tooth is the same — one that's broken off at the gumline takes more work than one that isn't. You'll get your own number after we look, in writing, before we start.</p>
     <p class="note">Paid the day you come in. Cash, card, HSA, FSA. If you'd rather split it into monthly payments, we can check what you'd qualify for in about two minutes.</p>
+=======
+        <tr><td>Exam and x-ray on its own<span class="sub">If you just want to know what's going on</span><span class="code">D0140, D0220</span></td><td class="fee" data-fee="exam"></td></tr>
+        <tr><td>Taking the tooth out<span class="sub">Exam, x-ray and numbing included</span><span class="code">D0140, D0220, D7140</span></td><td class="fee" data-fee="ext"></td></tr>
+      </tbody>
+    </table>
+    <p class="note">One price, nothing added on afterward. Not every tooth is the same, though — one that's broken off at the gumline is more work than one that isn't, and a crown or a filling depends on what's left to work with, so those run more. Whatever yours turns out to be, you'll have the number in writing before anything starts, and you can take it home and think about it.</p>
+    
+    <!-- PAYMENT METHODS UPDATED HERE -->
+    <p class="note">Paid the day you come in. We accept cash, card, CareCredit, HSA, FSA, and major PPO insurances. If you'd rather split it into monthly payments, we can check what you'd qualify for in about two minutes.</p>
+    
+>>>>>>> 91f0e334849efb728ae2308c12cef1b79ecd77ac
     <p class="note">These are self-pay prices. If you carry dental insurance we work with, your plan's rates apply instead, and we'll walk you through what that means before we begin.</p>
   </section>
 
@@ -279,21 +334,37 @@ footer{padding:1.9rem 0 2.4rem;border-top:1px solid var(--rule);
 
   <section class="where">
     <h2>Where we are</h2>
+<<<<<<< HEAD
     <p><strong>Berks Urgent Dental</strong>
     2211 Quarry Drive, Suite E-<span data-cfg="suite"></span><br>
     West Lawn, PA 19609</p>
+=======
+    
+    <!-- MAP EMBED ADDED HERE -->
+    <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034.721469077651!2d-79.998463!3d40.4815419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c676239127dce7%3A0x6a0f12c1c69766e4!2s2211%20Quarry%20Dr%2C%20Reading%2C%20PA%2019609!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <!-- CLICKABLE ADDRESS LINK ADDED HERE -->
+    <p>
+      <a href="https://maps.google.com/?q=2211+Quarry+Drive+Reading+PA+19609" target="_blank" class="address-link" data-cfg="maps">
+        <strong>Berks Urgent Dental</strong>
+        2211 Quarry Drive, Suite E-<span data-cfg="suite"></span><br>
+        Reading, PA 19609
+      </a>
+    </p>
+>>>>>>> 91f0e334849efb728ae2308c12cef1b79ecd77ac
     <p><a href="" data-cfg="maps">Open in Maps</a> &nbsp;·&nbsp; Park right at the door, no charge</p>
     <table class="hours" id="hours"></table>
   </section>
 
   <footer>
     <p class="er"><b>Go to an emergency room instead</b> if the swelling is spreading toward your eye or down your neck, if you're having trouble breathing or swallowing, or if you can't open your mouth.</p>
-    <p>Berks Urgent Dental is a registered fictitious name of Shad Lewis, DMD.
+    <p>Berks Urgent Dental is a registered fictitious name of Shad J Lewis DMD MA LLC.
     Emergency and same-day dental care for Reading, West Lawn, Wyomissing, Sinking Spring, Shillington, Mohnton and the surrounding Berks County area.</p>
   </footer>
 
 </div>
 
+<!-- STICKY MOBILE BUTTON (Was already here and works perfectly!) -->
 <div class="bar"><a href="tel:+16107755521">Call (610) 775-5521</a></div>
 
 <script>
@@ -304,27 +375,33 @@ var CONFIG = {
 
   suite: "65",                       // suite letter/number on the door
 
-  maps:  "https://maps.google.com/",  // paste your Google Maps link here
+  maps:  "https://maps.google.com/?q=2211+Quarry+Drive+Reading+PA+19609",  // Updated directly to your map query
 
   // Your Google Calendar booking page, e.g. "https://calendar.app.google/xxxxxxxx"
-  // Leave it as "" and the booking button simply won't appear.
   booking: "",
 
+<<<<<<< HEAD
   // A photo of you. Leave "" and the section still reads fine without one.
   photo: "",
+=======
+  // PLACEHOLDER HEADSHOT URL ADDED HERE (Replace with your actual photo link)
+  photo: "https://via.placeholder.com/108x108.png?text=Photo",
+>>>>>>> 91f0e334849efb728ae2308c12cef1b79ecd77ac
 
   // Fees. Write them exactly as you want them to appear on the page.
   fees: {
-    exam:  "$150",
-    ext:   "from $000",
+    exam:  "$155",
+    ext:   "$395",
     surg:  "from $000",
+<<<<<<< HEAD
     recem: "$000",
     crown: "from $000",
+=======
+>>>>>>> 91f0e334849efb728ae2308c12cef1b79ecd77ac
     fill:  "from $000"
   },
 
   // Hours. Use 24-hour numbers. Set a day to null if you're closed.
-  // Example: mon: [8, 17] means 8:00am to 5:00pm.
   hours: {
     sun: null,
     mon: [8, 17],
@@ -355,10 +432,11 @@ var CONFIG = {
   }
 
   // suite + maps
-  var s = document.querySelector('[data-cfg="suite"]');
-  if (s) s.textContent = CONFIG.suite;
-  var m = document.querySelector('[data-cfg="maps"]');
-  if (m) m.setAttribute("href", CONFIG.maps);
+  var s = document.querySelectorAll('[data-cfg="suite"]');
+  s.forEach(el => el.textContent = CONFIG.suite);
+  
+  var m = document.querySelectorAll('[data-cfg="maps"]');
+  m.forEach(el => el.setAttribute("href", CONFIG.maps));
 
   // booking link — only shown if one is set
   if (CONFIG.booking) {
